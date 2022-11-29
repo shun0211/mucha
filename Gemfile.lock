@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/shun0211/seed-fu.git
+  revision: 2c9aa403ce0c665a634e49aff6b4293500b8b4e7
+  branch: support-rails-7
+  specs:
+    seed-fu (2.3.9)
+      activerecord
+      activesupport
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -66,22 +75,69 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
+    amazing_print (1.4.0)
+    annotate (3.2.0)
+      activerecord (>= 3.2, < 8.0)
+      rake (>= 10.4, < 14.0)
+    ast (2.4.2)
+    bcrypt (3.1.18)
     bootsnap (1.15.0)
       msgpack (~> 1.2)
     builder (3.2.4)
+    committee (4.4.0)
+      json_schema (~> 0.14, >= 0.14.3)
+      openapi_parser (>= 0.11.1, < 1.0)
+      rack (>= 1.5)
+    committee-rails (0.6.1)
+      actionpack
+      activesupport
+      committee (>= 4.4.0)
+      railties
     concurrent-ruby (1.1.10)
     crass (1.0.6)
     debug (1.6.3)
-      irb (>= 1.3.6)
-      reline (>= 0.3.1)
+    devise (4.8.1)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 4.1.0)
+      responders
+      warden (~> 1.2.3)
+    devise_token_auth (1.2.1)
+      bcrypt (~> 3.0)
+      devise (> 3.5.2, < 5)
+      rails (>= 4.2.0, < 7.1)
+    diff-lcs (1.5.0)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
+    enum_help (0.0.19)
+      activesupport (>= 3.0.0)
     erubi (1.11.0)
+    factory_bot (6.2.1)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
+      railties (>= 5.0.0)
+    faraday (2.7.1)
+      faraday-net_http (>= 2.0, < 3.1)
+      ruby2_keywords (>= 0.0.4)
+    faraday-mashify (0.1.1)
+      faraday (~> 2.0)
+      hashie
+    faraday-multipart (1.0.4)
+      multipart-post (~> 2)
+    faraday-net_http (3.0.2)
+    gli (2.21.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    hashie (5.0.0)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
-    io-console (0.5.11)
-    irb (1.5.1)
-      reline (>= 0.3.0)
+    json (2.6.2)
+    json_schema (0.21.0)
+    kgio (2.11.4)
+    line-bot-api (1.26.0)
     loofah (2.19.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -92,6 +148,7 @@ GEM
     mini_mime (1.1.2)
     minitest (5.16.3)
     msgpack (1.6.0)
+    multipart-post (2.2.3)
     mysql2 (0.5.4)
     net-imap (0.3.1)
       net-protocol
@@ -102,12 +159,21 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.8)
+    nokogiri (1.13.9-aarch64-linux)
+      racc (~> 1.4)
     nokogiri (1.13.9-arm64-darwin)
       racc (~> 1.4)
+    openapi_parser (0.15.0)
+    orm_adapter (0.5.0)
+    parallel (1.22.1)
+    parser (3.1.3.0)
+      ast (~> 2.4.1)
     puma (5.6.5)
       nio4r (~> 2.0)
     racc (1.6.0)
     rack (2.2.4)
+    rack-cors (1.1.1)
+      rack (>= 2.0.0)
     rack-test (2.0.2)
       rack (>= 1.3)
     rails (7.0.4)
@@ -129,6 +195,9 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.4.3)
       loofah (~> 2.3)
+    rails-i18n (7.0.6)
+      i18n (>= 0.7, < 2)
+      railties (>= 6.0.0, < 8)
     railties (7.0.4)
       actionpack (= 7.0.4)
       activesupport (= 7.0.4)
@@ -136,28 +205,105 @@ GEM
       rake (>= 12.2)
       thor (~> 1.0)
       zeitwerk (~> 2.5)
+    rainbow (3.1.1)
+    raindrops (0.20.0)
     rake (13.0.6)
-    reline (0.3.1)
-      io-console (~> 0.5)
+    regexp_parser (2.6.1)
+    responders (3.0.1)
+      actionpack (>= 5.0)
+      railties (>= 5.0)
+    rexml (3.2.5)
+    rollbar (3.3.2)
+    rspec-core (3.12.0)
+      rspec-support (~> 3.12.0)
+    rspec-expectations (3.12.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.12.0)
+    rspec-json_matcher (0.2.0)
+      amazing_print
+      json
+    rspec-mocks (3.12.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.12.0)
+    rspec-rails (6.0.1)
+      actionpack (>= 6.1)
+      activesupport (>= 6.1)
+      railties (>= 6.1)
+      rspec-core (~> 3.11)
+      rspec-expectations (~> 3.11)
+      rspec-mocks (~> 3.11)
+      rspec-support (~> 3.11)
+    rspec-support (3.12.0)
+    rubocop (1.39.0)
+      json (~> 2.3)
+      parallel (~> 1.10)
+      parser (>= 3.1.2.1)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.8, < 3.0)
+      rexml (>= 3.2.5, < 4.0)
+      rubocop-ast (>= 1.23.0, < 2.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 1.4.0, < 3.0)
+    rubocop-ast (1.23.0)
+      parser (>= 3.1.1.0)
+    rubocop-rails (2.17.3)
+      activesupport (>= 4.2.0)
+      rack (>= 1.1)
+      rubocop (>= 1.33.0, < 2.0)
+    rubocop-rspec (2.15.0)
+      rubocop (~> 1.33)
+    ruby-progressbar (1.11.0)
+    ruby2_keywords (0.0.5)
+    slack-ruby-client (2.0.0)
+      faraday (>= 2.0)
+      faraday-mashify
+      faraday-multipart
+      gli
+      hashie
+      websocket-driver
     thor (1.2.1)
     timeout (0.3.0)
     tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
+    unicode-display_width (2.3.0)
+    unicorn (6.1.0)
+      kgio (~> 2.6)
+      raindrops (~> 0.7)
+    warden (1.2.9)
+      rack (>= 2.0.9)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     zeitwerk (2.6.6)
 
 PLATFORMS
+  aarch64-linux
   arm64-darwin-21
 
 DEPENDENCIES
+  annotate
   bootsnap
+  committee-rails
   debug
+  devise_token_auth
+  dotenv-rails
+  enum_help
+  factory_bot_rails
+  line-bot-api
   mysql2 (~> 0.5)
   puma (~> 5.0)
+  rack-cors
   rails (~> 7.0.4)
+  rails-i18n (~> 7.0.0)
+  rollbar
+  rspec-json_matcher
+  rspec-rails
+  rubocop-rails
+  rubocop-rspec
+  seed-fu!
+  slack-ruby-client
   tzinfo-data
+  unicorn
 
 RUBY VERSION
    ruby 3.1.3p185

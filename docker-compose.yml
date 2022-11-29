@@ -31,20 +31,20 @@ services:
       - mysql
     #   - smtp
 
-  # swagger-ui:
-  #   image: swaggerapi/swagger-ui:latest
-  #   platform: linux/amd64
-  #   container_name: "swagger-ui"
-  #   ports:
-  #     - "8001:8080"
-  #   volumes:
-  #     - ./app/doc/openapi.yml:/openapi.yml
-  #   environment:
-  #     SWAGGER_JSON: /openapi.yml
+  swagger-ui:
+    image: swaggerapi/swagger-ui:latest
+    platform: linux/amd64
+    container_name: "swagger-ui"
+    ports:
+      - "8010:8080"
+    volumes:
+      - ./app/doc/openapi.yml:/openapi.yml
+    environment:
+      SWAGGER_JSON: /openapi.yml
 
-  # smtp:
-  #   image: schickling/mailcatcher
-  #   platform: linux/amd64
-  #   ports:
-  #     - '1080:1080'
-  #     - '1020:1025'
+  smtp:
+    image: schickling/mailcatcher
+    platform: linux/amd64
+    ports:
+      - '1081:1080'
+      - '1021:1025'

@@ -27,8 +27,19 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
-# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem "rack-cors"
+gem 'devise_token_auth'
+gem 'dotenv-rails'
+gem 'enum_help'
+gem 'line-bot-api'
+gem 'rack-cors'
+gem 'rails-i18n', '~> 7.0.0'
+gem 'rollbar'
+gem 'seed-fu', github: 'shun0211/seed-fu', branch: 'support-rails-7'
+gem 'slack-ruby-client'
+
+group :production do
+  gem 'unicorn'
+end
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -38,5 +49,14 @@ end
 group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+  gem 'annotate'
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
 end
 
+group :test do
+  gem 'committee-rails'
+  gem 'factory_bot_rails'
+  gem 'rspec-json_matcher'
+  gem 'rspec-rails'
+end
