@@ -1,0 +1,50 @@
+version: '3'
+services:
+  # TODO: タイムゾーンをJSTにする
+  mysql:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    platform: linux/amd64
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: mucha_db
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./tmp/db:/var/lib/mysql
+
+  mucha:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    environment:
+      MYSQL_DATABASE: mucha_db
+      MYSQL_HOST: mysql
+      MYSQL_USERNAME: root
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_PORT: 3306
+      FRONT_URI: http://localhost:3300
+    volumes:
+      - .:/mucha
+    ports:
+      - "4434:3000"
+    depends_on:
+      - mysql
+    #   - smtp
+
+  # swagger-ui:
+  #   image: swaggerapi/swagger-ui:latest
+  #   platform: linux/amd64
+  #   container_name: "swagger-ui"
+  #   ports:
+  #     - "8001:8080"
+  #   volumes:
+  #     - ./app/doc/openapi.yml:/openapi.yml
+  #   environment:
+  #     SWAGGER_JSON: /openapi.yml
+
+  # smtp:
+  #   image: schickling/mailcatcher
+  #   platform: linux/amd64
+  #   ports:
+  #     - '1080:1080'
+  #     - '1020:1025'
