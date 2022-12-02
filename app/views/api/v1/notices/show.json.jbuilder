@@ -1,0 +1,13 @@
+json.id @notice.id
+json.title @notice.title
+json.repeat @notice.repeat
+json.monday @notice.monday
+json.tuesday @notice.tuesday
+json.wednesday @notice.wednesday
+json.thursday @notice.thursday
+json.friday @notice.friday
+json.saturday @notice.saturday
+json.sunday @notice.sunday
+json.talkType @notice.talk_type
+json.toLineId @notice.to_line_id
+json.status @notice.status
