@@ -30,11 +30,14 @@ gem "bootsnap", require: false
 gem 'devise_token_auth'
 gem 'dotenv-rails'
 gem 'enum_help'
+gem 'google-apis-calendar_v3'
+gem 'kaminari'
 gem 'line-bot-api'
 gem 'rack-cors'
 gem 'rails-i18n', '~> 7.0.0'
 gem 'rollbar'
 gem 'seed-fu', github: 'shun0211/seed-fu', branch: 'support-rails-7'
+gem "sidekiq-scheduler"
 gem 'slack-ruby-client'
 
 group :production do
