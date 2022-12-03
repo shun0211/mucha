@@ -1,6 +1,25 @@
 import '../styles/globals.css'
+import React from "react";
 import type { AppProps } from 'next/app'
+import { MantineProvider } from '@mantine/core';
+
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <>
+      <MantineProvider
+        withGlobalStyles
+        withNormalizeCSS
+        theme={{
+          /** Put your mantine theme override here */
+          colorScheme: "light",
+          colors: {
+            'yellow': ['#FFDC00']
+          }
+      }}>
+        <Component {...pageProps} />
+      </MantineProvider>
+    </>
+  )
+
 }
