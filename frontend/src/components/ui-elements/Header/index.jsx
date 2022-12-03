@@ -7,10 +7,10 @@ const Header = () => {
     <>
       <Container className="flex justify-center items-center my-3">
         <Image
-          src="/logo.jpeg"
+          src="/logo-only-image.png"
           alt="logo"
-          width={50}
-          height={50}
+          width={35}
+          height={35}
         />
         <Title order={2} className="ml-3">Mucha</Title>
       </Container>
