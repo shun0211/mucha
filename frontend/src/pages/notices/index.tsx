@@ -1,10 +1,8 @@
-import React from 'react'
-import PagesNotices from '../../components/pages/notices/index.page'
+import React from "react";
+import PagesNotices from "../../components/pages/notices/index.page";
 
 const Notices = () => {
-  return (
-    <PagesNotices />
-  )
-}
+  return <PagesNotices />;
+};
 
-export default Notices
+export default Notices;

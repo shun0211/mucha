@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-}
+};
 
 // Full Calendarはnode_modules内にCSSが含まれているため以下の設定が必要
 // https://qiita.com/tak001/items/b57459db58f6ff8658a4

@@ -1,10 +1,8 @@
-import React from 'react'
-import PagesNoticesNew from '../../components/pages/notices/new.page'
+import React from "react";
+import PagesNoticesNew from "../../components/pages/notices/new.page";
 
 const New = () => {
-  return (
-    <PagesNoticesNew />
-  )
-}
+  return <PagesNoticesNew />;
+};
 
-export default New
+export default New;

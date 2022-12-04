@@ -1,8 +1,7 @@
-import '../styles/globals.css'
+import "../styles/globals.css";
 import React from "react";
-import type { AppProps } from 'next/app'
-import { MantineProvider } from '@mantine/core';
-
+import type { AppProps } from "next/app";
+import { MantineProvider } from "@mantine/core";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -14,12 +13,23 @@ export default function App({ Component, pageProps }: AppProps) {
           /** Put your mantine theme override here */
           colorScheme: "light",
           colors: {
-            'yellow': ['#FFDC00']
-          }
-      }}>
+            "yellow": [
+              "#FFDC00",
+              "#FFDC00",
+              "#FFDC00",
+              "#FFDC00",
+              "#FFDC00",
+              "#FFDC00",
+              "#FFDC00",
+              "#FFDC00",
+              "#FFDC00",
+              "#FFDC00",
+            ],
+          },
+        }}
+      >
         <Component {...pageProps} />
       </MantineProvider>
     </>
-  )
-
+  );
 }
