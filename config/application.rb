@@ -41,6 +41,6 @@ module Mucha
       routing_specs: false
     end
 
-    config.x.cors_allowed_origins = ENV.fetch('FRONT_URI', 'http://localhost:3000')
+    config.x.cors_allowed_origins = ENV.fetch('FRONT_URI', 'http://localhost:3100')
   end
 end
