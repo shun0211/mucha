@@ -3,6 +3,7 @@
 # Table name: notices
 #
 #  id         :bigint           not null, primary key
+#  friday     :boolean          default(FALSE), not null
 #  message    :text(65535)      not null
 #  monday     :boolean          default(FALSE), not null
 #  repeat     :boolean          not null
@@ -28,14 +29,13 @@ class Notice < ApplicationRecord
   belongs_to :user
 
   validates :title, presence: true
-  validates :message, presence: true
   validates :repeat, inclusion: { in: [true, false] }
   validates :monday, :tuesday, :wednesday, :tuesday, :friday, :saturday, :sunday, inclusion: { in: [true, false] }
   validates :to_line_id, presence: true
 
   enum talk_type: {
     dm: 10,
-    group: 20
+    group_talk: 20
   }
 
   enum status: {

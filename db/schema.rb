@@ -11,7 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2022_12_01_144156) do
-  create_table "notices", charset: "latin1", force: :cascade do |t|
+  create_table "notices", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "title", null: false
     t.text "message", null: false
@@ -22,6 +22,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_01_144156) do
     t.boolean "tuesday", default: false, null: false
     t.boolean "wednesday", default: false, null: false
     t.boolean "thursday", default: false, null: false
+    t.boolean "friday", default: false, null: false
     t.boolean "saturday", default: false, null: false
     t.boolean "sunday", default: false, null: false
     t.string "to_line_id", null: false
@@ -31,7 +32,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_01_144156) do
     t.index ["user_id"], name: "index_notices_on_user_id"
   end
 
-  create_table "users", charset: "latin1", force: :cascade do |t|
+  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", null: false
     t.string "line_user_id"
     t.string "line_nonce"

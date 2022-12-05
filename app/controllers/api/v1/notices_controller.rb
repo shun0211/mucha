@@ -7,8 +7,9 @@ class Api::V1::NoticesController < ApplicationController
   end
 
   def create
-    @notice = current_user.notices.build(notice_parms)
-    if notice.save
+    @notice = current_user.notices.build(notice_params)
+    @notice.to_line_id = "xxxxxxxxxx"
+    if @notice.save
       render :show, status: :created
     else
       render_not_acceptable_error(@notice.errors.full_messages, '')
@@ -36,6 +37,7 @@ class Api::V1::NoticesController < ApplicationController
   private def notice_params
     params.permit(
       :title,
+      :sent_at,
       :message,
       :repeat,
       :monday,

@@ -11,6 +11,7 @@ class CreateNotices < ActiveRecord::Migration[7.0]
       t.boolean :tuesday, null: false, default: false
       t.boolean :wednesday, null: false, default: false
       t.boolean :thursday, null: false, default: false
+      t.boolean :friday, null: false, default: false
       t.boolean :saturday, null: false, default: false
       t.boolean :sunday, null: false, default: false
       t.string :to_line_id, null: false
