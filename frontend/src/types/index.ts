@@ -17,4 +17,17 @@ export type Notice = {
   saturday: boolean;
   sunday: boolean;
   message: string;
+  status: string;
+};
+
+export type Notices = Notice[]
+
+export type ErrorMessage = {
+  message: string;
+  forDeveloperMessage: string;
+};
+
+export type ErrorMessages = {
+  messages: string[];
+  forDeveloperMessage: string;
 };
