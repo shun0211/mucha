@@ -6,6 +6,7 @@ class CreateNotices < ActiveRecord::Migration[7.0]
       t.text :message, null: false
       t.integer :status, null: false
       t.datetime :sent_at
+      t.datetime :scheduled_at, null: false
       t.boolean :repeat, null: false
       t.boolean :monday, null: false, default: false
       t.boolean :tuesday, null: false, default: false

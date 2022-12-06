@@ -17,6 +17,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_01_144156) do
     t.text "message", null: false
     t.integer "status", null: false
     t.datetime "sent_at"
+    t.datetime "scheduled_at", null: false
     t.boolean "repeat", null: false
     t.boolean "monday", default: false, null: false
     t.boolean "tuesday", default: false, null: false
