@@ -1,8 +1,13 @@
 class Api::V1::NoticesController < ApplicationController
   # TODO: 並び替えと検索
+  # /notices/scheduled
+  # /notices/draft
+  # /notices/sent
+  # のようにエンドポイントが分かれていたほうが分かりやすいかもしれない
   def index
     @notices = current_user
       .notices
+      .where(status: params[:status])
       .page(params[:page])
   end
 
@@ -37,6 +42,7 @@ class Api::V1::NoticesController < ApplicationController
   private def notice_params
     params.permit(
       :title,
+      :scheduled_at,
       :sent_at,
       :message,
       :repeat,

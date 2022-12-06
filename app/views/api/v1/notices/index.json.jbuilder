@@ -2,6 +2,8 @@ json.set! :notices do
   json.array! @notices do |notice|
     json.id notice.id
     json.title notice.title
+    json.scheduledAt notice.scheduled_at
+    json.sentAt notice.sent_at
     json.repeat notice.repeat
     json.monday notice.monday
     json.tuesday notice.tuesday
@@ -13,6 +15,9 @@ json.set! :notices do
     json.talkType notice.talk_type
     json.toLineId  notice.to_line_id
     json.status notice.status
+    json.scheduledDate notice.scheduled_at.strftime('%Y/%m/%d')
+    json.scheduledTime notice.scheduled_at.strftime('%H:%M')
+    json.repeatedWeeks notice.repeated_weeks
   end
 end
 json.set! :page do
