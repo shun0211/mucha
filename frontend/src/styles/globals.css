@@ -397,3 +397,8 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 @tailwind components;
 @tailwind utilities;
+
+/* Full CalendarのCSS */
+.fc-toolbar-title {
+  font-size: 24px !important;
+}
