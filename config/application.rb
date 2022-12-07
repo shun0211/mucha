@@ -34,6 +34,9 @@ module Mucha
     config.session_store :cookie_store, key: '_interslice_session'
     config.middleware.use config.session_store, config.session_options
 
+    # Sidekiq
+    config.active_job.queue_adapter = :sidekiq
+
     config.generators do |g|
       g.test_framework :rspec,
       view_specs: false,

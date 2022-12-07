@@ -1,0 +1,6 @@
+# コンカレンシーはRAILS_MAX_THREADSと統一するようにする
+# https://qiita.com/ts-3156/items/a5f8794a79148c9cfcbe
+:concurrency: 5
+:queues:
+  - default
+  - mailers
