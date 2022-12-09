@@ -13,7 +13,7 @@ class Api::V1::NoticesController < ApplicationController
 
   def create
     @notice = current_user.notices.build(notice_params)
-    @notice.to_line_id = "xxxxxxxxxx"
+    @notice.to_line_id = current_user.line_user_id
     if @notice.save
       Notices::SetJobService.new(@notice).execute!
       render :show, status: :created

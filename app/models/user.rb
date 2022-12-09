@@ -13,6 +13,7 @@
 #
 class User < ApplicationRecord
   has_many :notices, dependent: :destroy
+  has_many :group_talk_rooms, dependent: :destroy
 
   validates :email, presence: true
 end
