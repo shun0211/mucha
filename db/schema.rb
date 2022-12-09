@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_01_144156) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_08_230803) do
+  create_table "group_talk_rooms", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "line_name", null: false
+    t.string "line_profile_image_url", null: false
+    t.string "line_group_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_group_talk_rooms_on_user_id"
+  end
+
   create_table "notices", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "title", null: false
@@ -30,6 +40,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_01_144156) do
     t.integer "talk_type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "job_id"
     t.index ["user_id"], name: "index_notices_on_user_id"
   end
 
@@ -39,6 +50,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_01_144156) do
     t.string "line_nonce"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "line_name"
+    t.string "line_profile_image_url"
   end
 
 end
