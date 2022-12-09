@@ -15,6 +15,7 @@ class Api::V1::NoticesController < ApplicationController
     @notice = current_user.notices.build(notice_params)
     @notice.to_line_id = "xxxxxxxxxx"
     if @notice.save
+      Notices::SetJobService.new(@notice).execute!
       render :show, status: :created
     else
       render_not_acceptable_error(@notice.errors.full_messages, '')
@@ -30,6 +31,14 @@ class Api::V1::NoticesController < ApplicationController
     else
       render_not_acceptable_error(@notice.errors.full_messages, '')
     end
+  end
+
+  def update_to_draft
+    @notice = current_user.notices.find_by(id: params[:id])
+    return render_unauthorized_error('', 'Invalid Notice Id') if @notice.nil?
+
+    @notice.draft!
+    Notices::SetJobService.new(@notice).execute!
   end
 
   def destroy
