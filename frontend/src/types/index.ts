@@ -23,8 +23,15 @@ export type Notice = {
   scheduledTime: string;
   repeatedWeeks: string;
 };
-
 export type Notices = Notice[];
+
+export type GroupTalkRoom = {
+  id: number;
+  lineName: string;
+  lineProfileImageUrl: string;
+  lineGroupId: string;
+};
+export type GroupTalkRooms = GroupTalkRoom[]
 
 export type ErrorMessage = {
   message: string;
