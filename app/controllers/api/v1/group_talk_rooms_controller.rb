@@ -1,4 +1,8 @@
 class Api::V1::GroupTalkRoomsController < ApplicationController
+  def index
+    @group_talk_rooms = current_user.group_talk_rooms
+  end
+
   def create
     res = line_bot_client.get_group_summary(params[:line_group_id])
     line_group_info = JSON.parse(res.body)
