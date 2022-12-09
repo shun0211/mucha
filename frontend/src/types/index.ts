@@ -24,7 +24,7 @@ export type Notice = {
   repeatedWeeks: string;
 };
 
-export type Notices = Notice[]
+export type Notices = Notice[];
 
 export type ErrorMessage = {
   message: string;
@@ -42,3 +42,5 @@ export type Page = {
   totalCount: number;
   totalPages: number;
 };
+
+export type TalkType = "dm" | "groupTalk";
