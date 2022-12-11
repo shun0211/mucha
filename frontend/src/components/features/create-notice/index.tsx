@@ -12,8 +12,10 @@ import {
 } from "../../../utils/custom-errors";
 import toast from "react-hot-toast";
 import { useRouter } from "next/router";
+import useGroupTalkRooms from "../../../hooks/useGroupTalkRooms";
+import { TalkType, User } from "../../../types";
 
-const CreateNotice = () => {
+const CreateNotice = ({ user }: { user: User }) => {
   const router = useRouter();
   const repeatValue = [
     { value: false, label: "しない" },
@@ -33,6 +35,7 @@ const CreateNotice = () => {
       saturday: false,
       sunday: true,
       message: "",
+      toLineId: user.lineUserId,
     },
   });
 
@@ -49,7 +52,8 @@ const CreateNotice = () => {
     sunday: boolean,
     message: string,
     status: string,
-    talkType: string
+    talkType: string,
+    toLineId: string
   ) => {
     await postNotice(
       title,
@@ -64,7 +68,8 @@ const CreateNotice = () => {
       sunday,
       message,
       status,
-      talkType
+      talkType,
+      toLineId
     ).catch((e) => {
       if (e instanceof UnauthorizedError) {
         toast.error(e.errorMessage);
@@ -76,6 +81,16 @@ const CreateNotice = () => {
     router.push("/notices");
     toast.success("登録しました😊");
   };
+
+  const [talkType, setTalkType] = useState<TalkType>("dm");
+  // TODO: components/ui-elements/NoticeTarget/index.tsx と共通化する
+  const { groupTalkRooms } = useGroupTalkRooms();
+  if (!groupTalkRooms) return null;
+
+  const noticeTargetData = groupTalkRooms.map((groupTalkRoom) => {
+    return { value: groupTalkRoom.lineGroupId, label: groupTalkRoom.lineName };
+  });
+  noticeTargetData.unshift({ value: user.lineUserId, label: "DM" });
 
   return (
     <Card shadow="md" radius="lg" className="pb-8">
@@ -93,11 +108,26 @@ const CreateNotice = () => {
             values.saturday,
             values.sunday,
             values.message,
-            'scheduled',
-            'dm'
+            "scheduled",
+            talkType,
+            values.toLineId
           );
         })}
       >
+        <Select
+          label="💬 送付先"
+          data={noticeTargetData}
+          defaultValue="DM"
+          className="py-2"
+          {...form.getInputProps("toLineId")}
+          onChange={(value: React.ChangeEvent<HTMLSelectElement>) => {
+            form.setFieldValue("toLineId", String(value));
+            if (String(value) === user.lineUserId) {
+              setTalkType("dm");
+            }
+          }}
+        />
+
         <TextInput
           required
           label="タイトル"
@@ -179,10 +209,10 @@ const CreateNotice = () => {
         </div>
 
         <Textarea
-          label="メッセージ"
+          label={`メッセージ\n(LINEで送るメッセージを入力してください)`}
           minRows={5}
           radius="md"
-          className="py-2"
+          className="py-2 whitespace-pre-wrap"
           {...form.getInputProps("message")}
         />
 
