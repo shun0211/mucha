@@ -2,13 +2,13 @@ import { Container } from "@mantine/core";
 import React, { useContext } from "react";
 import Header from "../../ui-elements/Header";
 import PageTitle from "../../ui-elements/PageTitle";
-import DisplayNotices from "../../features/display-notices";
 import NavigationBottom from "../../ui-elements/NavigationBottom";
 import GoogleCalendarButton from "../../ui-elements/GoogleCalendarButton";
 import NoticeTarget from "../../ui-elements/NoticeTarget";
 import { useAuth0 } from "@auth0/auth0-react";
 import DisplayCalender from "../../features/calendar/components/DisplayCalendar";
 import { AuthContext } from "../../../providers/auth";
+import DisplayNotices from "../../features/notices/components/DisplayNotices";
 
 const PagesNotices = () => {
   const { currentUser } = useContext(AuthContext)

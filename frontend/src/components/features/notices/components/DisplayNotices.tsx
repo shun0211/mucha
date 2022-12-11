@@ -1,10 +1,10 @@
 import { Tabs } from "@mantine/core";
 import React from "react";
-import useDraftNotices from "../../../hooks/useDraftNotices";
-import useScheduledNotices from "../../../hooks/useScheduledNotices";
-import useSentNotices from "../../../hooks/useSentNotices";
-import { Notice } from "../../../types";
-import NoticeCard from "./components/NoticeCard";
+import useDraftNotices from "../../../../hooks/useDraftNotices";
+import useScheduledNotices from "../../../../hooks/useScheduledNotices";
+import useSentNotices from "../../../../hooks/useSentNotices";
+import { Notice } from "../../../../types";
+import NoticeCard from "./NoticeCard";
 
 const DisplayNotices = () => {
   const data = useScheduledNotices(1);

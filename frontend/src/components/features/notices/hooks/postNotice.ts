@@ -1,7 +1,7 @@
 import axios from "axios";
-import { API_URL } from "../../../../../config/constants";
-import { Notice, TalkType } from "../../../../../types";
-import { isErrorMessage, isErrorMessages, NotAcceptableError, UnauthorizedError } from "../../../../../utils/custom-errors";
+import { API_URL } from "../../../../config/constants";
+import { Notice, TalkType } from "../../../../types";
+import { isErrorMessage, isErrorMessages, NotAcceptableError, UnauthorizedError } from "../../../../utils/custom-errors";
 
 axios.defaults.headers.common["Accept"] = "application/json";
 

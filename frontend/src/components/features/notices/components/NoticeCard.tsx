@@ -1,10 +1,10 @@
 import { Badge, Card, Text, Title } from "@mantine/core";
 import React, { useState } from "react";
 import { ChevronDown, ChevronUp } from "tabler-icons-react";
-import { Notice } from "../../../../../types";
+import { Notice } from "../../../../types";
 
 type Props = {
-  notice: Notice
+  notice: Notice;
 };
 
 const NoticeCard = (props: Props) => {

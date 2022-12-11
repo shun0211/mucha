@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Card, Select, Switch, Textarea, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { DateTimePicker } from "mantine-dates-6";
-import { postNotice } from "./api/postNotice";
 import toast from "react-hot-toast";
 import { useRouter } from "next/router";
 import { TalkType, User } from "../../../../types";
@@ -11,6 +10,7 @@ import { NotAcceptableError, UnauthorizedError } from "../../../../utils/custom-
 import RequiredLabel from "../../../ui-elements/RequiredLabel";
 import DraftButton from "../../../ui-elements/DraftButton";
 import MainButton from "../../../ui-elements/MainButton";
+import { postNotice } from "../hooks/postNotice";
 
 const CreateNotice = ({ user }: { user: User }) => {
   const router = useRouter();
@@ -52,7 +52,7 @@ const CreateNotice = ({ user }: { user: User }) => {
     sunday: boolean,
     message: string,
     status: string,
-    talkType: string,
+    talkType: TalkType,
     toLineId: string
   ) => {
     await postNotice(
