@@ -1,6 +1,6 @@
 import axios from "axios";
 import { API_URL } from "../../../../config/constants";
-import { Notice } from "../../../../types";
+import { Notice, TalkType } from "../../../../types";
 import { isErrorMessage, isErrorMessages, NotAcceptableError, UnauthorizedError } from "../../../../utils/custom-errors";
 
 axios.defaults.headers.common["Accept"] = "application/json";
@@ -18,7 +18,8 @@ export const postNotice = async (
   sunday: boolean,
   message: string,
   status: string,
-  talkType: string
+  talkType: TalkType,
+  toLineId: string
 ): Promise<Notice> => {
   const res = await axios
     .post(
@@ -36,7 +37,8 @@ export const postNotice = async (
         sunday: sunday,
         message: message,
         status: status,
-        talk_type: talkType
+        talk_type: talkType,
+        to_line_id: toLineId
       },
       { withCredentials: true }
     )
