@@ -2,18 +2,15 @@ import React, { useState } from "react";
 import { Card, Select, Switch, Textarea, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { DateTimePicker } from "mantine-dates-6";
-import RequiredLabel from "../../ui-elements/RequiredLabel";
-import MainButton from "../../ui-elements/MainButton";
-import DraftButton from "../../ui-elements/DraftButton";
 import { postNotice } from "./api/postNotice";
-import {
-  NotAcceptableError,
-  UnauthorizedError,
-} from "../../../utils/custom-errors";
 import toast from "react-hot-toast";
 import { useRouter } from "next/router";
-import { TalkType, User } from "../../../types";
-import { useNoticeTargetData } from "../../../hooks/useNoticeTargetData";
+import { TalkType, User } from "../../../../types";
+import { useNoticeTargetData } from "../../../../hooks/useNoticeTargetData";
+import { NotAcceptableError, UnauthorizedError } from "../../../../utils/custom-errors";
+import RequiredLabel from "../../../ui-elements/RequiredLabel";
+import DraftButton from "../../../ui-elements/DraftButton";
+import MainButton from "../../../ui-elements/MainButton";
 
 const CreateNotice = ({ user }: { user: User }) => {
   const router = useRouter();
@@ -22,7 +19,7 @@ const CreateNotice = ({ user }: { user: User }) => {
     { value: true, label: "する" },
   ];
   const [repeated, setRepeated] = useState(false);
-  const noticeTargetData = useNoticeTargetData()
+  const noticeTargetData = useNoticeTargetData(user)
   const [talkType, setTalkType] = useState<TalkType>("dm");
 
   const form = useForm({
@@ -84,6 +81,9 @@ const CreateNotice = ({ user }: { user: User }) => {
     router.push("/notices");
     toast.success("登録しました😊");
   };
+
+  // Selectのコンポーネントを外に切り出して移動させたい
+  if (!noticeTargetData) return null
 
   return (
     <Card shadow="md" radius="lg" className="pb-8">

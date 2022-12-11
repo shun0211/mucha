@@ -1,14 +1,22 @@
 import { Container } from "@mantine/core";
-import React from "react";
+import React, { useContext } from "react";
 import Header from "../../ui-elements/Header";
 import PageTitle from "../../ui-elements/PageTitle";
 import DisplayNotices from "../../features/display-notices";
-import DisplayCalender from "../../features/display-calender";
 import NavigationBottom from "../../ui-elements/NavigationBottom";
 import GoogleCalendarButton from "../../ui-elements/GoogleCalendarButton";
 import NoticeTarget from "../../ui-elements/NoticeTarget";
+import { useAuth0 } from "@auth0/auth0-react";
+import DisplayCalender from "../../features/calendar/components/DisplayCalendar";
+import { AuthContext } from "../../../providers/auth";
 
 const PagesNotices = () => {
+  const { currentUser } = useContext(AuthContext)
+  const { user, isAuthenticated } = useAuth0();
+
+  if (!currentUser) return null
+  console.log(user, isAuthenticated)
+
   return (
     <>
       <Header />
@@ -19,7 +27,7 @@ const PagesNotices = () => {
         <DisplayCalender />
         <div className="flex justify-between items-center py-3">
           <GoogleCalendarButton />
-          <NoticeTarget />
+          <NoticeTarget user={currentUser} />
         </div>
         <DisplayNotices />
       </Container>

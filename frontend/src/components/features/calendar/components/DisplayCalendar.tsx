@@ -2,8 +2,8 @@ import FullCalendar from "@fullcalendar/react";
 import React from "react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import jaLocale from "@fullcalendar/core/locales/ja";
-import useScheduledNotices from "../../../hooks/useScheduledNotices";
-import { Notice } from "../../../types";
+import { Notice } from "../../../../types";
+import useScheduledNotices from "../../../../hooks/useScheduledNotices";
 
 const DisplayCalender = () => {
   const data = useScheduledNotices(1);
