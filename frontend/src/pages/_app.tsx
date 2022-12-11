@@ -1,81 +1,72 @@
 import "../styles/globals.css";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import type { AppProps } from "next/app";
 import { MantineProvider } from "@mantine/core";
 import { Toaster } from "react-hot-toast";
 import { AuthContext } from "../providers/auth";
-import { User } from "../types";
 import { useRouter } from "next/router";
 import Skeleton from "../components/ui-elements/Skeleton";
-import { getCurrentUser } from "../hooks/getCurrentUser";
+import { Auth0Provider } from "@auth0/auth0-react";
+import { AUTH0_CLIENT_ID, AUTH0_DOMAIN } from "../config/constants";
+import { useSetCurrentUser } from "../hooks/setCurrentUser";
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
   const router = useRouter();
-  const [currentUser, setCurrentUser] = useState<User | null | undefined>(
-    undefined
-  );
-  const [authChecking, setAuthChecking] = useState<boolean>(true);
-
-  useEffect(() => {
-    const inner = async () => {
-      try {
-        const user: User = await getCurrentUser();
-        setCurrentUser(user);
-      } catch {
-        setCurrentUser(null);
-      }
-      setAuthChecking(false);
-    };
-    inner();
-  }, []);
+  const { authChecking, currentUser, setCurrentUser } = useSetCurrentUser()
 
   const component = (authChecking: boolean): React.ReactNode => {
     if (
       props.router.pathname === "/" ||
-      props.router.pathname === "/line-account-linkage" ||
-      props.router.pathname === "/notices/new" ||
-      props.router.pathname === "/notices"
+      props.router.pathname === "/signin" ||
+      props.router.pathname === "/signup" ||
+      props.router.pathname === "/line-account-linkage"
     ) {
       return <Component {...pageProps} />;
     } else {
       // ログインしていないときは/signinにリダイレクト
-      if (!authChecking && currentUser === null) {
-        router.push("signin");
-      }
+      // if (!authChecking && currentUser === null) {
+      //   router.push("signin");
+      // }
       return authChecking ? <Skeleton /> : <Component {...pageProps} />;
     }
   };
 
   return (
     <>
-      <AuthContext.Provider value={{ currentUser, setCurrentUser }}>
-        <MantineProvider
-          withGlobalStyles
-          withNormalizeCSS
-          theme={{
-            /** Put your mantine theme override here */
-            colorScheme: "light",
-            colors: {
-              yellow: [
-                "#FFDC00",
-                "#FFDC00",
-                "#FFDC00",
-                "#FFDC00",
-                "#FFDC00",
-                "#FFDC00",
-                "#FFDC00",
-                "#FFDC00",
-                "#FFDC00",
-                "#FFDC00",
-              ],
-            },
-          }}
-        >
-          {component(authChecking)}
-        </MantineProvider>
-        <Toaster />
-      </AuthContext.Provider>
+      <Auth0Provider
+        domain={AUTH0_DOMAIN}
+        clientId={AUTH0_CLIENT_ID}
+        redirectUri="http://localhost:3100/notices"
+      >
+        <AuthContext.Provider value={{ currentUser, setCurrentUser }}>
+          <MantineProvider
+            withGlobalStyles
+            withNormalizeCSS
+            theme={{
+              /** Put your mantine theme override here */
+              colorScheme: "light",
+              colors: {
+                yellow: [
+                  "#FFDC00",
+                  "#FFDC00",
+                  "#FFDC00",
+                  "#FFDC00",
+                  "#FFDC00",
+                  "#FFDC00",
+                  "#FFDC00",
+                  "#FFDC00",
+                  "#FFDC00",
+                  "#FFDC00",
+                ],
+              },
+            }}
+          >
+            {component(authChecking)}
+          </MantineProvider>
+          <Toaster />
+        </AuthContext.Provider>
+      </Auth0Provider>
     </>
   );
 }
