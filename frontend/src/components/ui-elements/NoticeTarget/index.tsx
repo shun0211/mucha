@@ -1,15 +1,10 @@
 import { Select } from "@mantine/core";
 import React from "react";
-import useGroupTalkRooms from "../../../hooks/useGroupTalkRooms";
+import { useNoticeTargetData } from "../../../hooks/useNoticeTargetData";
 
 const NoticeTarget = () => {
-  const { groupTalkRooms } = useGroupTalkRooms();
-  if (!groupTalkRooms) return null;
-
-  const noticeTargetData = groupTalkRooms.map((groupTalkRoom) => {
-    return { value: groupTalkRoom.lineGroupId, label: groupTalkRoom.lineName };
-  });
-  noticeTargetData.push({ value: "DM", label: "DM" });
+  const noticeTargetData = useNoticeTargetData()
+  if (!noticeTargetData) return null
 
   return (
     <>

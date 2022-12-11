@@ -12,8 +12,8 @@ import {
 } from "../../../utils/custom-errors";
 import toast from "react-hot-toast";
 import { useRouter } from "next/router";
-import useGroupTalkRooms from "../../../hooks/useGroupTalkRooms";
 import { TalkType, User } from "../../../types";
+import { useNoticeTargetData } from "../../../hooks/useNoticeTargetData";
 
 const CreateNotice = ({ user }: { user: User }) => {
   const router = useRouter();
@@ -22,6 +22,9 @@ const CreateNotice = ({ user }: { user: User }) => {
     { value: true, label: "する" },
   ];
   const [repeated, setRepeated] = useState(false);
+  const noticeTargetData = useNoticeTargetData()
+  const [talkType, setTalkType] = useState<TalkType>("dm");
+
   const form = useForm({
     initialValues: {
       title: "",
@@ -81,16 +84,6 @@ const CreateNotice = ({ user }: { user: User }) => {
     router.push("/notices");
     toast.success("登録しました😊");
   };
-
-  const [talkType, setTalkType] = useState<TalkType>("dm");
-  // TODO: components/ui-elements/NoticeTarget/index.tsx と共通化する
-  const { groupTalkRooms } = useGroupTalkRooms();
-  if (!groupTalkRooms) return null;
-
-  const noticeTargetData = groupTalkRooms.map((groupTalkRoom) => {
-    return { value: groupTalkRoom.lineGroupId, label: groupTalkRoom.lineName };
-  });
-  noticeTargetData.unshift({ value: user.lineUserId, label: "DM" });
 
   return (
     <Card shadow="md" radius="lg" className="pb-8">
