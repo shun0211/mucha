@@ -12,8 +12,4 @@ class ApplicationController < ActionController::API
       forDeveloperMessage: for_developer_message
     }, status: :not_acceptable
   end
-
-  def current_user
-    @current_user ||= User.first
-  end
 end

@@ -6,20 +6,23 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/router";
 import { TalkType, User } from "../../../../types";
 import { useNoticeTargetData } from "../../../../hooks/useNoticeTargetData";
-import { NotAcceptableError, UnauthorizedError } from "../../../../utils/custom-errors";
+import {
+  NotAcceptableError,
+  UnauthorizedError,
+} from "../../../../utils/custom-errors";
 import RequiredLabel from "../../../ui-elements/RequiredLabel";
 import DraftButton from "../../../ui-elements/DraftButton";
 import MainButton from "../../../ui-elements/MainButton";
 import { postNotice } from "../hooks/postNotice";
 
-const CreateNotice = ({ user }: { user: User }) => {
+const CreateNotice = ({ user, token }: { user: User; token: string }) => {
   const router = useRouter();
   const repeatValue = [
     { value: false, label: "しない" },
     { value: true, label: "する" },
   ];
   const [repeated, setRepeated] = useState(false);
-  const noticeTargetData = useNoticeTargetData(user)
+  const noticeTargetData = useNoticeTargetData(user, token);
   const [talkType, setTalkType] = useState<TalkType>("dm");
 
   const form = useForm({
@@ -56,6 +59,8 @@ const CreateNotice = ({ user }: { user: User }) => {
     toLineId: string
   ) => {
     await postNotice(
+      user.id,
+      token,
       title,
       scheduledAt,
       repeat,
@@ -81,9 +86,6 @@ const CreateNotice = ({ user }: { user: User }) => {
     router.push("/notices");
     toast.success("登録しました😊");
   };
-
-  // Selectのコンポーネントを外に切り出して移動させたい
-  if (!noticeTargetData) return null
 
   return (
     <Card shadow="md" radius="lg" className="pb-8">
@@ -117,6 +119,8 @@ const CreateNotice = ({ user }: { user: User }) => {
             form.setFieldValue("toLineId", String(value));
             if (String(value) === user.lineUserId) {
               setTalkType("dm");
+            } else {
+              setTalkType("groupTalk");
             }
           }}
         />

@@ -38,7 +38,7 @@ class Notice < ApplicationRecord
 
   enum talk_type: {
     dm: 10,
-    group_talk: 20
+    groupTalk: 20
   }
 
   enum status: {

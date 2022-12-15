@@ -1,8 +1,8 @@
 import { User } from "../types";
 import useGroupTalkRooms from "./useGroupTalkRooms";
 
-export const useNoticeTargetData = (user: User) => {
-  const { groupTalkRooms } = useGroupTalkRooms();
+export const useNoticeTargetData = (user: User, token: string) => {
+  const { groupTalkRooms } = useGroupTalkRooms(token);
   if (!groupTalkRooms) return null;
 
   const noticeTargetData = groupTalkRooms.map((groupTalkRoom) => {

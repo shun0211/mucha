@@ -3,8 +3,8 @@ import React from "react";
 import { useNoticeTargetData } from "../../../hooks/useNoticeTargetData";
 import { User } from "../../../types";
 
-const NoticeTarget = ({ user }: { user: User }) => {
-  const noticeTargetData = useNoticeTargetData(user);
+const NoticeTarget = ({ user, token }: { user: User, token: string }) => {
+  const noticeTargetData = useNoticeTargetData(user, token);
   if (!noticeTargetData) return null;
 
   return (

@@ -1,11 +1,18 @@
 import axios from "axios";
 import { API_URL } from "../../../../config/constants";
 import { Notice, TalkType } from "../../../../types";
-import { isErrorMessage, isErrorMessages, NotAcceptableError, UnauthorizedError } from "../../../../utils/custom-errors";
+import {
+  isErrorMessage,
+  isErrorMessages,
+  NotAcceptableError,
+  UnauthorizedError,
+} from "../../../../utils/custom-errors";
 
 axios.defaults.headers.common["Accept"] = "application/json";
 
 export const postNotice = async (
+  userId: number,
+  token: string,
   title: string,
   scheduledAt: string,
   repeat: boolean,
@@ -25,6 +32,7 @@ export const postNotice = async (
     .post(
       `${API_URL}/notices`,
       {
+        user_id: userId,
         title: title,
         scheduled_at: scheduledAt,
         repeat: repeat,
@@ -38,9 +46,13 @@ export const postNotice = async (
         message: message,
         status: status,
         talk_type: talkType,
-        to_line_id: toLineId
+        to_line_id: toLineId,
       },
-      { withCredentials: true }
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
     )
     .catch((e) => {
       if (

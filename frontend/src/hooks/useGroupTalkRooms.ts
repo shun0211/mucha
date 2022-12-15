@@ -11,13 +11,19 @@ export type UseGroupTalkRooms = {
   isError: boolean;
 };
 
-const fetcher = (url: string) =>
-  axios.get(url, { withCredentials: true }).then((res) => res.data);
+const fetcher = (url: string, token: string) =>
+  axios
+    .get(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
 
-const useGroupTalkRooms = (): UseGroupTalkRooms => {
+const useGroupTalkRooms = (token: string): UseGroupTalkRooms => {
   const { data, error } = useSWR<UseGroupTalkRooms>(
     `${API_URL}/group_talk_rooms`,
-    fetcher
+    (url) => fetcher(url, token)
   );
 
   return {

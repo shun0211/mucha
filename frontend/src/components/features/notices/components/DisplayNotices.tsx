@@ -3,13 +3,13 @@ import React from "react";
 import useDraftNotices from "../../../../hooks/useDraftNotices";
 import useScheduledNotices from "../../../../hooks/useScheduledNotices";
 import useSentNotices from "../../../../hooks/useSentNotices";
-import { Notice } from "../../../../types";
+import { Notice, User } from "../../../../types";
 import NoticeCard from "./NoticeCard";
 
-const DisplayNotices = () => {
-  const data = useScheduledNotices(1);
-  const data2 = useDraftNotices(1);
-  const data3 = useSentNotices(1);
+const DisplayNotices = ({ user, token }: { user: User; token: string }) => {
+  const data = useScheduledNotices(user.id, token);
+  const data2 = useDraftNotices(user.id, token);
+  const data3 = useSentNotices(user.id, token);
   const scheduledNotices = data.notices ?? null;
   const draftNotices = data2.notices ?? null;
   const sentNotices = data3.notices ?? null;

@@ -1,4 +1,4 @@
-class Api::V1::GroupTalkRoomsController < ApplicationController
+class Api::V1::GroupTalkRoomsController < SecuredController
   def index
     @group_talk_rooms = current_user.group_talk_rooms
   end

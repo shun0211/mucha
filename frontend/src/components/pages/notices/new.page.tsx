@@ -7,7 +7,7 @@ import { AuthContext } from "../../../providers/auth";
 import CreateNotice from "../../features/notices/components/CreateNotice";
 
 const PagesNoticesNew = () => {
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, token } = useContext(AuthContext);
   if (!currentUser) return null;
 
   return (
@@ -15,7 +15,7 @@ const PagesNoticesNew = () => {
       <Header />
       <PageTitle>リマインド作成</PageTitle>
       <Container className="pb-24">
-        <CreateNotice user={currentUser} />
+        <CreateNotice user={currentUser} token={token} />
       </Container>
       <NavigationBottom />
     </>

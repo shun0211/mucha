@@ -366,6 +366,7 @@ DEPENDENCIES
   factory_bot_rails
   google-apis-calendar_v3
   jbuilder
+  jwt
   kaminari
   line-bot-api
   mysql2 (~> 0.5)

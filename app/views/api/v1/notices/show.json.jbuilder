@@ -16,3 +16,4 @@ json.status @notice.status
 json.scheduledDate @notice.scheduled_at.strftime('%Y/%m/%d')
 json.scheduledTime @notice.scheduled_at.strftime('%H:%M')
 json.repeatedWeeks @notice.repeated_weeks
+json.message @notice.message

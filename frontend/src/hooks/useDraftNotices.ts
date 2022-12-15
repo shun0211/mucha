@@ -5,17 +5,24 @@ import { UseNotices } from "./types";
 
 axios.defaults.headers.common["Accept"] = "application/json";
 
-const fetcher = (url: string) =>
-  axios.get(url, { withCredentials: true }).then((res) => res.data);
+const fetcher = (url: string, token: string) =>
+  axios
+    .get(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => res.data);
 
 const useDraftNotices = (
   userId: number,
+  token: string,
   page = 1,
   perPage = 10
 ): UseNotices => {
   const { data, error } = useSWR<UseNotices>(
     `${API_URL}/notices?userId=${userId}&page=${page}&perPage=${perPage}&status=draft`,
-    fetcher
+    (url) => fetcher(url, token)
   );
 
   return {

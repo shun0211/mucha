@@ -12,14 +12,18 @@ const LineAccountLinkage: NextPage = () => {
   const talkType = router.query.talkType;
   // 型ガードに変更する
   const lineGroupId = router.query.lineGroupId as TalkType;
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, token } = useContext(AuthContext);
 
   // どこかのディレクトリに移動したい
   const createGroupTalkRoom = async (lineGroupId: string) => {
     await axios.post(
       `${API_URL}/group_talk_rooms`,
       { line_group_id: lineGroupId },
-      { withCredentials: true }
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
     );
   };
 
@@ -28,8 +32,8 @@ const LineAccountLinkage: NextPage = () => {
   }
 
   if (currentUser && talkType == "groupTalk") {
-    createGroupTalkRoom(lineGroupId)
-    router.push('/line-account-linkage/success')
+    createGroupTalkRoom(lineGroupId);
+    router.push("/line-account-linkage/success");
   }
 
   return <div>index</div>;

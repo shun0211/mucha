@@ -1,4 +1,4 @@
-class Api::V1::NoticesController < ApplicationController
+class Api::V1::NoticesController < SecuredController
   # TODO: 並び替えと検索
   # /notices/scheduled
   # /notices/draft
@@ -13,7 +13,6 @@ class Api::V1::NoticesController < ApplicationController
 
   def create
     @notice = current_user.notices.build(notice_params)
-    @notice.to_line_id = current_user.line_user_id
     if @notice.save
       Notices::SetJobService.new(@notice).execute!
       render :show, status: :created
@@ -63,8 +62,8 @@ class Api::V1::NoticesController < ApplicationController
       :saturday,
       :sunday,
       :talk_type,
-      :to_line_id,
-      :status
+      :status,
+      :to_line_id
     )
   end
 end

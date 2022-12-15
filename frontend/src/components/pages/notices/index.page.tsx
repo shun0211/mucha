@@ -5,17 +5,13 @@ import PageTitle from "../../ui-elements/PageTitle";
 import NavigationBottom from "../../ui-elements/NavigationBottom";
 import GoogleCalendarButton from "../../ui-elements/GoogleCalendarButton";
 import NoticeTarget from "../../ui-elements/NoticeTarget";
-import { useAuth0 } from "@auth0/auth0-react";
 import DisplayCalender from "../../features/calendar/components/DisplayCalendar";
 import { AuthContext } from "../../../providers/auth";
 import DisplayNotices from "../../features/notices/components/DisplayNotices";
 
 const PagesNotices = () => {
-  const { currentUser } = useContext(AuthContext)
-  const { user, isAuthenticated } = useAuth0();
-
-  if (!currentUser) return null
-  console.log(user, isAuthenticated)
+  const { currentUser, token } = useContext(AuthContext);
+  if (!currentUser) return null;
 
   return (
     <>
@@ -24,12 +20,12 @@ const PagesNotices = () => {
       <Container className="mb-24">
         <PageTitle>リマインド設定</PageTitle>
 
-        <DisplayCalender />
+        <DisplayCalender user={currentUser} token={token} />
         <div className="flex justify-between items-center py-3">
           <GoogleCalendarButton />
-          <NoticeTarget user={currentUser} />
+          <NoticeTarget user={currentUser} token={token} />
         </div>
-        <DisplayNotices />
+        <DisplayNotices user={currentUser} token={token} />
       </Container>
       <NavigationBottom />
     </>
