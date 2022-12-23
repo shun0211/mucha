@@ -52,5 +52,3 @@ test:
 production:
   <<: *default
   database: mucha_production
-  username: mucha
-  password: <%= ENV["MUCHA_DATABASE_PASSWORD"] %>
