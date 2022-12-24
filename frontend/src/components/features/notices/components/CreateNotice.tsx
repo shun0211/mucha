@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Select, Switch, Textarea, TextInput } from "@mantine/core";
+import { Card, Select, Switch, Text, Textarea, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { DateTimePicker } from "mantine-dates-6";
 import toast from "react-hot-toast";
@@ -14,6 +14,7 @@ import RequiredLabel from "../../../ui-elements/RequiredLabel";
 import DraftButton from "../../../ui-elements/DraftButton";
 import MainButton from "../../../ui-elements/MainButton";
 import { postNotice } from "../hooks/postNotice";
+import { Help } from "tabler-icons-react";
 
 const CreateNotice = ({ user, token }: { user: User; token: string }) => {
   const router = useRouter();
@@ -124,7 +125,16 @@ const CreateNotice = ({ user, token }: { user: User; token: string }) => {
             }
           }}
         />
-
+        <div className="flex">
+          <Help size={16} strokeWidth={2} color={"black"} className="pr-1" />
+          <Text fz="xs">
+            グループラインに送信する場合はまず
+            <a href="/help/group-talk-linkage" className="text-link-color">
+              こちら
+            </a>
+            に従ってグループトークに招待を行ってください
+          </Text>
+        </div>
         <TextInput
           required
           label="タイトル"
