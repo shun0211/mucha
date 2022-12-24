@@ -2,6 +2,14 @@
 const nextConfig = {
   reactStrictMode:false,
   swcMinify: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'sprofile.line-scdn.net'
+      }
+    ]
+  }
 };
 
 // Full Calendarはnode_modules内にCSSが含まれているため以下の設定が必要
