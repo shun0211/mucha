@@ -11,7 +11,6 @@ import DisplayNotices from "../../features/notices/components/DisplayNotices";
 
 const PagesNotices = () => {
   const { currentUser, token } = useContext(AuthContext);
-
   if (!currentUser) return null;
 
   return (

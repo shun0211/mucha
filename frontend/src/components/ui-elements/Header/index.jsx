@@ -5,7 +5,7 @@ import Image from "next/image";
 const Header = () => {
   return (
     <>
-      <Container className="flex justify-center items-center my-3">
+      <Container className="flex justify-center items-center py-3">
         <Image src="/logo-only-image.png" alt="logo" width={35} height={35} />
         <Title order={2} className="ml-3">
           Mucha
