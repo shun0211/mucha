@@ -3,7 +3,7 @@ import PageTitle from "../../ui-elements/PageTitle";
 import Header from "../../ui-elements/Header";
 import { Container } from "@mantine/core";
 import NavigationBottom from "../../ui-elements/NavigationBottom";
-import { AuthContext } from "../../../providers/auth";
+import { AuthContext } from "../../../providers/AuthContext";
 import CreateNotice from "../../features/notices/components/CreateNotice";
 
 const PagesNoticesNew = () => {

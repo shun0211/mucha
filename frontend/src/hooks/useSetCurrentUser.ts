@@ -1,16 +1,14 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { useEffect, useState } from "react";
-import { AUTH0_DOMAIN } from "../config/constants";
+import React, { useEffect, useState } from "react";
 import { User } from "../types";
 import { getCurrentUser } from "./getCurrentUser";
 
-export const useSetCurrentUser = () => {
+export const useSetCurrentUser = (setAuthChecking: React.Dispatch<React.SetStateAction<boolean>>) => {
   const { getAccessTokenSilently } = useAuth0();
   const [token, setToken] = useState<string>("");
   const [currentUser, setCurrentUser] = useState<User | null | undefined>(
     undefined
   );
-  const [authChecking, setAuthChecking] = useState<boolean>(true);
 
   useEffect(() => {
     const inner = async () => {
@@ -28,7 +26,6 @@ export const useSetCurrentUser = () => {
   }, []);
 
   return {
-    authChecking: authChecking,
     currentUser: currentUser,
     setCurrentUser: setCurrentUser,
     token: token,

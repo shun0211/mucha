@@ -6,11 +6,12 @@ import NavigationBottom from "../../ui-elements/NavigationBottom";
 import GoogleCalendarButton from "../../ui-elements/GoogleCalendarButton";
 import NoticeTarget from "../../ui-elements/NoticeTarget";
 import DisplayCalender from "../../features/calendar/components/DisplayCalendar";
-import { AuthContext } from "../../../providers/auth";
+import { AuthContext } from "../../../providers/AuthContext";
 import DisplayNotices from "../../features/notices/components/DisplayNotices";
 
 const PagesNotices = () => {
   const { currentUser, token } = useContext(AuthContext);
+
   if (!currentUser) return null;
 
   return (

@@ -3,7 +3,7 @@ import { NextPage } from "next";
 import { useRouter } from "next/router";
 import React, { useContext } from "react";
 import { API_DOMAIN, API_URL } from "../../config/constants";
-import { AuthContext } from "../../providers/auth";
+import { AuthContext } from "../../providers/AuthContext";
 import { TalkType } from "../../types";
 
 const LineAccountLinkage: NextPage = () => {
