@@ -8,7 +8,8 @@ module.exports = {
         'hover-color': '#f8f9fa',
         'bg-color': '#F5F5F5',
         'white': '#FFFFFF',
-        'line-color': '#06c755'
+        'line-color': '#06c755',
+        'light-yellow': '#FFF7C1'
       },
       width: {}
     },
