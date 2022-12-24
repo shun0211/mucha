@@ -2,6 +2,7 @@ export type User = {
   id: number;
   email: string;
   lineUserId: string;
+  isLineAccountLinkaged: boolean;
 };
 
 export type Notice = {
@@ -31,7 +32,7 @@ export type GroupTalkRoom = {
   lineProfileImageUrl: string;
   lineGroupId: string;
 };
-export type GroupTalkRooms = GroupTalkRoom[]
+export type GroupTalkRooms = GroupTalkRoom[];
 
 export type ErrorMessage = {
   message: string;
