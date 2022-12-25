@@ -41,9 +41,11 @@ const LineAccountLinkage: NextPage = () => {
   return (
     <>
       <Header />
-      <LoginButton />
+      <LoginButton
+        redirectUri={`line-account-linkage?talkType=${talkType}&lineGroupId=${lineGroupId}&linkToken=${linkToken}`}
+      />
     </>
-  )
+  );
 };
 
 export default LineAccountLinkage;
