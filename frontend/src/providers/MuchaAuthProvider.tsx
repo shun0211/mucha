@@ -5,6 +5,7 @@ import {
   AUTH0_AUDIENCE,
   AUTH0_CLIENT_ID,
   AUTH0_DOMAIN,
+  FRONT_URI,
 } from "../config/constants";
 import { AuthProvider } from "./AuthProvider";
 
@@ -40,7 +41,7 @@ const MuchaAuthProvider = ({
       <Auth0Provider
         domain={AUTH0_DOMAIN}
         clientId={AUTH0_CLIENT_ID}
-        redirectUri="http://localhost:3100/notices"
+        redirectUri={`${FRONT_URI}/notices`}
         audience={AUTH0_AUDIENCE}
       >
         <AuthProvider setAuthChecking={setAuthChecking}>
