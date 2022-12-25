@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Card, Select, Switch, Text, Textarea, TextInput } from "@mantine/core";
+import {
+  Anchor,
+  Card,
+  Select,
+  Switch,
+  Text,
+  Textarea,
+  TextInput,
+} from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { DateTimePicker } from "mantine-dates-6";
 import toast from "react-hot-toast";
@@ -126,15 +134,16 @@ const CreateNotice = ({ user, token }: { user: User; token: string }) => {
           }}
         />
         <div className="flex">
-          <Help size={16} strokeWidth={2} color={"black"} className="pr-1" />
+          <Help size={20} strokeWidth={2} color={"black"} className="pr-1" />
           <Text fz="xs">
             グループラインに送信する場合はまず
-            <a href="/help/group-talk-linkage" className="text-link-color">
+            <Anchor href="/help/group-talk-linkage" target="_blank">
               こちら
-            </a>
+            </Anchor>
             に従ってグループトークに招待を行ってください
           </Text>
         </div>
+
         <TextInput
           required
           label="タイトル"
