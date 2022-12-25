@@ -1,68 +1,51 @@
-import { MantineProvider } from "@mantine/core";
 import { NextComponentType, NextPageContext } from "next";
 import { Router } from "next/router";
-import React from "react";
+import React, { useContext } from "react";
 import { Toaster } from "react-hot-toast";
-import { useSetCurrentUser } from "../hooks/setCurrentUser";
-import { AuthContext } from "../providers/auth";
+import { AuthContext } from "../providers/AuthContext";
 import Skeleton from "./ui-elements/Skeleton";
 
 const Mucha = ({
+  authChecking,
   Component,
   pageProps,
   router,
 }: {
+  authChecking: boolean;
   Component: NextComponentType<NextPageContext, any, any>;
   pageProps: any;
   router: Router;
 }) => {
-  const { authChecking, currentUser, setCurrentUser, token } =
-    useSetCurrentUser();
+  const { currentUser } = useContext(AuthContext);
   const component = (authChecking: boolean): React.ReactNode => {
     if (
       router.pathname === "/" ||
       router.pathname === "/signin" ||
       router.pathname === "/signup" ||
-      router.pathname === "/line-account-linkage"
+      router.pathname === "/line-account-linkage" ||
+      router.pathname === "/help/group-talk-linkage"
     ) {
       return <Component {...pageProps} />;
     } else {
       // ログインしていないときは/signinにリダイレクト
-      // if (!authChecking && currentUser === null) {
-      //   router.push("signin");
-      // }
+      if (!authChecking && currentUser === null) {
+        router.push("signin");
+      }
+      if (
+        !authChecking &&
+        currentUser?.isLineAccountLinkaged === false &&
+        (router.pathname === "/notices" || router.pathname === "/notices/new")
+      ) {
+        router.push("/help/line-account-linkage");
+      }
       return authChecking ? <Skeleton /> : <Component {...pageProps} />;
     }
   };
 
   return (
     <>
-      <AuthContext.Provider value={{ currentUser, setCurrentUser, token }}>
-        <MantineProvider
-          withGlobalStyles
-          withNormalizeCSS
-          theme={{
-            colorScheme: "light",
-            colors: {
-              yellow: [
-                "#FFDC00",
-                "#FFDC00",
-                "#FFDC00",
-                "#FFDC00",
-                "#FFDC00",
-                "#FFDC00",
-                "#FFDC00",
-                "#FFDC00",
-                "#FFDC00",
-                "#FFDC00",
-              ],
-            },
-          }}
-        >
-          {component(authChecking)}
-        </MantineProvider>
-        <Toaster />
-      </AuthContext.Provider>
+      {component(authChecking)}
+      <Toaster />
     </>
   );
 };
