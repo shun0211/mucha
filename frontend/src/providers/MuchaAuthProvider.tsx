@@ -1,6 +1,6 @@
 import { Auth0Provider } from "@auth0/auth0-react";
 import { MantineProvider } from "@mantine/core";
-import React, { ReactElement } from "react";
+import React, { ReactElement, useState } from "react";
 import {
   AUTH0_AUDIENCE,
   AUTH0_CLIENT_ID,
@@ -9,13 +9,9 @@ import {
 } from "../config/constants";
 import { AuthProvider } from "./AuthProvider";
 
-const MuchaAuthProvider = ({
-  children,
-  setAuthChecking,
-}: {
-  children: ReactElement;
-  setAuthChecking: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+const MuchaAuthProvider = ({ children }: { children: ReactElement }) => {
+  const [authChecking, setAuthChecking] = useState<boolean>(true);
+
   return (
     <MantineProvider
       withGlobalStyles
@@ -44,7 +40,7 @@ const MuchaAuthProvider = ({
         redirectUri={`${FRONT_URI}/notices`}
         audience={AUTH0_AUDIENCE}
       >
-        <AuthProvider setAuthChecking={setAuthChecking}>
+        <AuthProvider setAuthChecking={setAuthChecking} authChecking={authChecking}>
           {children}
         </AuthProvider>
       </Auth0Provider>

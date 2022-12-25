@@ -5,6 +5,7 @@ type AuthContextProps = {
   currentUser: User | null | undefined;
   setCurrentUser: React.Dispatch<React.SetStateAction<User | null | undefined>>;
   token: string;
+  authChecking: boolean;
 };
 
 export const AuthContext = createContext<AuthContextProps>({
@@ -13,4 +14,5 @@ export const AuthContext = createContext<AuthContextProps>({
     throw Error("No default value!");
   },
   token: "",
+  authChecking: false,
 });

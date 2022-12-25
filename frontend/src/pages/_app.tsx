@@ -6,13 +6,11 @@ import Mucha from "../components/Mucha";
 
 export default function App(props: AppProps) {
   const { Component, pageProps, router } = props;
-  const [authChecking, setAuthChecking] = useState<boolean>(true);
 
   return (
     <>
-      <MuchaAuthProvider setAuthChecking={setAuthChecking}>
+      <MuchaAuthProvider>
         <Mucha
-          authChecking={authChecking}
           Component={Component}
           pageProps={pageProps}
           router={router}

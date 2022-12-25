@@ -6,17 +6,15 @@ import { AuthContext } from "../providers/AuthContext";
 import Skeleton from "./ui-elements/Skeleton";
 
 const Mucha = ({
-  authChecking,
   Component,
   pageProps,
   router,
 }: {
-  authChecking: boolean;
   Component: NextComponentType<NextPageContext, any, any>;
   pageProps: any;
   router: Router;
 }) => {
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, authChecking } = useContext(AuthContext);
   const component = (authChecking: boolean): React.ReactNode => {
     if (
       router.pathname === "/" ||
@@ -29,7 +27,7 @@ const Mucha = ({
     } else {
       // ログインしていないときは/signinにリダイレクト
       if (!authChecking && currentUser === null) {
-        router.push("signin");
+        router.push("/");
       }
       if (
         !authChecking &&
