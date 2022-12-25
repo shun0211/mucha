@@ -2,6 +2,8 @@ import axios from "axios";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import React, { useContext } from "react";
+import Header from "../../components/ui-elements/Header";
+import LoginButton from "../../components/ui-elements/LoginButton";
 import { API_DOMAIN, API_URL } from "../../config/constants";
 import { AuthContext } from "../../providers/AuthContext";
 import { TalkType } from "../../types";
@@ -36,7 +38,12 @@ const LineAccountLinkage: NextPage = () => {
     router.push("/line-account-linkage/success");
   }
 
-  return <div>index</div>;
+  return (
+    <>
+      <Header />
+      <LoginButton />
+    </>
+  )
 };
 
 export default LineAccountLinkage;

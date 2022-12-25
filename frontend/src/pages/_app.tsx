@@ -1,5 +1,5 @@
 import "../styles/globals.css";
-import React, { useState } from "react";
+import React from "react";
 import type { AppProps } from "next/app";
 import MuchaAuthProvider from "../providers/MuchaAuthProvider";
 import Mucha from "../components/Mucha";
