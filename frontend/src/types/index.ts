@@ -3,6 +3,8 @@ export type User = {
   email: string;
   lineUserId: string;
   isLineAccountLinkaged: boolean;
+  lineName: string;
+  lineProfileImageUrl: string;
 };
 
 export type Notice = {
