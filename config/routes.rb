@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       resources :notices
       put 'notices/:id/draft', to: "notices#update_to_draft"
       resources :group_talk_rooms
+      post 'line_bots/link', to: "line_bots#link"
     end
   end
 

@@ -62,18 +62,6 @@ class LineBot::CallbacksController < ApplicationController
     end
   end
 
-  def link
-    nonce = SecureRandom.uuid
-    current_user.line_nonce = nonce
-    current_user.save!
-
-    link_token = params[:linkToken]
-    redirect_to(
-      "https://access.line.me/dialog/bot/accountLink?linkToken=#{link_token}&nonce=#{nonce}",
-      allow_other_host: true
-    )
-  end
-
   private def line_bot_client
     @line_bot_client ||= Line::Bot::Client.new do |config|
       config.channel_id = ENV['LINE_CHANNEL_ID']
