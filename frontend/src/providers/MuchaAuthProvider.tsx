@@ -39,6 +39,7 @@ const MuchaAuthProvider = ({ children }: { children: ReactElement }) => {
         clientId={AUTH0_CLIENT_ID}
         redirectUri={`${FRONT_URI}/notices`}
         audience={AUTH0_AUDIENCE}
+        useRefreshTokens={true}
       >
         <AuthProvider setAuthChecking={setAuthChecking} authChecking={authChecking}>
           {children}
