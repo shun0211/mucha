@@ -12,7 +12,10 @@ class SecuredController < ApplicationController
     service.authenticate_request!
     @current_user = service.user
 
-  rescue JWT::VerificationError, JWT::DecodeError
-    render json: { errors: ['Not Authenticated'] }, status: :unauthorized
+  rescue Firebase::Admin::Auth::InvalidTokenError,
+         Firebase::Admin::Auth::ExpiredTokenError,
+         Firebase::Admin::Auth::CertificateRequestError,
+         Firebase::Admin::Auth::InvalidCertificateError => e
+    render_unauthorized_error('不正なIDトークンです👎', e)
   end
 end

@@ -30,6 +30,7 @@ gem "bootsnap", require: false
 gem 'devise_token_auth'
 gem 'dotenv-rails'
 gem 'enum_help'
+gem 'firebase-admin-sdk'
 gem 'google-apis-calendar_v3'
 gem 'jwt'
 gem 'kaminari'
