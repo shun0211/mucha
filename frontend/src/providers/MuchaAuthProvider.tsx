@@ -1,12 +1,5 @@
-import { Auth0Provider } from "@auth0/auth0-react";
 import { MantineProvider } from "@mantine/core";
 import React, { ReactElement, useState } from "react";
-import {
-  AUTH0_AUDIENCE,
-  AUTH0_CLIENT_ID,
-  AUTH0_DOMAIN,
-  FRONT_URI,
-} from "../config/constants";
 import { AuthProvider } from "./AuthProvider";
 
 const MuchaAuthProvider = ({ children }: { children: ReactElement }) => {
@@ -34,17 +27,12 @@ const MuchaAuthProvider = ({ children }: { children: ReactElement }) => {
         },
       }}
     >
-      <Auth0Provider
-        domain={AUTH0_DOMAIN}
-        clientId={AUTH0_CLIENT_ID}
-        redirectUri={`${FRONT_URI}/notices`}
-        audience={AUTH0_AUDIENCE}
-        useRefreshTokens={true}
+      <AuthProvider
+        setAuthChecking={setAuthChecking}
+        authChecking={authChecking}
       >
-        <AuthProvider setAuthChecking={setAuthChecking} authChecking={authChecking}>
-          {children}
-        </AuthProvider>
-      </Auth0Provider>
+        {children}
+      </AuthProvider>
     </MantineProvider>
   );
 };

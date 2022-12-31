@@ -3,6 +3,8 @@ import React from "react";
 import type { AppProps } from "next/app";
 import MuchaAuthProvider from "../providers/MuchaAuthProvider";
 import Mucha from "../components/Mucha";
+import { Auth } from "firebase/auth";
+
 
 export default function App(props: AppProps) {
   const { Component, pageProps, router } = props;

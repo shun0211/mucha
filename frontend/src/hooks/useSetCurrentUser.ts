@@ -1,28 +1,31 @@
-import { useAuth0 } from "@auth0/auth0-react";
 import React, { useEffect, useState } from "react";
+import { auth } from "../config/firebase";
 import { User } from "../types";
 import { getCurrentUser } from "./getCurrentUser";
 
-export const useSetCurrentUser = (setAuthChecking: React.Dispatch<React.SetStateAction<boolean>>) => {
-  const { getAccessTokenSilently } = useAuth0();
+export const useSetCurrentUser = (
+  setAuthChecking: React.Dispatch<React.SetStateAction<boolean>>
+) => {
   const [token, setToken] = useState<string>("");
   const [currentUser, setCurrentUser] = useState<User | null | undefined>(
     undefined
   );
 
   useEffect(() => {
-    const inner = async () => {
-      try {
-        const retValToken = await getAccessTokenSilently()
-        const user: User = await getCurrentUser(retValToken);
-        setToken(retValToken)
-        setCurrentUser(user);
-      } catch {
+    auth.onAuthStateChanged((firebaseUser) => {
+      if (firebaseUser) {
+        const inner = async () => {
+          const token = await firebaseUser.getIdToken(true);
+          const user: User = await getCurrentUser(token);
+          setToken(token);
+          setCurrentUser(user);
+        };
+        inner();
+      } else {
         setCurrentUser(null);
       }
-      setAuthChecking(false);
-    };
-    inner();
+    });
+    setAuthChecking(false);
   }, []);
 
   return {

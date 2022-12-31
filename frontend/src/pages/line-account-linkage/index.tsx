@@ -16,11 +16,8 @@ const LineAccountLinkage: NextPage = () => {
   const lineGroupId = router.query.lineGroupId as TalkType;
   const { currentUser, token, authChecking } = useContext(AuthContext);
 
-    // ログインのチェック中、スケルトンを表示
-    if (authChecking) return <Skeleton />;
-
-    // ログイン中の場合、ログインボタンを表示させない
-    if (currentUser) return <Skeleton />;
+  // ログインのチェック中、スケルトンを表示
+  if (authChecking) return <Skeleton />;
 
   // どこかのディレクトリに移動したい
   const createGroupTalkRoom = async (lineGroupId: string) => {
