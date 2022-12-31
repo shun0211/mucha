@@ -24,4 +24,5 @@
 
 /vendor/
 .env*
-/config/firebase/
+/config/firebase/dev-adminsdk.json
+/config/firebase/prod-adminsdk.json
