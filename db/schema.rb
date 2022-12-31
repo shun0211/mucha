@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_15_001119) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_31_073419) do
   create_table "group_talk_rooms", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "line_name", null: false
@@ -51,7 +51,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_15_001119) do
     t.datetime "updated_at", null: false
     t.string "line_name"
     t.string "line_profile_image_url"
-    t.string "auth0_user_id", null: false
+    t.string "auth0_user_id"
+    t.string "firebase_user_id", null: false
   end
 
 end

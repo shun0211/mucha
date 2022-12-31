@@ -1,5 +1,5 @@
-import { useAuth0 } from "@auth0/auth0-react";
 import { Button } from "@mantine/core";
+import { useRouter } from "next/router";
 import React from "react";
 
 type Props = {
@@ -7,17 +7,11 @@ type Props = {
 };
 
 const LoginButton = (props: Props) => {
-  const { loginWithRedirect } = useAuth0();
+  const router = useRouter();
 
   return (
     <Button
-      onClick={() =>
-        loginWithRedirect({
-          authorizationParams: {
-            redirect_uri: props.redirectUri,
-          },
-        })
-      }
+      onClick={() => router.push("/signin")}
       fullWidth
       className="bg-yellow text-black text-lg my-4 border-0"
     >

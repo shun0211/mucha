@@ -25,6 +25,7 @@
     "@types/react-dom": "18.0.9",
     "axios": "^0.27.2",
     "dayjs": "^1.11.2",
+    "firebase": "^9.15.0",
     "mantine-dates-6": "^1.2.0",
     "next": "13.0.5",
     "next-seo": "^5.13.0",
