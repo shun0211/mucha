@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import Header from "../../ui-elements/Header";
 import PageTitle from "../../ui-elements/PageTitle";
 import NavigationBottom from "../../ui-elements/NavigationBottom";
-import GoogleCalendarButton from "../../ui-elements/GoogleCalendarButton";
+// import GoogleCalendarButton from "../../ui-elements/GoogleCalendarButton";
 import NoticeTarget from "../../ui-elements/NoticeTarget";
 import DisplayCalender from "../../features/calendar/components/DisplayCalendar";
 import { AuthContext } from "../../../providers/AuthContext";
@@ -22,7 +22,8 @@ const PagesNotices = () => {
 
         <DisplayCalender user={currentUser} token={token} />
         <div className="flex justify-between items-center py-3">
-          <GoogleCalendarButton />
+          <div></div>
+          {/* <GoogleCalendarButton /> */}
           <NoticeTarget user={currentUser} token={token} />
         </div>
         <DisplayNotices user={currentUser} token={token} />
