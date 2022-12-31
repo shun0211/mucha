@@ -37,14 +37,17 @@ const PagesSignup = () => {
       <PageTitle>新規登録</PageTitle>
       <Container>
         <Card shadow="md" radius="lg" className="pb-8">
-          <button onClick={() => handleGoogleLogin(router)}>
-            <Image
-              src="/sample/btn_google_signin_light_normal_web.png"
-              alt="Google Login"
-              width={191}
-              height={46}
-            />
-          </button>
+          <div className="text-center">
+            <button onClick={() => handleGoogleLogin(router)}>
+              <Image
+                src="/sample/btn_google_signin_light_normal_web.png"
+                alt="Google Login"
+                width={191}
+                height={46}
+                className="mx-auto"
+              />
+            </button>
+          </div>
 
           <Divider
             label="Or continue with email"
@@ -101,7 +104,7 @@ const PagesSignup = () => {
             />
           </form>
 
-          <Text align="center">アカウントをお持ちでない方</Text>
+          <Text align="center">アカウントをお持ちの方</Text>
 
           <Link href="/signin">
             <SubButton text="ログイン" type="button" />

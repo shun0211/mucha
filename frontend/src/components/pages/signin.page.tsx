@@ -35,16 +35,17 @@ const PagesSignin = () => {
       <PageTitle>ログイン</PageTitle>
       <Container>
         <Card shadow="md" radius="lg" className="pb-8">
-          <button onClick={() => handleGoogleLogin(router)}>
-            <div className="m-auto">
+          {/* Google ログインボタンを中央寄せにするために text-center が必要 */}
+          <div className="text-center">
+            <button onClick={() => handleGoogleLogin(router)}>
               <Image
                 src="/sample/btn_google_signin_light_normal_web.png"
                 alt="Google Login"
                 width={191}
                 height={46}
               />
-            </div>
-          </button>
+            </button>
+          </div>
 
           <Divider
             label="Or continue with email"
