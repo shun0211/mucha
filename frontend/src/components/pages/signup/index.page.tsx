@@ -58,8 +58,7 @@ const PagesSignup = () => {
               handleEmailAndPasswordSignup(
                 values.email,
                 values.password,
-                setIsWaitng,
-                router
+                setIsWaitng
               );
             })}
           >
