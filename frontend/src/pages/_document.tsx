@@ -11,7 +11,7 @@ export default class _Document extends Document {
     return (
       <Html>
         <Head>
-        {/* iPhoneのsafariでフォーム入力の時に自動的に画面拡大するのを防ぐ */}
+          {/* iPhoneのsafariでフォーム入力の時に自動的に画面拡大するのを防ぐ */}
           <meta
             name="viewport"
             content="width=device-width, initial-scale=1, user-scalable=no"
