@@ -4,6 +4,7 @@ import React, { useContext, useState } from "react";
 import { ChevronDown, ChevronUp } from "tabler-icons-react";
 import { AuthContext } from "../../../../providers/AuthContext";
 import { Notice } from "../../../../types";
+import { addDraftNotice } from "../hooks/addDraftNotice";
 import { deleteNotice } from "../hooks/deleteNotice";
 
 type Props = {
@@ -55,6 +56,7 @@ const NoticeCard = (props: Props) => {
             className="text-white text-lg mx-1 h-12"
             type="button"
             radius="md"
+            onClick={() => addDraftNotice(props.notice.id, token, router)}
           >
             下書きに戻す
           </Button>
