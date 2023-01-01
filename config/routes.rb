@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       delete 'logout', to: 'auth#logout'
       resources :notices
       put 'notices/:id/draft', to: "notices#update_to_draft"
+      put 'notices/:id/scheduled', to: "notices#update_to_scheduled"
       resources :group_talk_rooms
       post 'line_bots/link', to: "line_bots#link"
     end

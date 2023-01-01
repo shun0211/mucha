@@ -37,6 +37,14 @@ class Api::V1::NoticesController < SecuredController
     return render_unauthorized_error('', 'Invalid Notice Id') if @notice.nil?
 
     @notice.draft!
+    Notices::DeleteJobService.new(@notice).execute!
+  end
+
+  def update_to_scheduled
+    @notice = current_user.notices.find_by(id: params[:id])
+    return render_unauthorized_error('', 'Invalid Notice Id') if @notice.nil?
+
+    @notice.scheduled!
     Notices::SetJobService.new(@notice).execute!
   end
 
