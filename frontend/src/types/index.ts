@@ -54,3 +54,4 @@ export type Page = {
 };
 
 export type TalkType = "dm" | "groupTalk";
+export type NoticeType = "scheduled" | "draft" | "sent";

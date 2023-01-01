@@ -1,17 +1,17 @@
-import { Badge, Button, Card, Text, Title } from "@mantine/core";
+import { Badge, Card, Text, Title } from "@mantine/core";
 import { useRouter } from "next/router";
 import React, { useContext, useState } from "react";
 import { ChevronDown, ChevronUp } from "tabler-icons-react";
 import { AuthContext } from "../../../../providers/AuthContext";
-import { Notice } from "../../../../types";
-import { putDraftNotice } from "../hooks/putDraftNotice";
-import { deleteNotice } from "../hooks/deleteNotice";
+import { Notice, NoticeType } from "../../../../types";
+import NoticeCardButtons from "./NoticeCardButtons";
 
 type Props = {
   notice: Notice;
+  noticeType: NoticeType;
 };
 
-const NoticeCard = (props: Props) => {
+const NoticeCard = ({ notice, noticeType }: Props) => {
   const [hiddened, setHiddened] = useState(true);
   const { token } = useContext(AuthContext);
   const router = useRouter();
@@ -21,11 +21,11 @@ const NoticeCard = (props: Props) => {
       <Card shadow="md" radius="xl" className="my-5">
         {/* <Badge color="indigo">Googleカレンダー</Badge> */}
         <Title order={4} className="py-1">
-          {props.notice.title}
+          {notice.title}
         </Title>
-        <Text>次回通知日 {props.notice.scheduledDate}</Text>
-        <Text>時間 {props.notice.scheduledTime}</Text>
-        <Text>繰り返し {props.notice.repeatedWeeks}</Text>
+        <Text>次回通知日 {notice.scheduledDate}</Text>
+        <Text>時間 {notice.scheduledTime}</Text>
+        <Text>繰り返し {notice.repeatedWeeks}</Text>
         <ChevronDown
           size={36}
           strokeWidth={1}
@@ -38,7 +38,7 @@ const NoticeCard = (props: Props) => {
 
         <div className={`${hiddened ? "hidden" : ""}`}>
           <Text fw={700}>メッセージ</Text>
-          <Text className="whitespace-pre-wrap">{props.notice.message}</Text>
+          <Text className="whitespace-pre-wrap">{notice.message}</Text>
           <ChevronUp
             size={36}
             strokeWidth={1}
@@ -50,26 +50,12 @@ const NoticeCard = (props: Props) => {
           />
         </div>
 
-        <div className="grid grid-cols-2">
-          <Button
-            color="gray.6"
-            className="text-white text-lg mx-1 h-12"
-            type="button"
-            radius="md"
-            onClick={() => putDraftNotice(props.notice.id, token, router)}
-          >
-            下書きに戻す
-          </Button>
-          <Button
-            color="red"
-            className="text-white text-lg mx-1 h-12"
-            type="button"
-            radius="md"
-            onClick={() => deleteNotice(props.notice.id, token, router)}
-          >
-            削除する
-          </Button>
-        </div>
+        <NoticeCardButtons
+          noticeType={noticeType}
+          noticeId={notice.id}
+          token={token}
+          router={router}
+        />
       </Card>
     </>
   );

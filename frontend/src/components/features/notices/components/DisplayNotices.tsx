@@ -30,19 +30,19 @@ const DisplayNotices = ({ user, token }: { user: User; token: string }) => {
 
         <Tabs.Panel value="scheduled" pt="xs">
           {scheduledNotices.map((notice: Notice) => {
-            return <NoticeCard notice={notice} key={notice.id} />;
+            return <NoticeCard notice={notice} key={notice.id} noticeType="scheduled" />;
           })}
         </Tabs.Panel>
 
         <Tabs.Panel value="draft" pt="xs">
           {draftNotices.map((notice: Notice) => {
-            return <NoticeCard notice={notice} key={notice.id} />;
+            return <NoticeCard notice={notice} key={notice.id} noticeType="draft" />;
           })}
         </Tabs.Panel>
 
         <Tabs.Panel value="sent" pt="xs">
           {sentNotices.map((notice: Notice) => {
-            return <NoticeCard notice={notice} key={notice.id} />;
+            return <NoticeCard notice={notice} key={notice.id} noticeType="sent" />;
           })}
         </Tabs.Panel>
       </Tabs>
