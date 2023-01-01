@@ -19,7 +19,11 @@ import SubButton from "../ui-elements/SubButton";
 import { useRouter } from "next/router";
 import { handleGoogleLogin } from "../../hooks/handleGoogleLogin";
 
-const PagesSignin = () => {
+type Props = {
+  redirectUrl?: string
+}
+
+const PagesSignin = ({redirectUrl}: Props) => {
   const router = useRouter();
   const form = useForm({
     initialValues: {
@@ -60,7 +64,8 @@ const PagesSignin = () => {
                 values.email,
                 values.password,
                 setIsWaitng,
-                router
+                router,
+                redirectUrl
               );
             })}
           >

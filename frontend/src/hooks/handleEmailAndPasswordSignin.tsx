@@ -9,7 +9,8 @@ export const handleEmailAndPasswordSignin = async (
   email: string,
   password: string,
   setIsWaitng: React.Dispatch<React.SetStateAction<boolean>>,
-  router: NextRouter
+  router: NextRouter,
+  redirectUrl = "/notices"
 ) => {
   await signInWithEmailAndPassword(auth, email, password).catch((e) => {
     if (e instanceof FirebaseError && e.code === "auth/user-not-found") {
@@ -22,6 +23,6 @@ export const handleEmailAndPasswordSignin = async (
     setIsWaitng(false);
     throw e;
   });
-  router.push("/notices");
+  router.push(redirectUrl);
   toast.success("ログインしました😊");
 };
