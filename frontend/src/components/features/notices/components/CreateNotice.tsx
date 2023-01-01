@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {
   Anchor,
+  Button,
   Card,
   Select,
   Switch,
@@ -19,10 +20,10 @@ import {
   UnauthorizedError,
 } from "../../../../utils/custom-errors";
 import RequiredLabel from "../../../ui-elements/RequiredLabel";
-import DraftButton from "../../../ui-elements/DraftButton";
 import MainButton from "../../../ui-elements/MainButton";
 import { postNotice } from "../hooks/postNotice";
 import { Help } from "tabler-icons-react";
+import { postDraftNotice } from "../hooks/postDraftNotice";
 
 const CreateNotice = ({ user, token }: { user: User; token: string }) => {
   const router = useRouter();
@@ -233,7 +234,33 @@ const CreateNotice = ({ user, token }: { user: User; token: string }) => {
         />
 
         <div className="flex gap-x-3">
-          <DraftButton text="下書き保存" type="submit" />
+          <Button
+            color="gray.6"
+            className="text-white text-lg my-4"
+            type="button"
+            radius="md"
+            onClick={() => {
+              postDraftNotice(
+                token,
+                form.values.title,
+                form.values.scheduledAt,
+                form.values.repeat,
+                form.values.monday,
+                form.values.tuesday,
+                form.values.wednesday,
+                form.values.thursday,
+                form.values.friday,
+                form.values.saturday,
+                form.values.sunday,
+                form.values.message,
+                talkType,
+                form.values.toLineId,
+                router
+              );
+            }}
+          >
+            下書きに保存
+          </Button>
           <MainButton text="登録する" type="submit" />
         </div>
       </form>
