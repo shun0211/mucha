@@ -6,17 +6,17 @@ export const NavigationBottom = () => {
   return (
     <div className="grid grid-cols-4 w-full bottom-0 fixed bg-white shadow-inner">
       <NavigationBottomItem menu="ホーム" path="/notices">
-        <Home size={30} strokeWidth={1} color={"black"} className="m-auto" />
+        <Home size={26} strokeWidth={1} color={"black"} className="m-auto" />
       </NavigationBottomItem>
       <NavigationBottomItem menu="お知らせ" path="/notifications">
-        <Bell size={30} strokeWidth={1} color={"black"} className="m-auto" />
+        <Bell size={26} strokeWidth={1} color={"black"} className="m-auto" />
       </NavigationBottomItem>
       <NavigationBottomItem menu="追加" path="/notices/new">
-        <Plus size={30} strokeWidth={1} color={"black"} className="m-auto" />
+        <Plus size={26} strokeWidth={1} color={"black"} className="m-auto" />
       </NavigationBottomItem>
       <NavigationBottomItem menu="設定" path="/setting">
         <Settings
-          size={30}
+          size={26}
           strokeWidth={1}
           color={"black"}
           className="m-auto"

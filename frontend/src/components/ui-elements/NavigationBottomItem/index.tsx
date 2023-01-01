@@ -13,10 +13,10 @@ export const NavigationBottomItem = ({
 }) => {
   return (
     <Link href={path}>
-      <Button variant="outline" className="h-20 w-full border-white" radius={0}>
+      <Button variant="outline" className="h-16 w-full border-white" radius={0}>
         <div>
           {children}
-          <Text color="black" weight={500} size="sm" className="text-center">
+          <Text color="black" weight={500} size="xs" className="text-center">
             {menu}
           </Text>
         </div>
