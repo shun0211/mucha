@@ -1,6 +1,4 @@
 class Auths::AuthorizationService
-  include ActionController::HttpAuthentication::Token::ControllerMethods
-
   def initialize(headers = {})
     @headers = headers
     @jwt = nil
