@@ -22,15 +22,14 @@ const PagesGroupTalkLinkage = () => {
             alt="add friend screen"
             width={200}
             height={100}
+            className="mx-auto"
           />
         </div>
       </Container>
 
       <Container className="bg-light-yellow py-5">
         <Title order={3}>STEP 2</Title>
-        <Text fz="sm">
-          「今すぐ認証する」ボタンからログインして認証する
-        </Text>
+        <Text fz="sm">「今すぐ認証する」ボタンからログインして認証する</Text>
       </Container>
 
       <Container className="py-5">

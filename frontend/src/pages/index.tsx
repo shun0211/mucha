@@ -30,6 +30,7 @@ export default function Home() {
           alt="ユースケース"
           width={400}
           height={100}
+          className="mx-auto"
         />
       </Container>
 
