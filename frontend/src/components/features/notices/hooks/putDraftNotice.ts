@@ -6,7 +6,7 @@ import { isErrorMessage } from "../../../../utils/custom-errors";
 
 axios.defaults.headers.common["Accept"] = "application/json";
 
-export const addDraftNotice = async (
+export const putDraftNotice = async (
   noticeId: number,
   token: string,
   router: NextRouter

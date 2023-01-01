@@ -2,11 +2,7 @@ import { Button } from "@mantine/core";
 import { useRouter } from "next/router";
 import React from "react";
 
-type Props = {
-  redirectUri?: string;
-};
-
-const LoginButton = (props: Props) => {
+const LoginButton = () => {
   const router = useRouter();
 
   return (
