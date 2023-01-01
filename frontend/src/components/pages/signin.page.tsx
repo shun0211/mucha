@@ -20,10 +20,10 @@ import { useRouter } from "next/router";
 import { handleGoogleLogin } from "../../hooks/handleGoogleLogin";
 
 type Props = {
-  redirectUrl?: string
-}
+  redirectUrl?: string;
+};
 
-const PagesSignin = ({redirectUrl}: Props) => {
+const PagesSignin = ({ redirectUrl }: Props) => {
   const router = useRouter();
   const form = useForm({
     initialValues: {
@@ -41,7 +41,7 @@ const PagesSignin = ({redirectUrl}: Props) => {
         <Card shadow="md" radius="lg" className="pb-8">
           {/* Google ログインボタンを中央寄せにするために text-center が必要 */}
           <div className="text-center">
-            <button onClick={() => handleGoogleLogin(router)}>
+            <button onClick={() => handleGoogleLogin(router, redirectUrl)}>
               <Image
                 src="/sample/btn_google_signin_light_normal_web.png"
                 alt="Google Login"
