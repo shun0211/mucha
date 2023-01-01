@@ -28,6 +28,16 @@ export class UnauthorizedError extends Error {
   }
 }
 
+export class NotFoundError extends Error {
+  errorMessage: string;
+
+  constructor(errorMessage: string) {
+    super()
+    this.name = "NotFoundError"
+    this.errorMessage = errorMessage
+  }
+}
+
 export class NotAcceptableError extends Error {
   errorMessages: string[];
 

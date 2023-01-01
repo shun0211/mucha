@@ -1,7 +1,10 @@
-import { Badge, Card, Text, Title } from "@mantine/core";
-import React, { useState } from "react";
+import { Badge, Button, Card, Text, Title } from "@mantine/core";
+import { useRouter } from "next/router";
+import React, { useContext, useState } from "react";
 import { ChevronDown, ChevronUp } from "tabler-icons-react";
+import { AuthContext } from "../../../../providers/AuthContext";
 import { Notice } from "../../../../types";
+import { deleteNotice } from "../hooks/deleteNotice";
 
 type Props = {
   notice: Notice;
@@ -9,11 +12,13 @@ type Props = {
 
 const NoticeCard = (props: Props) => {
   const [hiddened, setHiddened] = useState(true);
+  const { token } = useContext(AuthContext);
+  const router = useRouter()
 
   return (
     <>
       <Card shadow="md" radius="xl" className="my-5">
-        <Badge color="indigo">Googleカレンダー</Badge>
+        {/* <Badge color="indigo">Googleカレンダー</Badge> */}
         <Title order={4} className="py-1">
           {props.notice.title}
         </Title>
@@ -42,6 +47,26 @@ const NoticeCard = (props: Props) => {
               setHiddened(true);
             }}
           />
+        </div>
+
+        <div className="grid grid-cols-2">
+          <Button
+            color="gray.6"
+            className="text-white text-lg mx-1 h-12"
+            type="button"
+            radius="md"
+          >
+            下書きに戻す
+          </Button>
+          <Button
+            color="red"
+            className="text-white text-lg mx-1 h-12"
+            type="button"
+            radius="md"
+            onClick={() => deleteNotice(props.notice.id, token, router)}
+          >
+            削除する
+          </Button>
         </div>
       </Card>
     </>
