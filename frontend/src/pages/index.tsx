@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import Header from "../components/ui-elements/Header";
 import { Container, Text, Title } from "@mantine/core";
 import Image from "next/image";
 import SignupButton from "../components/ui-elements/Signup";
+import { AuthContext } from "../providers/AuthContext";
+import MainLinkButton from "../components/ui-elements/MainLinkButton";
 
 export default function Home() {
+  const { currentUser } = useContext(AuthContext);
+
   return (
     <div className="bg-white">
       <Header />
@@ -18,7 +22,11 @@ export default function Home() {
         <Text size="xs" className="whitespace-pre-line text-center">
           \無料でご利用いただけます/
         </Text>
-        <SignupButton text="さっそく使ってみる！" />
+        {currentUser == null ? (
+          <SignupButton text="さっそく使ってみる！" />
+        ) : (
+          <MainLinkButton text="さっそく使ってみる！" src="/notices" />
+        )}
       </Container>
 
       <Container className="bg-light-yellow py-2">
