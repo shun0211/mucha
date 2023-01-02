@@ -1,4 +1,4 @@
-import { Container, Text, Title } from "@mantine/core";
+import { Container, Space, Text, Title } from "@mantine/core";
 import Image from "next/image";
 import React from "react";
 import Header from "../../../ui-elements/Header";
@@ -15,6 +15,12 @@ const PagesGroupTalkLinkage = () => {
             <Title order={3}>STEP 1</Title>
             <Text fz="sm">
               メッセージを送信するグループラインに Mucha アカウントを招待する
+            </Text>
+
+            <Space h={8} />
+
+            <Text fz="xs" className=" whitespace-pre-wrap">
+            {`※ すでに別の公式アカウントがグループに入っている場合はご利用できません。\n別のグループを作成し招待してください。`}
             </Text>
           </div>
           <Image
