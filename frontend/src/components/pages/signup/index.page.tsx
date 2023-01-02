@@ -3,6 +3,7 @@ import {
   Container,
   Divider,
   PasswordInput,
+  Space,
   Text,
   TextInput,
 } from "@mantine/core";
@@ -11,7 +12,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import { Space } from "tabler-icons-react";
 import { handleEmailAndPasswordSignup } from "../../../hooks/handleEmailAndPasswordSignup";
 import { handleGoogleLogin } from "../../../hooks/handleGoogleLogin";
 import Attention from "../../ui-elements/Attention";
