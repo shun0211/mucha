@@ -3,7 +3,7 @@ import { Router } from "next/router";
 import React, { useContext } from "react";
 import { Toaster } from "react-hot-toast";
 import { AuthContext } from "../providers/AuthContext";
-import Skeleton from "./ui-elements/Skeleton";
+import Skeleton from "./pages/Skeleton";
 
 const Mucha = ({
   Component,
