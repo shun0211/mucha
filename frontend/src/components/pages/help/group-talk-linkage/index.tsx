@@ -28,7 +28,7 @@ const PagesGroupTalkLinkage = () => {
             alt="add friend screen"
             width={200}
             height={100}
-            className="mx-auto"
+            className="mx-auto py-3 pl-3"
           />
         </div>
       </Container>
@@ -51,7 +51,7 @@ const PagesGroupTalkLinkage = () => {
             alt=""
             width={200}
             height={100}
-            className="mx-auto"
+            className="mx-auto py-3 pl-3"
           />
         </div>
       </Container>
