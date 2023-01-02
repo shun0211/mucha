@@ -1,8 +1,8 @@
 import React from "react";
-import LoginButton from "../components/ui-elements/LoginButton";
 import Header from "../components/ui-elements/Header";
 import { Container, Text, Title } from "@mantine/core";
 import Image from "next/image";
+import SignupButton from "../components/ui-elements/Signup";
 
 export default function Home() {
   return (
@@ -15,7 +15,10 @@ export default function Home() {
         <Text fz="sm" className="whitespace-pre-wrap text-center py-2">
           {`覚えておくストレスがなくなる\n家族や恋人同士で使える便利なリマインドチャットツール`}
         </Text>
-        <LoginButton />
+        <Text size="xs" className="whitespace-pre-line text-center">
+          \無料でご利用いただけます/
+        </Text>
+        <SignupButton text="さっそく使ってみる！" />
       </Container>
 
       <Container className="bg-light-yellow py-2">
@@ -38,7 +41,7 @@ export default function Home() {
         <Title order={3} className="text-center py-2">
           さっそくはじめよう！
         </Title>
-        <LoginButton />
+        <SignupButton text="新規登録画面へ" />
       </Container>
     </div>
   );
