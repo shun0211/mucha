@@ -19,7 +19,7 @@ const PagesGroupTalkLinkage = () => {
 
             <Space h={8} />
 
-            <Text fz="xs" className=" whitespace-pre-wrap">
+            <Text fz="xs" className="whitespace-pre-wrap">
             {`※ すでに別の公式アカウントがグループに入っている場合はご利用できません。\n別のグループを作成し招待してください。`}
             </Text>
           </div>
