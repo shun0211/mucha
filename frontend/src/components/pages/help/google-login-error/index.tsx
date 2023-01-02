@@ -11,7 +11,7 @@ const PagesGoogleLoginError = () => {
       <PageTitle>Google ログインできない</PageTitle>
       <Container size={300}>
         <Text fz="md" className="whitespace-pre-wrap">
-          {`LINE で開いたブラウザの場合、下のようにログインできない場合があります。Safari か Chrome で開いて再度お試しください。\n\nIphoneの場合、右下端のボタンから Safari で開くことができます。`}
+          {`LINE で開いたブラウザの場合、下のようにログインできない場合があります。Safari か Chrome で開いて再度お試しください。\n\nIPhoneの場合、右下端のボタンから Safari で開くことができます。`}
         </Text>
 
         <Image

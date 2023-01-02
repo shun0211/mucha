@@ -1,4 +1,5 @@
 import {
+  Anchor,
   Card,
   Container,
   Divider,
@@ -12,6 +13,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import { Help } from "tabler-icons-react";
 import { handleEmailAndPasswordSignup } from "../../../hooks/handleEmailAndPasswordSignup";
 import { handleGoogleLogin } from "../../../hooks/handleGoogleLogin";
 import Attention from "../../ui-elements/Attention";
@@ -47,6 +49,16 @@ const PagesSignup = () => {
                 className="mx-auto"
               />
             </button>
+          </div>
+          <div className="flex">
+            <Help size={20} strokeWidth={2} color={"black"} className="pr-1" />
+            <Text fz="xs">
+              Google ログインできない場合は
+              <Anchor href="/help/google-login-error" target="_blank">
+                こちら
+              </Anchor>
+              をご確認ください
+            </Text>
           </div>
 
           <Divider

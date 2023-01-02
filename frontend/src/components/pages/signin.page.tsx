@@ -1,4 +1,5 @@
 import {
+  Anchor,
   Card,
   Container,
   Divider,
@@ -18,6 +19,7 @@ import Link from "next/link";
 import SubButton from "../ui-elements/SubButton";
 import { useRouter } from "next/router";
 import { handleGoogleLogin } from "../../hooks/handleGoogleLogin";
+import { Help } from "tabler-icons-react";
 
 type Props = {
   redirectUrl?: string;
@@ -49,6 +51,16 @@ const PagesSignin = ({ redirectUrl }: Props) => {
                 height={46}
               />
             </button>
+          </div>
+          <div className="flex">
+            <Help size={20} strokeWidth={2} color={"black"} className="pr-1" />
+            <Text fz="xs">
+              Google ログインできない場合は
+              <Anchor href="/help/google-login-error" target="_blank">
+                こちら
+              </Anchor>
+              をご確認ください
+            </Text>
           </div>
 
           <Divider
