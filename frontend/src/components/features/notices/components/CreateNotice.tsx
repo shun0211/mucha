@@ -24,6 +24,7 @@ import MainButton from "../../../ui-elements/MainButton";
 import { postNotice } from "../hooks/postNotice";
 import { Help } from "tabler-icons-react";
 import { postDraftNotice } from "../hooks/postDraftNotice";
+import SkeletonElement from "../../../ui-elements/SkeletonElement";
 
 const CreateNotice = ({ user, token }: { user: User; token: string }) => {
   const router = useRouter();
@@ -119,21 +120,25 @@ const CreateNotice = ({ user, token }: { user: User; token: string }) => {
           );
         })}
       >
-        <Select
-          label="💬 送付先"
-          data={noticeTargetData}
-          defaultValue="DM"
-          className="py-2"
-          {...form.getInputProps("toLineId")}
-          onChange={(value: React.ChangeEvent<HTMLSelectElement>) => {
-            form.setFieldValue("toLineId", String(value));
-            if (String(value) === user.lineUserId) {
-              setTalkType("dm");
-            } else {
-              setTalkType("groupTalk");
-            }
-          }}
-        />
+        {noticeTargetData === null ? (
+          <SkeletonElement />
+        ) : (
+          <Select
+            label="💬 送付先"
+            data={noticeTargetData}
+            defaultValue="DM"
+            className="py-2"
+            {...form.getInputProps("toLineId")}
+            onChange={(value: React.ChangeEvent<HTMLSelectElement>) => {
+              form.setFieldValue("toLineId", String(value));
+              if (String(value) === user.lineUserId) {
+                setTalkType("dm");
+              } else {
+                setTalkType("groupTalk");
+              }
+            }}
+          />
+        )}
         <div className="flex">
           <Help size={20} strokeWidth={2} color={"black"} className="pr-1" />
           <Text fz="xs">
