@@ -23,7 +23,7 @@ const Mucha = ({
       router.pathname === "/signup" ||
       router.pathname === "/line-account-linkage" ||
       router.pathname === "/help/group-talk-linkage" ||
-      router.pathname === "/signup/temporary-complete"
+      router.pathname === "/help/google-login-error"
     ) {
       return <Component {...pageProps} />;
     } else {
