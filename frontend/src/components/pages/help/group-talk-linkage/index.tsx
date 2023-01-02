@@ -45,6 +45,7 @@ const PagesGroupTalkLinkage = () => {
             alt=""
             width={200}
             height={100}
+            className="mx-auto"
           />
         </div>
       </Container>
