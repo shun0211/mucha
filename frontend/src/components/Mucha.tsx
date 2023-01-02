@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextComponentType, NextPageContext } from "next";
 import { Router } from "next/router";
 import React, { useContext } from "react";

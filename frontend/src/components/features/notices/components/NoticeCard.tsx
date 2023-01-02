@@ -1,4 +1,4 @@
-import { Badge, Card, Text, Title } from "@mantine/core";
+import { Card, Text, Title } from "@mantine/core";
 import { useRouter } from "next/router";
 import React, { useContext, useState } from "react";
 import { ChevronDown, ChevronUp } from "tabler-icons-react";

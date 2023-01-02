@@ -1,4 +1,4 @@
-import { Container, Skeleton as MantineSkeleton } from "@mantine/core";
+import { Container } from "@mantine/core";
 import React from "react";
 import Header from "../../ui-elements/Header";
 import SkeletonElement from "../../ui-elements/SkeletonElement";
