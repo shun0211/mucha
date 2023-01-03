@@ -34,6 +34,7 @@ const PagesSignin = ({ redirectUrl }: Props) => {
     },
   });
   const [isWaiting, setIsWaitng] = useState<boolean>(false);
+  const signupUrl = redirectUrl ? `/signup?redirectUrl=${redirectUrl}` : '/signup'
 
   return (
     <>
@@ -111,7 +112,7 @@ const PagesSignin = ({ redirectUrl }: Props) => {
 
           <Text align="center">アカウントをお持ちでない方</Text>
 
-          <Link href="/signup">
+          <Link href={signupUrl}>
             <SubButton text="新規登録" type="button" />
           </Link>
         </Card>

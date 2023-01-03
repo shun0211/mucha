@@ -8,6 +8,7 @@ export const handleEmailAndPasswordSignup = async (
   email: string,
   password: string,
   setIsWaitng: React.Dispatch<React.SetStateAction<boolean>>,
+  redirectUrl = "/help/line-account-linkage"
 ) => {
   await createUserWithEmailAndPassword(auth, email, password).catch((e) => {
     if (e instanceof FirebaseError && e.code === "auth/email-already-in-use") {
@@ -18,5 +19,5 @@ export const handleEmailAndPasswordSignup = async (
     setIsWaitng(false);
     throw e;
   });
-  window.location.href = "/help/line-account-linkage";
+  window.location.href = redirectUrl;
 };

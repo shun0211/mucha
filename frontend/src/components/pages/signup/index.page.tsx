@@ -32,6 +32,8 @@ const PagesSignup = () => {
     },
   });
   const [isWaiting, setIsWaitng] = useState<boolean>(false);
+  // アカウント連携のログイン画面から遷移して新規登録した場合、アカウント連携画面にリダイレクトしたいため
+  const redirectUrl = router.query.redirectUrl ? router.query.redirectUrl as string : undefined
 
   return (
     <>
@@ -73,7 +75,8 @@ const PagesSignup = () => {
               handleEmailAndPasswordSignup(
                 values.email,
                 values.password,
-                setIsWaitng
+                setIsWaitng,
+                redirectUrl
               );
             })}
           >
