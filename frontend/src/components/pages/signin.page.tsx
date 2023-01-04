@@ -20,12 +20,21 @@ import SubButton from "../ui-elements/SubButton";
 import { useRouter } from "next/router";
 import { handleGoogleLogin } from "../../hooks/handleGoogleLogin";
 import { Help } from "tabler-icons-react";
+import { TalkType } from "../../types";
 
 type Props = {
   redirectUrl?: string;
+  talkType?: TalkType;
+  linkToken?: string;
+  lineGroupId?: string;
 };
 
-const PagesSignin = ({ redirectUrl }: Props) => {
+const PagesSignin = ({
+  redirectUrl,
+  talkType,
+  linkToken,
+  lineGroupId,
+}: Props) => {
   const router = useRouter();
   const form = useForm({
     initialValues: {
@@ -34,7 +43,6 @@ const PagesSignin = ({ redirectUrl }: Props) => {
     },
   });
   const [isWaiting, setIsWaitng] = useState<boolean>(false);
-  const signupUrl = redirectUrl ? `/signup?redirectUrl=${redirectUrl}` : '/signup'
 
   return (
     <>
@@ -112,7 +120,16 @@ const PagesSignin = ({ redirectUrl }: Props) => {
 
           <Text align="center">アカウントをお持ちでない方</Text>
 
-          <Link href={signupUrl}>
+          <Link
+            href={{
+              pathname: "/signup",
+              query: {
+                talkType: talkType,
+                linkToken: linkToken,
+                lineGroupId: lineGroupId,
+              },
+            }}
+          >
             <SubButton text="新規登録" type="button" />
           </Link>
         </Card>

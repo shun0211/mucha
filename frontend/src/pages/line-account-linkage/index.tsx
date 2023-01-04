@@ -11,8 +11,8 @@ import { TalkType } from "../../types";
 const LineAccountLinkage: NextPage = () => {
   const router = useRouter();
   const linkToken = router.query.linkToken as string;
-  const talkType = router.query.talkType as string;
-  const lineGroupId = router.query.lineGroupId as TalkType;
+  const talkType = router.query.talkType as TalkType;
+  const lineGroupId = router.query.lineGroupId as string;
   const { currentUser, token, authChecking } = useContext(AuthContext);
 
   // ログインのチェック中、スケルトンを表示
@@ -62,7 +62,10 @@ const LineAccountLinkage: NextPage = () => {
   return (
     <>
       <PagesSignin
-        redirectUrl={`line-account-linkage?talkType=${talkType}&lineGroupId=${lineGroupId}&linkToken=${linkToken}`}
+        redirectUrl={`line-account-linkage?talkType=${talkType}&linkToken=${linkToken}&lineGroupId=${lineGroupId}`}
+        talkType={talkType}
+        linkToken={linkToken}
+        lineGroupId={lineGroupId}
       />
     </>
   );

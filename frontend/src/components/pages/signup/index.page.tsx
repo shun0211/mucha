@@ -16,6 +16,7 @@ import React, { useState } from "react";
 import { Help } from "tabler-icons-react";
 import { handleEmailAndPasswordSignup } from "../../../hooks/handleEmailAndPasswordSignup";
 import { handleGoogleLogin } from "../../../hooks/handleGoogleLogin";
+import { TalkType } from "../../../types";
 import Attention from "../../ui-elements/Attention";
 import Header from "../../ui-elements/Header";
 import MainButton from "../../ui-elements/MainButton";
@@ -32,8 +33,12 @@ const PagesSignup = () => {
     },
   });
   const [isWaiting, setIsWaitng] = useState<boolean>(false);
+
   // アカウント連携のログイン画面から遷移して新規登録した場合、アカウント連携画面にリダイレクトしたいため
-  const redirectUrl = router.query.redirectUrl ? router.query.redirectUrl as string : undefined
+  const linkToken = router.query.linkToken as string;
+  const talkType = router.query.talkType as string;
+  const lineGroupId = router.query.lineGroupId as TalkType;
+  const redirectUrl = router.query.linkToken ? `line-account-linkage?talkType=${talkType}&linkToken=${linkToken}&lineGroupId=${lineGroupId}` as string : undefined
 
   return (
     <>
