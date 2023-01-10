@@ -16,7 +16,7 @@ const PagesLineLogin = () => {
       const res = await axios.post(`${API_URL}/custom-token`, { code: code });
       const customToken = res.data.customToken;
       await signInWithCustomToken(auth, customToken);
-      router.push("/notices")
+      router.push("/help/add-friend")
       toast.success("ログインしました😊");
     }
   };
