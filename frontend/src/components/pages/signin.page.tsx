@@ -21,6 +21,7 @@ import { useRouter } from "next/router";
 import { handleGoogleLogin } from "../../hooks/handleGoogleLogin";
 import { Help } from "tabler-icons-react";
 import { TalkType } from "../../types";
+import { handleLinelogin } from "../../hooks/handleLineLogin";
 
 type Props = {
   redirectUrl?: string;
@@ -52,6 +53,15 @@ const PagesSignin = ({
         <Card shadow="md" radius="lg" className="pb-8">
           {/* Google ログインボタンを中央寄せにするために text-center が必要 */}
           <div className="text-center">
+            <button onClick={handleLinelogin} className="mb-4">
+              <Image
+                src="/btn_login_base.png"
+                alt="LINE Login"
+                width={191}
+                height={40}
+                className="mx-auto"
+              />
+            </button>
             <button onClick={() => handleGoogleLogin(router, redirectUrl)}>
               <Image
                 src="/sample/btn_google_signin_light_normal_web.png"

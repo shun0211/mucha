@@ -14,9 +14,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { Help } from "tabler-icons-react";
-import { LINE_LOGIN_CHANNEL_ID, LINE_LOGIN_REDIRECT_URL } from "../../../config/constants";
 import { handleEmailAndPasswordSignup } from "../../../hooks/handleEmailAndPasswordSignup";
 import { handleGoogleLogin } from "../../../hooks/handleGoogleLogin";
+import { handleLinelogin } from "../../../hooks/handleLineLogin";
 import { TalkType } from "../../../types";
 import Attention from "../../ui-elements/Attention";
 import Header from "../../ui-elements/Header";
@@ -42,11 +42,6 @@ const PagesSignup = () => {
   const redirectUrl = router.query.linkToken
     ? (`line-account-linkage?talkType=${talkType}&linkToken=${linkToken}&lineGroupId=${lineGroupId}` as string)
     : undefined;
-  const encodedRedirectUrl = encodeURI(LINE_LOGIN_REDIRECT_URL);
-
-  const handleLinelogin = () => {
-    window.location.href = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${LINE_LOGIN_CHANNEL_ID}&redirect_uri=${encodedRedirectUrl}&state=12345abcde&scope=profile%20openid`;
-  };
 
   return (
     <>
