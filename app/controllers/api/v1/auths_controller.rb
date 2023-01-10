@@ -26,7 +26,7 @@ class Api::V1::AuthsController < ApplicationController
     end
 
     line_user_info = JSON.parse(res.body)
-    current_user = User.find_by(line_user_id: line_user_info['sub'])
+    current_user = User.find_by(firebase_user_id: line_user_info['sub'])
 
     if current_user.nil?
       User.transaction do
