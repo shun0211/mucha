@@ -15,6 +15,7 @@
     "@fullcalendar/core": "^5.11.3",
     "@fullcalendar/daygrid": "^5.11.3",
     "@fullcalendar/react": "^5.11.3",
+    "@line/bot-sdk": "^7.5.2",
     "@mantine/core": "^5.4.1",
     "@mantine/dates": "^5.4.1",
     "@mantine/form": "^5.4.1",

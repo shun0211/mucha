@@ -14,6 +14,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { Help } from "tabler-icons-react";
+import { LINE_LOGIN_CHANNEL_ID, LINE_LOGIN_REDIRECT_URL } from "../../../config/constants";
 import { handleEmailAndPasswordSignup } from "../../../hooks/handleEmailAndPasswordSignup";
 import { handleGoogleLogin } from "../../../hooks/handleGoogleLogin";
 import { TalkType } from "../../../types";
@@ -38,7 +39,14 @@ const PagesSignup = () => {
   const linkToken = router.query.linkToken as string;
   const talkType = router.query.talkType as string;
   const lineGroupId = router.query.lineGroupId as TalkType;
-  const redirectUrl = router.query.linkToken ? `line-account-linkage?talkType=${talkType}&linkToken=${linkToken}&lineGroupId=${lineGroupId}` as string : undefined
+  const redirectUrl = router.query.linkToken
+    ? (`line-account-linkage?talkType=${talkType}&linkToken=${linkToken}&lineGroupId=${lineGroupId}` as string)
+    : undefined;
+  const encodedRedirectUrl = encodeURI(LINE_LOGIN_REDIRECT_URL);
+
+  const handleLinelogin = () => {
+    window.location.href = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${LINE_LOGIN_CHANNEL_ID}&redirect_uri=${encodedRedirectUrl}&state=12345abcde&scope=profile%20openid`;
+  };
 
   return (
     <>
@@ -47,12 +55,27 @@ const PagesSignup = () => {
       <Container>
         <Card shadow="md" radius="lg" className="pb-8">
           <div className="text-center">
-            <button onClick={() => handleGoogleLogin(router)}>
+            <Text size="md" className="whitespace-pre-line text-center pb-1">
+              \おすすめ/
+            </Text>
+            <button onClick={handleLinelogin}>
+              <Image
+                src="/btn_login_base.png"
+                alt="LINE Login"
+                width={191}
+                height={40}
+                className="mx-auto"
+              />
+            </button>
+            <Text size="xs" className="whitespace-pre-line text-center">
+              LINEログインが簡単に始められます！
+            </Text>
+            <button onClick={() => handleGoogleLogin(router)} className="mt-5">
               <Image
                 src="/sample/btn_google_signin_light_normal_web.png"
                 alt="Google Login"
                 width={191}
-                height={46}
+                height={30}
                 className="mx-auto"
               />
             </button>

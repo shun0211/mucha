@@ -20,6 +20,7 @@ const Mucha = ({
     if (
       router.pathname === "/" ||
       router.pathname === "/signin" ||
+      router.pathname === "/signin/line-login" ||
       router.pathname === "/signup" ||
       router.pathname === "/line-account-linkage" ||
       router.pathname === "/help/group-talk-linkage" ||
