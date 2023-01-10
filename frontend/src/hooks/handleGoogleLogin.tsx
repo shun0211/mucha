@@ -7,8 +7,6 @@ export const handleGoogleLogin = async (
   router: NextRouter,
   redirectUrl = "/notices"
 ) => {
-  console.log(redirectUrl);
-
   const provider = new GoogleAuthProvider();
   await signInWithPopup(auth, provider).then(() => {
     router.push(redirectUrl);

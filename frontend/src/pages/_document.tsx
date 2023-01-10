@@ -1,5 +1,4 @@
 import { createGetInitialProps } from "@mantine/next";
-import { DefaultSeo } from "next-seo";
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import React from "react";
 
