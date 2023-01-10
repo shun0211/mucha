@@ -364,6 +364,7 @@ DEPENDENCIES
   dotenv-rails
   enum_help
   factory_bot_rails
+  faraday
   firebase-admin-sdk
   google-apis-calendar_v3
   jbuilder
