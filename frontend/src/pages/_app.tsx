@@ -14,6 +14,8 @@ export default function App(props: AppProps) {
   const [liffError, setLiffError] = useState<string | null>(null);
   const { Component, pageProps, router } = props;
 
+  console.log("LIFF Test!");
+
   useEffect(() => {
     liff.use(new LIFFInspectorPlugin());
     import("@line/liff")
