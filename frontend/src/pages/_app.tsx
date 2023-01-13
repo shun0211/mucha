@@ -6,7 +6,6 @@ import Mucha from "../components/Mucha";
 import { DefaultSeo } from "next-seo";
 import { LIFF_ID } from "../config/constants";
 import { Liff } from "@line/liff";
-import liff from '@line/liff';
 import LIFFInspectorPlugin from "@line/liff-inspector";
 
 export default function App(props: AppProps) {
@@ -17,10 +16,10 @@ export default function App(props: AppProps) {
   console.log("LIFF Test!");
 
   useEffect(() => {
-    liff.use(new LIFFInspectorPlugin());
     import("@line/liff")
       .then((liff) => liff.default)
       .then((liff) => {
+        liff.use(new LIFFInspectorPlugin());
         console.log("LIFF init...");
         liff
           .init({ liffId: LIFF_ID })
@@ -34,6 +33,9 @@ export default function App(props: AppProps) {
           });
       });
   }, []);
+
+  pageProps.liff = liffObject;
+  pageProps.liffError = liffError;
 
   return (
     <>
