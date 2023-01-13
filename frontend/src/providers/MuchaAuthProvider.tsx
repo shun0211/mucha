@@ -1,8 +1,15 @@
+import { Liff } from "@line/liff/dist/lib";
 import { MantineProvider } from "@mantine/core";
 import React, { ReactElement, useState } from "react";
 import { AuthProvider } from "./AuthProvider";
 
-const MuchaAuthProvider = ({ children }: { children: ReactElement }) => {
+const MuchaAuthProvider = ({
+  liff,
+  children,
+}: {
+  liff: Liff;
+  children: ReactElement;
+}) => {
   const [authChecking, setAuthChecking] = useState<boolean>(true);
 
   return (
@@ -30,6 +37,7 @@ const MuchaAuthProvider = ({ children }: { children: ReactElement }) => {
       <AuthProvider
         setAuthChecking={setAuthChecking}
         authChecking={authChecking}
+        liff={liff}
       >
         {children}
       </AuthProvider>

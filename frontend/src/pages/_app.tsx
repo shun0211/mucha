@@ -20,15 +20,12 @@ export default function App(props: AppProps) {
       .then((liff) => liff.default)
       .then((liff) => {
         liff.use(new LIFFInspectorPlugin());
-        console.log("LIFF init...");
         liff
           .init({ liffId: LIFF_ID })
           .then(() => {
-            console.log("LIFF init succeeded.");
             setLiffObject(liff);
           })
           .catch((error: Error) => {
-            console.log("LIFF init failed.");
             setLiffError(error.toString());
           });
       });
@@ -36,6 +33,11 @@ export default function App(props: AppProps) {
 
   pageProps.liff = liffObject;
   pageProps.liffError = liffError;
+
+  console.log(liffObject?.id)
+  console.log(liffObject?.getProfile)
+  console.log(liffObject?.getProfilePlus)
+  console.log(liffObject?.getFriendship)
 
   return (
     <>
@@ -59,7 +61,7 @@ export default function App(props: AppProps) {
           ],
         }}
       />
-      <MuchaAuthProvider>
+      <MuchaAuthProvider liff={pageProps.liff} >
         <Mucha Component={Component} pageProps={pageProps} router={router} />
       </MuchaAuthProvider>
     </>
