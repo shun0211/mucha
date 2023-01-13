@@ -8,6 +8,7 @@ import MainLinkButton from "../components/ui-elements/MainLinkButton";
 
 export default function Home() {
   const { currentUser } = useContext(AuthContext);
+  console.log("test");
 
   return (
     <div className="bg-white">
