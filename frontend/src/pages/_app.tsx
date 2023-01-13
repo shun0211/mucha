@@ -4,9 +4,10 @@ import type { AppProps } from "next/app";
 import MuchaAuthProvider from "../providers/MuchaAuthProvider";
 import Mucha from "../components/Mucha";
 import { DefaultSeo } from "next-seo";
-import LIFFInspectorPlugin from "@line/liff-inspector";
 import { LIFF_ID } from "../config/constants";
 import { Liff } from "@line/liff";
+import liff from '@line/liff';
+import LIFFInspectorPlugin from "@line/liff-inspector";
 
 export default function App(props: AppProps) {
   const [liffObject, setLiffObject] = useState<Liff | null>(null);
@@ -14,10 +15,10 @@ export default function App(props: AppProps) {
   const { Component, pageProps, router } = props;
 
   useEffect(() => {
+    liff.use(new LIFFInspectorPlugin());
     import("@line/liff")
       .then((liff) => liff.default)
       .then((liff) => {
-        liff.use(new LIFFInspectorPlugin());
         console.log("LIFF init...");
         liff
           .init({ liffId: LIFF_ID })
