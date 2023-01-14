@@ -8,8 +8,7 @@ export const LINE_LOGIN_CHANNEL_ID = process.env
   .NEXT_PUBLIC_LINE_LOGIN_CHANNEL_ID as string;
 export const LINE_LOGIN_REDIRECT_URL = process.env
   .NEXT_PUBLIC_LINE_LOGIN_REDIRECT_URL as string;
-export const DEV_LIFF_ID = process.env.NEXT_PUBLIC_DEV_LIFF_ID as string;
-export const PROD_LIFF_ID = process.env.NEXT_PUBLIC_PROD_LIFF_ID as string;
+export const LIFF_ID = process.env.NEXT_PUBLIC_LIFF_ID as string;
 export const ENV = process.env.NEXT_PUBLIC_ENV as string;
 
 // export const AUTH0_DOMAIN = process.env.NEXT_PUBLIC_AUTH0_DOMAIN as string

@@ -4,7 +4,7 @@ import type { AppProps } from "next/app";
 import MuchaAuthProvider from "../providers/MuchaAuthProvider";
 import Mucha from "../components/Mucha";
 import { DefaultSeo } from "next-seo";
-import { DEV_LIFF_ID, ENV, PROD_LIFF_ID } from "../config/constants";
+import { LIFF_ID, ENV } from "../config/constants";
 import { Liff } from "@line/liff";
 import LIFFInspectorPlugin from "@line/liff-inspector";
 
@@ -31,12 +31,10 @@ export default function App(props: AppProps) {
     import("@line/liff")
       .then((liff) => liff.default)
       .then((liff) => {
-        if (ENV === "production") {
-          initLiff(liff, PROD_LIFF_ID);
-        } else if (ENV === "preview") {
+        if (ENV === "preview") {
           liff.use(new LIFFInspectorPlugin());
-          initLiff(liff, DEV_LIFF_ID);
         }
+        initLiff(liff, LIFF_ID);
       });
   }, []);
 
