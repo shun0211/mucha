@@ -35,6 +35,7 @@ export default function App(props: AppProps) {
           liff.use(new LIFFInspectorPlugin());
         }
         initLiff(liff, LIFF_ID);
+        liff.login()
       });
   }, []);
 
@@ -43,8 +44,8 @@ export default function App(props: AppProps) {
 
   console.log(liffObject);
   console.log(liffObject?.id);
+  console.log(liffObject?.getAccessToken());
   console.log(liffObject?.getProfile());
-  console.log(liffObject?.getProfilePlus());
   console.log(liffObject?.getFriendship());
   console.log(liffError);
 
