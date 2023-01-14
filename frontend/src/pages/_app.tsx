@@ -31,9 +31,9 @@ export default function App(props: AppProps) {
     import("@line/liff")
       .then((liff) => liff.default)
       .then((liff) => {
-        if (ENV === "prod") {
+        if (ENV === "production") {
           initLiff(liff, PROD_LIFF_ID);
-        } else if (ENV === "stg") {
+        } else if (ENV === "preview") {
           liff.use(new LIFFInspectorPlugin());
           initLiff(liff, DEV_LIFF_ID);
         }
