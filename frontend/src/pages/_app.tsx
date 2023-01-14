@@ -43,9 +43,9 @@ export default function App(props: AppProps) {
 
   console.log(liffObject);
   console.log(liffObject?.id);
-  console.log(liffObject?.getProfile);
-  console.log(liffObject?.getProfilePlus);
-  console.log(liffObject?.getFriendship);
+  console.log(liffObject?.getProfile());
+  console.log(liffObject?.getProfilePlus());
+  console.log(liffObject?.getFriendship());
   console.log(liffError);
 
   return (
