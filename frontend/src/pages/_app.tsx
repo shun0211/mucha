@@ -4,7 +4,7 @@ import type { AppProps } from "next/app";
 import MuchaAuthProvider from "../providers/MuchaAuthProvider";
 import Mucha from "../components/Mucha";
 import { DefaultSeo } from "next-seo";
-import { LIFF_ID } from "../config/constants";
+import { DEV_LIFF_ID, ENV, PROD_LIFF_ID } from "../config/constants";
 import { Liff } from "@line/liff";
 import LIFFInspectorPlugin from "@line/liff-inspector";
 
@@ -14,32 +14,41 @@ export default function App(props: AppProps) {
   const { Component, pageProps, router } = props;
 
   console.log("LIFF Test!");
+  console.log(props);
+
+  const initLiff = (liff: Liff, liffId: string) => {
+    liff
+      .init({ liffId: liffId })
+      .then(() => {
+        setLiffObject(liff);
+      })
+      .catch((error: Error) => {
+        setLiffError(error.toString());
+      });
+  };
 
   useEffect(() => {
     import("@line/liff")
       .then((liff) => liff.default)
       .then((liff) => {
-        liff.use(new LIFFInspectorPlugin());
-        liff
-          .init({ liffId: LIFF_ID })
-          .then(() => {
-            setLiffObject(liff);
-          })
-          .catch((error: Error) => {
-            setLiffError(error.toString());
-          });
+        if (ENV === "prod") {
+          initLiff(liff, PROD_LIFF_ID);
+        } else if (ENV === "stg") {
+          liff.use(new LIFFInspectorPlugin());
+          initLiff(liff, DEV_LIFF_ID);
+        }
       });
   }, []);
 
   pageProps.liff = liffObject;
   pageProps.liffError = liffError;
 
-  console.log(liffObject)
-  console.log(liffObject?.id)
-  console.log(liffObject?.getProfile)
-  console.log(liffObject?.getProfilePlus)
-  console.log(liffObject?.getFriendship)
-  console.log(liffError)
+  console.log(liffObject);
+  console.log(liffObject?.id);
+  console.log(liffObject?.getProfile);
+  console.log(liffObject?.getProfilePlus);
+  console.log(liffObject?.getFriendship);
+  console.log(liffError);
 
   return (
     <>
@@ -63,7 +72,7 @@ export default function App(props: AppProps) {
           ],
         }}
       />
-      <MuchaAuthProvider liff={pageProps.liff} >
+      <MuchaAuthProvider liff={pageProps.liff}>
         <Mucha Component={Component} pageProps={pageProps} router={router} />
       </MuchaAuthProvider>
     </>
