@@ -31,7 +31,7 @@ export const useSetCurrentUser = (
           console.log(`access token: ${accessToken}`);
           const customToken = await getLiffCostomToken(accessToken)
           console.log(`custom token: ${customToken}`);
-          // await signInWithCustomToken(auth, customToken);
+          await signInWithCustomToken(auth, customToken);
         };
         liffLogin();
       }

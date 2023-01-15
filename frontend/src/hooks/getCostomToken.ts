@@ -9,5 +9,5 @@ export const getLiffCostomToken = async (token: string | null): Promise<string> 
       Authorization: `Bearer ${token}`,
     },
   });
-  return res.data;
+  return res.data.customToken;
 };
