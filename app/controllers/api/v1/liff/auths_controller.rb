@@ -10,10 +10,10 @@ class Api::V1::Liff::AuthsController < ApplicationController
     if current_user.nil?
       User.transaction do
         current_user = User.create!(
-          firebase_user_id: line_user_info['sub'],
-          line_user_id: line_user_info['sub'],
-          line_name: line_user_info["name"],
-          line_profile_image_url: line_user_info["picture"]
+          firebase_user_id: line_user_info['userId'],
+          line_user_id: line_user_info['userId'],
+          line_name: line_user_info["displayName"],
+          line_profile_image_url: line_user_info["pictureUrl"]
         )
         app.auth.create_user(uid: line_user_info['userId'])
       end

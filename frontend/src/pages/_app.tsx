@@ -7,6 +7,7 @@ import { DefaultSeo } from "next-seo";
 import { LIFF_ID, ENV } from "../config/constants";
 import { Liff } from "@line/liff";
 import LIFFInspectorPlugin from "@line/liff-inspector";
+import VConsole from 'vconsole';
 
 export default function App(props: AppProps) {
   const [liffObject, setLiffObject] = useState<Liff | null>(null);
@@ -34,6 +35,7 @@ export default function App(props: AppProps) {
       .then((liff) => {
         if (ENV === "preview") {
           liff.use(new LIFFInspectorPlugin());
+          new VConsole();
         }
         initLiff(liff, LIFF_ID);
       });
