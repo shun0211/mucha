@@ -2,7 +2,7 @@ import { Liff } from "@line/liff/dist/lib";
 import axios from "axios";
 import { signInWithCustomToken } from "firebase/auth";
 import React, { useEffect, useState } from "react";
-import { API_URL } from "../config/constants";
+import { API_DOMAIN, API_URL } from "../config/constants";
 import { auth } from "../config/firebase";
 import { User } from "../types";
 import { getLiffCostomToken } from "./getCostomToken";
@@ -29,7 +29,12 @@ export const useSetCurrentUser = (
         const liffLogin = async () => {
           const accessToken = liff.getAccessToken();
           console.log(accessToken);
-          const customToken = await axios.get(`${API_URL}/liff/custom-token`, {
+          // const customToken = await axios.get(`${API_URL}/liff/custom-token`, {
+          //   headers: {
+          //     Authorization: `Bearer ${token}`,
+          //   },
+          // });
+          const customToken = await axios.get(`${API_DOMAIN}/healthcheck`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
