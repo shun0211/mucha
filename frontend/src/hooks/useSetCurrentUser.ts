@@ -28,7 +28,7 @@ export const useSetCurrentUser = (
           console.log(customToken);
           await signInWithCustomToken(auth, customToken);
         };
-        liffLogin();
+        // liffLogin();
       })
 
       console.log("liff Finish");
