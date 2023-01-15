@@ -28,14 +28,9 @@ export const useSetCurrentUser = (
         console.log(`ready 中の liff ${liff.getAccessToken()}`);
         const liffLogin = async () => {
           const accessToken = liff.getAccessToken();
-          console.log(accessToken);
-          // const customToken = await axios.get(`${API_URL}/liff/custom-token`, {
-          //   headers: {
-          //     Authorization: `Bearer ${token}`,
-          //   },
-          // });
-          const customToken = await axios.get(`${API_DOMAIN}/healthcheck`);
-          console.log(customToken);
+          console.log(`access token: ${accessToken}`);
+          const customToken = await getLiffCostomToken(accessToken)
+          console.log(`custom token: ${customToken}`);
           // await signInWithCustomToken(auth, customToken);
         };
         liffLogin();
