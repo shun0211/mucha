@@ -14,12 +14,6 @@ export const useSetCurrentUser = (
   const [currentUser, setCurrentUser] = useState<User | null | undefined>(
     undefined
   );
-  const [liffInited, setLiffInited] = useState<boolean>(false)
-
-  // もし liff があれば再レンダーする
-  if (liff) {
-    setLiffInited(true)
-  }
 
   useEffect(() => {
     console.log("useSetCurrentUser Start! 1/2");
@@ -53,7 +47,7 @@ export const useSetCurrentUser = (
       }
     });
     setAuthChecking(false);
-  }, [liffInited]);
+  }, [liff]);
 
   return {
     currentUser: currentUser,
