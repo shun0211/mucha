@@ -12,6 +12,11 @@
 #  firebase_user_id       :string(255)      not null
 #  line_user_id           :string(255)
 #
+# Indexes
+#
+#  index_users_on_firebase_user_id  (firebase_user_id) UNIQUE
+#  index_users_on_line_user_id      (line_user_id) UNIQUE
+#
 FactoryBot.define do
   factory :user do
     firebase_user_id { 'abcdefg' }

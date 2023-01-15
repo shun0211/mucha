@@ -35,19 +35,11 @@ export default function App(props: AppProps) {
           liff.use(new LIFFInspectorPlugin());
         }
         initLiff(liff, LIFF_ID);
-        liff.login()
       });
   }, []);
 
   pageProps.liff = liffObject;
   pageProps.liffError = liffError;
-
-  console.log(liffObject);
-  console.log(liffObject?.id);
-  console.log(liffObject?.getAccessToken());
-  console.log(liffObject?.getProfile());
-  console.log(liffObject?.getFriendship());
-  console.log(liffError);
 
   return (
     <>
