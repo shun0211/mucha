@@ -34,11 +34,7 @@ export const useSetCurrentUser = (
           //     Authorization: `Bearer ${token}`,
           //   },
           // });
-          const customToken = await axios.get(`${API_DOMAIN}/healthcheck`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
+          const customToken = await axios.get(`${API_DOMAIN}/healthcheck`);
           console.log(customToken);
           // await signInWithCustomToken(auth, customToken);
         };
