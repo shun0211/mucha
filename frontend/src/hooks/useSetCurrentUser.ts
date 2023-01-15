@@ -18,13 +18,15 @@ export const useSetCurrentUser = (
   useEffect(() => {
     auth.onAuthStateChanged((firebaseUser) => {
       console.log("useSetCurrentUser Start!");
-      const liffLogin = async () => {
-        const accessToken = liff.getAccessToken()
-        const customToken = await getLiffCostomToken(accessToken)
-        console.log(customToken);
-        await signInWithCustomToken(auth, customToken);
-      }
-      liffLogin()
+      liff.ready.then(() => {
+        const liffLogin = async () => {
+          const accessToken = liff.getAccessToken();
+          const customToken = await getLiffCostomToken(accessToken);
+          console.log(customToken);
+          await signInWithCustomToken(auth, customToken);
+        };
+        liffLogin();
+      })
 
       console.log("liff Finish");
 
