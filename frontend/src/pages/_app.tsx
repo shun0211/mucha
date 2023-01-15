@@ -14,7 +14,6 @@ export default function App(props: AppProps) {
   const { Component, pageProps, router } = props;
 
   console.log("LIFF Test!");
-  console.log(props);
 
   const initLiff = (liff: Liff, liffId: string) => {
     liff
@@ -37,12 +36,13 @@ export default function App(props: AppProps) {
           liff.use(new LIFFInspectorPlugin());
         }
         initLiff(liff, LIFF_ID);
-        liff.login()
+        liff.ready.then(() => {
+          pageProps.liff = liffObject;
+          pageProps.liffError = liffError;
+        })
       });
   }, []);
 
-  pageProps.liff = liffObject;
-  pageProps.liffError = liffError;
 
   return (
     <>
