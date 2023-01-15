@@ -43,6 +43,8 @@ export default function App(props: AppProps) {
       });
   }, []);
 
+  console.log(pageProps.liff);
+  console.log(pageProps.liffError);
 
   return (
     <>
