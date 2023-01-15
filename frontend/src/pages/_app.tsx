@@ -20,10 +20,12 @@ export default function App(props: AppProps) {
     liff
       .init({ liffId: liffId })
       .then(() => {
+        console.log("Liff init success!");
         setLiffObject(liff);
       })
       .catch((error: Error) => {
         setLiffError(error.toString());
+        console.log("Liff init Failure!");
       });
   };
 
