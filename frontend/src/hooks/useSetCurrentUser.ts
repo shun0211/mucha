@@ -23,13 +23,15 @@ export const useSetCurrentUser = (
 
       liff && liff.ready.then(() => {
         console.log(`ready 中の liff ${liff}`);
+        console.log(`ready 中の liff ${liff.getAccessToken()}`);
         const liffLogin = async () => {
           const accessToken = liff.getAccessToken();
+          console.log(accessToken);
           const customToken = await getLiffCostomToken(accessToken);
           console.log(customToken);
           await signInWithCustomToken(auth, customToken);
         };
-        liffLogin();
+        // liffLogin();
       })
 
       console.log("liff Finish");
