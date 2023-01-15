@@ -8,7 +8,7 @@ import { getCurrentUser } from "./getCurrentUser";
 
 export const useSetCurrentUser = (
   setAuthChecking: React.Dispatch<React.SetStateAction<boolean>>,
-  liff: Liff
+  liff: Liff | null
 ) => {
   const [token, setToken] = useState<string>("");
   const [currentUser, setCurrentUser] = useState<User | null | undefined>(

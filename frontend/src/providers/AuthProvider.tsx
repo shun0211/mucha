@@ -12,7 +12,7 @@ export const AuthProvider = ({
   children: ReactElement;
   setAuthChecking: React.Dispatch<React.SetStateAction<boolean>>;
   authChecking: boolean;
-  liff: Liff;
+  liff: Liff | null;
 }) => {
   const { currentUser, setCurrentUser, token } =
     useSetCurrentUser(setAuthChecking, liff);

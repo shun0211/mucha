@@ -7,7 +7,7 @@ const MuchaAuthProvider = ({
   liff,
   children,
 }: {
-  liff: Liff;
+  liff: Liff | null;
   children: ReactElement;
 }) => {
   const [authChecking, setAuthChecking] = useState<boolean>(true);
