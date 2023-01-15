@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import "../styles/globals.css";
 import React, { useEffect, useState } from "react";
 import type { AppProps } from "next/app";
@@ -7,7 +8,7 @@ import { DefaultSeo } from "next-seo";
 import { LIFF_ID, ENV } from "../config/constants";
 import { Liff } from "@line/liff";
 import LIFFInspectorPlugin from "@line/liff-inspector";
-import VConsole from 'vconsole';
+import Script from "next/script";
 
 export default function App(props: AppProps) {
   const [liffObject, setLiffObject] = useState<Liff | null>(null);
@@ -35,11 +36,10 @@ export default function App(props: AppProps) {
       .then((liff) => {
         if (ENV === "preview") {
           liff.use(new LIFFInspectorPlugin());
-          new VConsole();
         }
         initLiff(liff, LIFF_ID);
       });
-  }, []);
+    }, []);
 
   pageProps.liff = liffObject;
   pageProps.liffError = liffError;
@@ -68,6 +68,8 @@ export default function App(props: AppProps) {
           ],
         }}
       />
+      {/* @ts-ignore */}
+      <Script src='https://unpkg.com/vconsole@latest/dist/vconsole.min.js' onLoad={() => { const vConsole = new window.VConsole() }} />
       <MuchaAuthProvider liff={liffObject}>
         <Mucha Component={Component} pageProps={pageProps} router={router} />
       </MuchaAuthProvider>
