@@ -23,23 +23,22 @@ export const useSetCurrentUser = (
       console.log("useSetCurrentUser Start! 2/2");
       console.log(liff);
 
-      liff &&
-        liff.ready.then(() => {
-          console.log(`ready 中の liff ${liff}`);
-          console.log(`ready 中の liff ${liff.getAccessToken()}`);
-          const liffLogin = async () => {
-            const accessToken = liff.getAccessToken();
-            console.log(accessToken);
-            const customToken = await axios.get(`${API_URL}/custom-token`, {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            });
-            console.log(customToken);
-            // await signInWithCustomToken(auth, customToken);
-          };
-          liffLogin();
-        });
+      if (liff) {
+        console.log(`ready 中の liff ${liff}`);
+        console.log(`ready 中の liff ${liff.getAccessToken()}`);
+        const liffLogin = async () => {
+          const accessToken = liff.getAccessToken();
+          console.log(accessToken);
+          const customToken = await axios.get(`${API_URL}/custom-token`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          console.log(customToken);
+          // await signInWithCustomToken(auth, customToken);
+        };
+        liffLogin();
+      }
 
       console.log("liff Finish");
 
