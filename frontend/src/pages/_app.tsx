@@ -35,6 +35,7 @@ export default function App(props: AppProps) {
           liff.use(new LIFFInspectorPlugin());
         }
         initLiff(liff, LIFF_ID);
+        liff.login()
       });
   }, []);
 
