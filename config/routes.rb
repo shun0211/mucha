@@ -15,6 +15,10 @@ Rails.application.routes.draw do
       resources :group_talk_rooms
       post 'line_bots/link', to: "line_bots#link"
       post 'custom-token', to: "auths#fetch_custom_token"
+      # Liff アプリからトークンを取得する場合のエンドポイント
+      namespace 'liff' do
+        get 'custom-token', to: "auths#fetch_custom_token"
+      end
     end
   end
 

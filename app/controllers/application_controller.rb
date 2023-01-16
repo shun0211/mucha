@@ -33,4 +33,16 @@ class ApplicationController < ActionController::API
       headers: {'Content-Type' => 'application/x-www-form-urlencoded'}
     )
   end
+
+  def create_custom_token(uid)
+    now_seconds = Time.now.to_i
+    private_key = OpenSSL::PKey::RSA.new(ENV['FIREBASE_PRIVATE_KEY'].gsub("\\n", "\n"))
+    payload = {:iss => ENV['FIREBASE_SERVICE_ACCOUNT_EMAIL'],
+               :sub => ENV['FIREBASE_SERVICE_ACCOUNT_EMAIL'],
+               :aud => "https://identitytoolkit.googleapis.com/google.identity.identitytoolkit.v1.IdentityToolkit",
+               :iat => now_seconds,
+               :exp => now_seconds + 60,
+               :uid => uid}
+    JWT.encode payload, private_key, "RS256"
+  end
 end

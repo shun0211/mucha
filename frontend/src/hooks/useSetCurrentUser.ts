@@ -1,10 +1,14 @@
+import { Liff } from "@line/liff/dist/lib";
+import { signInWithCustomToken } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { auth } from "../config/firebase";
 import { User } from "../types";
+import { getLiffCostomToken } from "./getCostomToken";
 import { getCurrentUser } from "./getCurrentUser";
 
 export const useSetCurrentUser = (
-  setAuthChecking: React.Dispatch<React.SetStateAction<boolean>>
+  setAuthChecking: React.Dispatch<React.SetStateAction<boolean>>,
+  liff: Liff | null
 ) => {
   const [token, setToken] = useState<string>("");
   const [currentUser, setCurrentUser] = useState<User | null | undefined>(
@@ -12,21 +16,36 @@ export const useSetCurrentUser = (
   );
 
   useEffect(() => {
+    console.log("useSetCurrentUser Liff Start!");
     auth.onAuthStateChanged((firebaseUser) => {
-      if (firebaseUser) {
-        const inner = async () => {
-          const token = await firebaseUser.getIdToken(true);
-          const user: User = await getCurrentUser(token);
-          setToken(token);
+      if (liff && liff.isInClient()) {
+        const liffLogin = async () => {
+          const liffAccessToken = liff.getAccessToken();
+          const customToken = await getLiffCostomToken(liffAccessToken);
+          console.log(`custom token: ${customToken}`);
+          const userCredential = await signInWithCustomToken(auth, customToken);
+          const firebaseToken = await userCredential.user.getIdToken(true);
+          const user: User = await getCurrentUser(firebaseToken);
+          setToken(firebaseToken);
           setCurrentUser(user);
+          setAuthChecking(false);
         };
-        inner();
-      } else {
+        liffLogin();
+      } else if (liff && firebaseUser) {
+        const login = async () => {
+          const firebaseToken = await firebaseUser.getIdToken(true);
+          const user: User = await getCurrentUser(firebaseToken);
+          setToken(firebaseToken);
+          setCurrentUser(user);
+          setAuthChecking(false);
+        };
+        login();
+      } else if (liff) {
         setCurrentUser(null);
+        setAuthChecking(false);
       }
     });
-    setAuthChecking(false);
-  }, []);
+  }, [liff]);
 
   return {
     currentUser: currentUser,

@@ -1,12 +1,46 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import "../styles/globals.css";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import type { AppProps } from "next/app";
 import MuchaAuthProvider from "../providers/MuchaAuthProvider";
 import Mucha from "../components/Mucha";
 import { DefaultSeo } from "next-seo";
+import { LIFF_ID, ENV } from "../config/constants";
+import { Liff } from "@line/liff";
+import LIFFInspectorPlugin from "@line/liff-inspector";
+import Script from "next/script";
 
 export default function App(props: AppProps) {
+  const [liffObject, setLiffObject] = useState<Liff | null>(null);
+  const [liffError, setLiffError] = useState<string | null>(null);
   const { Component, pageProps, router } = props;
+
+  const initLiff = (liff: Liff, liffId: string) => {
+    liff
+      .init({ liffId: liffId })
+      .then(() => {
+        console.log("Liff init success!");
+        setLiffObject(liff);
+      })
+      .catch((error: Error) => {
+        setLiffError(error.toString());
+        console.log("Liff init Failure!");
+      });
+  };
+
+  useEffect(() => {
+    import("@line/liff")
+      .then((liff) => liff.default)
+      .then((liff) => {
+        if (ENV === "preview") {
+          liff.use(new LIFFInspectorPlugin());
+        }
+        initLiff(liff, LIFF_ID);
+      });
+  }, []);
+
+  pageProps.liff = liffObject;
+  pageProps.liffError = liffError;
 
   return (
     <>
@@ -30,7 +64,17 @@ export default function App(props: AppProps) {
           ],
         }}
       />
-      <MuchaAuthProvider>
+      {/* Preview 環境ではコンソールを出す */}
+      {ENV === "preview" ?? (
+        <Script
+        src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"
+        onLoad={() => {
+            {/* @ts-ignore */}
+            new window.VConsole();
+          }}
+        />
+      )}
+      <MuchaAuthProvider liff={liffObject}>
         <Mucha Component={Component} pageProps={pageProps} router={router} />
       </MuchaAuthProvider>
     </>
