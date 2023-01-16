@@ -19,12 +19,9 @@ export const useSetCurrentUser = (
     console.log("useSetCurrentUser Liff Start!");
     auth.onAuthStateChanged((firebaseUser) => {
       if (liff && liff.isInClient()) {
-        console.log(`liff ${liff}`);
-        console.log(`liff access token ${liff.getAccessToken()}`);
         const liffLogin = async () => {
-          const accessToken = liff.getAccessToken();
-          console.log(`access token: ${accessToken}`);
-          const customToken = await getLiffCostomToken(accessToken);
+          const liffAccessToken = liff.getAccessToken();
+          const customToken = await getLiffCostomToken(liffAccessToken);
           console.log(`custom token: ${customToken}`);
           const userCredential = await signInWithCustomToken(auth, customToken);
           const firebaseToken = await userCredential.user.getIdToken(true);
@@ -35,14 +32,14 @@ export const useSetCurrentUser = (
         };
         liffLogin();
       } else if (liff && firebaseUser) {
-        const inner = async () => {
+        const login = async () => {
           const firebaseToken = await firebaseUser.getIdToken(true);
           const user: User = await getCurrentUser(firebaseToken);
           setToken(firebaseToken);
           setCurrentUser(user);
           setAuthChecking(false);
         };
-        inner();
+        login();
       } else if (liff) {
         setCurrentUser(null);
         setAuthChecking(false);

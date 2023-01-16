@@ -15,8 +15,6 @@ export default function App(props: AppProps) {
   const [liffError, setLiffError] = useState<string | null>(null);
   const { Component, pageProps, router } = props;
 
-  console.log("app ロード中");
-
   const initLiff = (liff: Liff, liffId: string) => {
     liff
       .init({ liffId: liffId })
@@ -39,12 +37,10 @@ export default function App(props: AppProps) {
         }
         initLiff(liff, LIFF_ID);
       });
-    }, []);
+  }, []);
 
   pageProps.liff = liffObject;
   pageProps.liffError = liffError;
-  console.log(`pageProps.liff: ${pageProps.liff}`);
-  console.log(`pageProps.liffError: ${pageProps.liffError}`);
 
   return (
     <>
@@ -68,8 +64,16 @@ export default function App(props: AppProps) {
           ],
         }}
       />
-      {/* @ts-ignore */}
-      <Script src='https://unpkg.com/vconsole@latest/dist/vconsole.min.js' onLoad={() => { new window.VConsole() }} />
+      {/* Preview 環境ではコンソールを出す */}
+      {ENV === "preview" ?? (
+        <Script
+        src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"
+        onLoad={() => {
+            {/* @ts-ignore */}
+            new window.VConsole();
+          }}
+        />
+      )}
       <MuchaAuthProvider liff={liffObject}>
         <Mucha Component={Component} pageProps={pageProps} router={router} />
       </MuchaAuthProvider>
