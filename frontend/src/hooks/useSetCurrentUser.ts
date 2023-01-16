@@ -1,8 +1,6 @@
 import { Liff } from "@line/liff/dist/lib";
-import axios from "axios";
 import { signInWithCustomToken } from "firebase/auth";
 import React, { useEffect, useState } from "react";
-import { API_DOMAIN, API_URL } from "../config/constants";
 import { auth } from "../config/firebase";
 import { User } from "../types";
 import { getLiffCostomToken } from "./getCostomToken";
@@ -18,39 +16,38 @@ export const useSetCurrentUser = (
   );
 
   useEffect(() => {
-    console.log("useSetCurrentUser Start! 1/2");
+    console.log("useSetCurrentUser Liff Start!");
     auth.onAuthStateChanged((firebaseUser) => {
-      console.log("useSetCurrentUser Start! 2/2");
-      console.log(liff);
-
-      if (liff) {
-        console.log(`ready 中の liff ${liff}`);
-        console.log(`ready 中の liff ${liff.getAccessToken()}`);
+      if (liff && liff.isInClient()) {
+        console.log(`liff ${liff}`);
+        console.log(`liff access token ${liff.getAccessToken()}`);
         const liffLogin = async () => {
           const accessToken = liff.getAccessToken();
           console.log(`access token: ${accessToken}`);
-          const customToken = await getLiffCostomToken(accessToken)
+          const customToken = await getLiffCostomToken(accessToken);
           console.log(`custom token: ${customToken}`);
-          await signInWithCustomToken(auth, customToken);
+          const userCredential = await signInWithCustomToken(auth, customToken);
+          const firebaseToken = await userCredential.user.getIdToken(true);
+          const user: User = await getCurrentUser(token);
+          setToken(firebaseToken);
+          setCurrentUser(user);
+          setAuthChecking(false);
         };
         liffLogin();
-      }
-
-      console.log("liff Finish");
-
-      if (firebaseUser) {
+      } else if (liff && firebaseUser) {
         const inner = async () => {
-          const token = await firebaseUser.getIdToken(true);
+          const firebaseToken = await firebaseUser.getIdToken(true);
           const user: User = await getCurrentUser(token);
-          setToken(token);
+          setToken(firebaseToken);
           setCurrentUser(user);
+          setAuthChecking(false);
         };
         inner();
-      } else {
+      } else if (liff) {
         setCurrentUser(null);
+        setAuthChecking(false);
       }
     });
-    setAuthChecking(false);
   }, [liff]);
 
   return {
