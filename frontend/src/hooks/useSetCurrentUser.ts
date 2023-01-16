@@ -28,7 +28,7 @@ export const useSetCurrentUser = (
           console.log(`custom token: ${customToken}`);
           const userCredential = await signInWithCustomToken(auth, customToken);
           const firebaseToken = await userCredential.user.getIdToken(true);
-          const user: User = await getCurrentUser(token);
+          const user: User = await getCurrentUser(firebaseToken);
           setToken(firebaseToken);
           setCurrentUser(user);
           setAuthChecking(false);
@@ -37,7 +37,7 @@ export const useSetCurrentUser = (
       } else if (liff && firebaseUser) {
         const inner = async () => {
           const firebaseToken = await firebaseUser.getIdToken(true);
-          const user: User = await getCurrentUser(token);
+          const user: User = await getCurrentUser(firebaseToken);
           setToken(firebaseToken);
           setCurrentUser(user);
           setAuthChecking(false);
