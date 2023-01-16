@@ -14,12 +14,12 @@ export const AuthProvider = ({
   authChecking: boolean;
   liff: Liff | null;
 }) => {
-  const { currentUser, setCurrentUser, token } =
+  const { currentUser, setCurrentUser, token, setToken } =
     useSetCurrentUser(setAuthChecking, liff);
 
   return (
     <AuthContext.Provider
-      value={{ currentUser, setCurrentUser, token, authChecking }}
+      value={{ currentUser, setCurrentUser, token, authChecking, setToken }}
     >
       {children}
     </AuthContext.Provider>

@@ -16,7 +16,6 @@ export const useSetCurrentUser = (
   );
 
   useEffect(() => {
-    console.log("useSetCurrentUser Liff Start!");
     auth.onAuthStateChanged((firebaseUser) => {
       if (liff && liff.isInClient()) {
         const liffLogin = async () => {
@@ -51,5 +50,6 @@ export const useSetCurrentUser = (
     currentUser: currentUser,
     setCurrentUser: setCurrentUser,
     token: token,
+    setToken,
   };
 };
