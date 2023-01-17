@@ -23,7 +23,7 @@ export default function Home() {
           \無料でご利用いただけます/
         </Text>
         {currentUser == null ? (
-          <SignupButton text="さっそく使ってみる！" />
+          <MainLinkButton text="さっそく使ってみる！" src="/signin" />
         ) : (
           <MainLinkButton text="さっそく使ってみる！" src="/notices" />
         )}
