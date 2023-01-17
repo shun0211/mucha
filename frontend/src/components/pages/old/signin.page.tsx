@@ -10,18 +10,18 @@ import {
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import React, { useState } from "react";
-import Header from "../ui-elements/Header";
-import PageTitle from "../ui-elements/PageTitle";
+import Header from "../../ui-elements/Header";
+import PageTitle from "../../ui-elements/PageTitle";
 import Image from "next/image";
-import MainButton from "../ui-elements/MainButton";
-import { handleEmailAndPasswordSignin } from "../../hooks/handleEmailAndPasswordSignin";
+import MainButton from "../../ui-elements/MainButton";
+import { handleEmailAndPasswordSignin } from "../../../hooks/handleEmailAndPasswordSignin";
 import Link from "next/link";
-import SubButton from "../ui-elements/SubButton";
+import SubButton from "../../ui-elements/SubButton";
 import { useRouter } from "next/router";
-import { handleGoogleLogin } from "../../hooks/handleGoogleLogin";
+import { handleGoogleLogin } from "../../../hooks/handleGoogleLogin";
 import { Help } from "tabler-icons-react";
-import { TalkType } from "../../types";
-import { handleLinelogin } from "../../hooks/handleLineLogin";
+import { TalkType } from "../../../types";
+import { handleLinelogin } from "../../../hooks/handleLineLogin";
 
 type Props = {
   redirectUrl?: string;

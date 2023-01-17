@@ -2,7 +2,7 @@ import axios from "axios";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import React, { useContext } from "react";
-import PagesSignin from "../../components/pages/signin.page";
+import PagesSignin from "../../components/pages/old/signin.page";
 import Skeleton from "../../components/pages/Skeleton";
 import { API_URL } from "../../config/constants";
 import { AuthContext } from "../../providers/AuthContext";
