@@ -40,26 +40,26 @@ class LineBot::CallbacksController < ApplicationController
       return
     end
 
-    # 後で message は削除する
+    # LINE ログインのみにしたため、アカウント連携のメッセージを送信しない
     # アカウント連携のメッセージを送信するのは友だち登録をしたときのみ
-    if type == 'follow' || type == 'message'
-      response = line_bot_client.create_link_token(line_user_id)
-      link_token = JSON.parse(response.body)['linkToken']
-      message = [{
-        "type": 'template',
-        "altText": '今すぐアカウント連携する🚀',
-        "template": {
-          "type": 'buttons',
-          "text": "下ボタンからアカウント連携していただけますと、Mucha の機能を使えるようになります😊\n\n※アカウント連携は後で解除できます",
-          "actions": [{
-            "type": 'uri',
-            "label": '今すぐアカウント連携する',
-            "uri": "#{ENV['FRONT_URI']}/line-account-linkage?talkType=dm&linkToken=#{link_token}"
-          }]
-        }
-      }]
-      line_bot_client.push_message(line_user_id, message)
-    end
+    # if type == 'follow' || type == 'message'
+    #   response = line_bot_client.create_link_token(line_user_id)
+    #   link_token = JSON.parse(response.body)['linkToken']
+    #   message = [{
+    #     "type": 'template',
+    #     "altText": '今すぐアカウント連携する🚀',
+    #     "template": {
+    #       "type": 'buttons',
+    #       "text": "下ボタンからアカウント連携していただけますと、Mucha の機能を使えるようになります😊\n\n※アカウント連携は後で解除できます",
+    #       "actions": [{
+    #         "type": 'uri',
+    #         "label": '今すぐアカウント連携する',
+    #         "uri": "#{ENV['FRONT_URI']}/line-account-linkage?talkType=dm&linkToken=#{link_token}"
+    #       }]
+    #     }
+    #   }]
+    #   line_bot_client.push_message(line_user_id, message)
+    # end
   end
 
   private def line_bot_client
