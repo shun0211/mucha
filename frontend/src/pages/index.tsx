@@ -49,7 +49,7 @@ export default function Home() {
         <Title order={3} className="text-center py-2">
           さっそくはじめよう！
         </Title>
-        <SignupButton text="新規登録画面へ" />
+        <SignupButton text="ログイン画面へ" />
       </Container>
     </div>
   );

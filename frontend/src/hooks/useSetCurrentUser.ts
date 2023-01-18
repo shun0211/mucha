@@ -21,7 +21,6 @@ export const useSetCurrentUser = (
         const liffLogin = async () => {
           const liffAccessToken = liff.getAccessToken();
           const customToken = await getLiffCostomToken(liffAccessToken);
-          console.log(`custom token: ${customToken}`);
           const userCredential = await signInWithCustomToken(auth, customToken);
           const firebaseToken = await userCredential.user.getIdToken(true);
           const user: User = await getCurrentUser(firebaseToken);
