@@ -17,10 +17,18 @@ class SendLineMessageJob < ApplicationJob
   end
 
   private def build_message_text(notice)
-    if notice.talk_type == 'groupTalk'
-      return notice.message << "\n\n" + notice.user.line_name + " より"
-    end
+    message = case notice.talk_type
+              when "dm"
+                <<-"MESSAGE".gsub(/^\s+/, '').chomp
+                  リマインドをお知らせします😊
+                  　
+                  [#{notice.title}]
+                  #{notice.message}
+                MESSAGE
+              when "groupTalk"
+                notice.message << "\n\n" + notice.user.line_name + " より"
+              end
 
-    notice.message
+    message
   end
 end
