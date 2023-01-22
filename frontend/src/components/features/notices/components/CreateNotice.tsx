@@ -25,6 +25,7 @@ import { postNotice } from "../hooks/postNotice";
 import { Help } from "tabler-icons-react";
 import { postDraftNotice } from "../hooks/postDraftNotice";
 import SkeletonElement from "../../../ui-elements/SkeletonElement";
+import dayjs from "dayjs";
 
 const CreateNotice = ({ user, token }: { user: User; token: string }) => {
   const router = useRouter();
@@ -39,7 +40,7 @@ const CreateNotice = ({ user, token }: { user: User; token: string }) => {
   const form = useForm({
     initialValues: {
       title: "",
-      scheduledAt: "",
+      scheduledAt: dayjs().startOf('day').toDate(),
       repeat: false,
       monday: false,
       tuesday: false,
@@ -55,7 +56,7 @@ const CreateNotice = ({ user, token }: { user: User; token: string }) => {
 
   const addNotice = async (
     title: string,
-    scheduledAt: string,
+    scheduledAt: Date,
     repeat: boolean,
     monday: boolean,
     tuesday: boolean,

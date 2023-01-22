@@ -14,7 +14,7 @@ export const postNotice = async (
   userId: number,
   token: string,
   title: string,
-  scheduledAt: string,
+  scheduledAt: Date,
   repeat: boolean,
   monday: boolean,
   tuesday: boolean,

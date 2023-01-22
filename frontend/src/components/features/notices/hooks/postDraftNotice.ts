@@ -13,7 +13,7 @@ axios.defaults.headers.common["Accept"] = "application/json";
 export const postDraftNotice = async (
   token: string,
   title: string,
-  scheduledAt: string,
+  scheduledAt: Date,
   repeat: boolean,
   monday: boolean,
   tuesday: boolean,
