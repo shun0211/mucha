@@ -5,6 +5,7 @@ require_relative '../config/environment'
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
+require 'sidekiq/testing'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -63,16 +64,4 @@ RSpec.configure do |config|
 
   config.include FactoryBot::Syntax::Methods
   config.include ActiveSupport::Testing::TimeHelpers
-  config.include RequestHelper, type: :request
-  config.include FirebaseAdminApp
-  config.include RSpec::JsonMatcher
-
-  # for committee-rails
-  config.include Committee::Rails::Test::Methods
-  config.add_setting :committee_options
-  config.committee_options = {
-    schema_path: Rails.root.join('app', 'doc', 'openapi.yml').to_s,
-    query_hash_key: 'rack.request.query_hash',
-    parse_response_by_content_type: false
-  }
 end

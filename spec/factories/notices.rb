@@ -39,7 +39,7 @@ FactoryBot.define do
     association :user
   end
 
-  factory :repeated_notice do
+  factory :repeated_notice, class: 'Notice' do
     title { '繰り返しのリマインド' }
     message { '繰り返しのリマインド' }
     repeat { true }
@@ -47,8 +47,12 @@ FactoryBot.define do
     status { 'scheduled' }
     talk_type { 'dm' }
     to_line_id { 'line123' }
-    monday { true }
-    thursday { true }
     association :user
+  end
+
+  trait :with_line_message_job do
+    after(:create) do |notice|
+      create(:line_message_job, notice: notice)
+    end
   end
 end
