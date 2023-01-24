@@ -13,14 +13,19 @@ class Api::V1::NoticesController < SecuredController
 
   def create
     @notice = current_user.notices.build(notice_params)
-    if @notice.save
-      Notices::SetJobService.new(@notice).execute!
+    if @notice.valid?
+      # line_message_jobs の作成に失敗したときは notice レコードも作らない
+      Notice.transaction do
+        @notice.save!
+        Notices::SetJobService.new(@notice).execute!
+      end
       render :show, status: :created
     else
       render_not_acceptable_error(@notice.errors.full_messages, '')
     end
   end
 
+  # 現状使っていない
   def update
     @notice = current_user.notices.find_by(id: params[:id])
     return render_unauthorized_error('', 'Invalid Notice Id') if @notice.nil?
@@ -36,23 +41,30 @@ class Api::V1::NoticesController < SecuredController
     @notice = current_user.notices.find_by(id: params[:id])
     return render_unauthorized_error('', 'Invalid Notice Id') if @notice.nil?
 
-    @notice.draft!
-    Notices::DeleteJobService.new(@notice).execute!
+    Notice.transaction do
+      @notice.draft!
+      Notices::DeleteJobService.new(@notice).execute!
+    end
   end
 
   def update_to_scheduled
     @notice = current_user.notices.find_by(id: params[:id])
     return render_unauthorized_error('', 'Invalid Notice Id') if @notice.nil?
 
-    @notice.scheduled!
-    Notices::SetJobService.new(@notice).execute!
+    Notice.transaction do
+      @notice.scheduled!
+      Notices::SetJobService.new(@notice).execute!
+    end
   end
 
   def destroy
     @notice = current_user.notices.find_by(id: params[:id])
     return render_unauthorized_error('', 'Invalid Notice Id') if @notice.nil?
 
-    @notice.destroy
+    Notice.transaction do
+      Notices::DeleteJobService.new(@notice).execute!
+      @notice.delete
+    end
   end
 
   private def notice_params

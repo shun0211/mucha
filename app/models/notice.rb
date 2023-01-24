@@ -29,6 +29,7 @@
 #
 class Notice < ApplicationRecord
   belongs_to :user
+  has_many :line_message_jobs, dependent: :destroy
 
   validates :title, presence: true
   validates :scheduled_at, presence: true # 未来の日付しか登録できないようにしたい

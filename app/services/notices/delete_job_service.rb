@@ -8,8 +8,8 @@ class Notices::DeleteJobService
   def execute!
     # Sidekiqに登録されているLINEメッセージの送信ジョブを削除する
     ss = Sidekiq::ScheduledSet.new
-    jobs = ss.select { |job| job.args[0]['job_id'] == @notice.job_id }
+    jobs = ss.select{ |job| @notice.line_message_jobs.map(&:job_id).include?(job.item['jid']) }
     jobs.each(&:delete)
-    @notice.update!(job_id: nil)
+    @notice.line_message_jobs.destroy_all
   end
 end
