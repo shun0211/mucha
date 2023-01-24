@@ -1,11 +1,26 @@
-class SendLineMessageJob < ApplicationJob
-  def perform(notice)
+class SendLineMessageJob
+  include Sidekiq::Worker
+  queue_as :default
+
+  def perform(notice_id)
+    notice = Notice.find(notice_id)
     message = {
       type: 'text',
       text: build_message_text(notice)
     }
     line_bot_client.push_message(notice.to_line_id, message)
-    notice.sent!
+
+    line_message_job = notice.line_message_jobs.find_by(job_id: self.jid)
+    Notice.transaction do
+      line_message_job.destroy!
+      if notice.line_message_jobs.exists?
+        next_scheduled_at = notice.line_message_jobs.minimum(:scheduled_at)
+        notice.scheduled_at = next_scheduled_at
+        notice.save!
+      else
+        notice.sent!
+      end
+    end
   end
 
   private def line_bot_client
