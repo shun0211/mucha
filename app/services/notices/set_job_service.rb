@@ -19,21 +19,13 @@ class Notices::SetJobService
     return unless @notice.repeat
 
     @delivery_datetimes = []
-    if @notice.monday
-      add_delivery_datetimes("monday")
-    elsif @notice.tuesday
-      add_delivery_datetimes("tuesday")
-    elsif @notice.wednesday
-      add_delivery_datetimes("wednesday")
-    elsif @notice.thursday
-      add_delivery_datetimes("thursday")
-    elsif @notice.friday
-      add_delivery_datetimes("friday")
-    elsif @notice.saturday
-      add_delivery_datetimes("saturday")
-    elsif @notice.sunday
-      add_delivery_datetimes("sunday")
-    end
+    add_delivery_datetimes("monday") if @notice.monday
+    add_delivery_datetimes("tuesday") if @notice.tuesday
+    add_delivery_datetimes("wednesday") if @notice.wednesday
+    add_delivery_datetimes("thursday") if @notice.thursday
+    add_delivery_datetimes("friday") if @notice.friday
+    add_delivery_datetimes("saturday") if @notice.saturday
+    add_delivery_datetimes("sunday") if @notice.sunday
 
     job_ids_with_datetime = []
     @delivery_datetimes.each do |datetime|

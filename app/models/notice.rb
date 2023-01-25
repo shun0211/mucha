@@ -55,21 +55,13 @@ class Notice < ApplicationRecord
     return 'なし' if !repeat || (!sunday && !tuesday && !wednesday && !thursday && !friday && !saturday && !sunday)
 
     repeated_weeks_arr = []
-    if monday
-      repeated_weeks_arr.push('月')
-    elsif tuesday
-      repeated_weeks_arr.push('火')
-    elsif wednesday
-      repeated_weeks_arr.push('水')
-    elsif thursday
-      repeated_weeks_arr.push('木')
-    elsif friday
-      repeated_weeks_arr.push('金')
-    elsif saturday
-      repeated_weeks_arr.push('土')
-    elsif sunday
-      repeated_weeks_arr.push('日')
-    end
+    repeated_weeks_arr.push('月') if monday
+    repeated_weeks_arr.push('火') if tuesday
+    repeated_weeks_arr.push('水') if wednesday
+    repeated_weeks_arr.push('木') if thursday
+    repeated_weeks_arr.push('金') if friday
+    repeated_weeks_arr.push('土') if saturday
+    repeated_weeks_arr.push('日') if sunday
 
     repeated_weeks_arr.join('、')
   end
