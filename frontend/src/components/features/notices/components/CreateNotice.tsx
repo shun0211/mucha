@@ -48,7 +48,7 @@ const CreateNotice = ({ user, token }: { user: User; token: string }) => {
       thursday: false,
       friday: false,
       saturday: false,
-      sunday: true,
+      sunday: false,
       message: "",
       toLineId: user.lineUserId,
     },
