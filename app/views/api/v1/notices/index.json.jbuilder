@@ -19,6 +19,7 @@ json.set! :notices do
     json.scheduledTime notice.scheduled_at.strftime('%H:%M')
     json.repeatedWeeks notice.repeated_weeks
     json.message notice.message
+    json.scheduledDatetimes notice.line_message_jobs.map(&:scheduled_at)
   end
 end
 json.set! :page do

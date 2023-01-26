@@ -7,6 +7,7 @@ class Api::V1::NoticesController < SecuredController
   def index
     @notices = current_user
       .notices
+      .includes(:line_message_jobs)
       .where(status: params[:status])
       .page(params[:page])
   end

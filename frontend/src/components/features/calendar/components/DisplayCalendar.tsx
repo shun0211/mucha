@@ -2,13 +2,29 @@ import FullCalendar from "@fullcalendar/react";
 import React from "react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import jaLocale from "@fullcalendar/core/locales/ja";
-import { Notice, User } from "../../../../types";
+import { User } from "../../../../types";
 import useScheduledNotices from "../../../../hooks/useScheduledNotices";
+
+type CalendarEvent = {
+  title: string;
+  start: string;
+};
 
 const DisplayCalender = ({ user, token }: { user: User; token: string }) => {
   const data = useScheduledNotices(user.id, token);
   const scheduledNotices = data.notices ?? null;
   if (!scheduledNotices) return null;
+
+  const events: CalendarEvent[] = [];
+  scheduledNotices.forEach((notice) => {
+    // eslint-disable-next-line prefer-spread
+    events.push.apply(
+      events,
+      notice.scheduledDatetimes.map((datetime) => {
+        return { title: notice.title, start: datetime };
+      })
+    );
+  });
 
   return (
     <>
@@ -16,9 +32,7 @@ const DisplayCalender = ({ user, token }: { user: User; token: string }) => {
         plugins={[dayGridPlugin]}
         initialView="dayGridMonth"
         locale={jaLocale}
-        events={scheduledNotices.map((notice: Notice) => {
-          return { title: notice.title, start: notice.scheduledAt };
-        })}
+        events={events}
         contentHeight={"auto"}
         titleFormat={{ year: "numeric", month: "short" }}
         headerToolbar={{

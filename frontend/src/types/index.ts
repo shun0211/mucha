@@ -25,6 +25,7 @@ export type Notice = {
   scheduledDate: string;
   scheduledTime: string;
   repeatedWeeks: string;
+  scheduledDatetimes: string[];
 };
 export type Notices = Notice[];
 
