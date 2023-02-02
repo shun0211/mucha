@@ -1,5 +1,6 @@
-import { Button, Card, Container, TextInput } from "@mantine/core";
+import { Card, Container, TextInput } from "@mantine/core";
 import React, { useContext, useState } from "react";
+import { FRONT_URI } from "../../../config/constants";
 import { AuthContext } from "../../../providers/AuthContext";
 import Header from "../../ui-elements/Header";
 import MainButton from "../../ui-elements/MainButton";
@@ -14,7 +15,8 @@ const MultipleSend = () => {
   const selectDestinations = () => {
     console.log("in selectDestinations");
     if (!liff.isLoggedIn()) {
-      liff.login();
+      liff.login({ redirectUri: `${FRONT_URI}/multiple-send` });
+    } else {
       if (liff.isApiAvailable("shareTargetPicker")) {
         liff
           ?.shareTargetPicker(
@@ -54,9 +56,7 @@ const MultipleSend = () => {
         <Card shadow="md" radius="lg" className="pb-8">
           <TextInput placeholder="Your name" label="Full name" withAsterisk />
         </Card>
-        <Button type="button" onClick={selectDestinations}>
-          送信先を選択
-        </Button>
+        <MainButton text="送信先を選択" type="button" onClick={selectDestinations} />
       </Container>
     </>
   );

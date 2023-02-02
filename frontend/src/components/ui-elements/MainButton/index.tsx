@@ -6,6 +6,7 @@ type Props = {
   type: "button" | "reset" | "submit";
   isWaiting?: boolean;
   setIsWaiting?: React.Dispatch<React.SetStateAction<boolean>>;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
 const MainButton = (props: Props) => {
