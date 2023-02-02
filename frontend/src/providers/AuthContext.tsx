@@ -1,3 +1,4 @@
+import { Liff } from "@line/liff/dist/lib";
 import React, { createContext } from "react";
 import { User } from "../types";
 
@@ -7,6 +8,7 @@ type AuthContextProps = {
   token: string;
   setToken: React.Dispatch<React.SetStateAction<string>>;
   authChecking: boolean;
+  liff: Liff | null;
 };
 
 export const AuthContext = createContext<AuthContextProps>({
@@ -19,4 +21,5 @@ export const AuthContext = createContext<AuthContextProps>({
     throw Error("No default value!");
   },
   authChecking: false,
+  liff: null,
 });
