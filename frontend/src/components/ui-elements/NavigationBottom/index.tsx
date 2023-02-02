@@ -8,7 +8,7 @@ export const NavigationBottom = () => {
       <NavigationBottomItem menu="ホーム" path="/notices">
         <Home size={26} strokeWidth={1} color={"black"} className="m-auto" />
       </NavigationBottomItem>
-      <NavigationBottomItem menu="お知らせ" path="/notifications">
+      <NavigationBottomItem menu="お知らせ" path="/multiple-send">
         <Bell size={26} strokeWidth={1} color={"black"} className="m-auto" />
       </NavigationBottomItem>
       <NavigationBottomItem menu="追加" path="/notices/new">

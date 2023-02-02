@@ -4,6 +4,7 @@ import { FRONT_URI } from "../../../config/constants";
 import { AuthContext } from "../../../providers/AuthContext";
 import Header from "../../ui-elements/Header";
 import MainButton from "../../ui-elements/MainButton";
+import NavigationBottom from "../../ui-elements/NavigationBottom";
 import PageTitle from "../../ui-elements/PageTitle";
 
 const MultipleSend = () => {
@@ -17,6 +18,9 @@ const MultipleSend = () => {
     if (!liff.isLoggedIn()) {
       liff.login({ redirectUri: `${FRONT_URI}/multiple-send` });
     } else {
+      console.log("logind");
+      console.log(liff.isApiAvailable("shareTargetPicker"));
+
       if (liff.isApiAvailable("shareTargetPicker")) {
         liff
           ?.shareTargetPicker(
@@ -58,6 +62,7 @@ const MultipleSend = () => {
         </Card>
         <MainButton text="送信先を選択" type="button" onClick={selectDestinations} />
       </Container>
+      <NavigationBottom />
     </>
   );
 };
