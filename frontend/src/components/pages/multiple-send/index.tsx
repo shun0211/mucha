@@ -1,4 +1,4 @@
-import { Card, Container, TextInput } from "@mantine/core";
+import { Button, Card, Container, TextInput } from "@mantine/core";
 import React, { useContext, useState } from "react";
 import { FRONT_URI } from "../../../config/constants";
 import { AuthContext } from "../../../providers/AuthContext";
@@ -60,7 +60,9 @@ const MultipleSend = () => {
         <Card shadow="md" radius="lg" className="pb-8">
           <TextInput placeholder="Your name" label="Full name" withAsterisk />
         </Card>
-        <MainButton text="送信先を選択" type="button" onClick={selectDestinations} />
+        <Button type="button" onClick={selectDestinations}>
+          送信先を選択
+        </Button>
       </Container>
       <NavigationBottom />
     </>
