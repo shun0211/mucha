@@ -1278,6 +1278,13 @@
   dependencies:
     "@mantine/utils" "5.8.4"
 
+"@mantine/dropzone@^5.10.3":
+  version "5.10.3"
+  resolved "https://registry.yarnpkg.com/@mantine/dropzone/-/dropzone-5.10.3.tgz#5219199ca6db169c8e66668df50040a6dacdccd8"
+  dependencies:
+    "@mantine/utils" "5.10.3"
+    react-dropzone "14.2.3"
+
 "@mantine/form@^5.4.1":
   version "5.8.4"
   resolved "https://registry.npmjs.org/@mantine/form/-/form-5.8.4.tgz"
@@ -1309,6 +1316,10 @@
   dependencies:
     clsx "1.1.1"
     csstype "3.0.9"
+
+"@mantine/utils@5.10.3":
+  version "5.10.3"
+  resolved "https://registry.yarnpkg.com/@mantine/utils/-/utils-5.10.3.tgz#724e5076812bffdb15a23859f23b9e78c1774239"
 
 "@mantine/utils@5.8.4":
   version "5.8.4"
@@ -2022,6 +2033,10 @@ ast-types-flow@^0.0.7:
 asynckit@^0.4.0:
   version "0.4.0"
   resolved "https://registry.npmjs.org/asynckit/-/asynckit-0.4.0.tgz"
+
+attr-accept@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/attr-accept/-/attr-accept-2.2.2.tgz#646613809660110749e92f2c10833b70968d929b"
 
 autoprefixer@^10.4.13:
   version "10.4.13"
@@ -2971,6 +2986,12 @@ file-entry-cache@^6.0.1:
   resolved "https://registry.npmjs.org/file-entry-cache/-/file-entry-cache-6.0.1.tgz"
   dependencies:
     flat-cache "^3.0.4"
+
+file-selector@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/file-selector/-/file-selector-0.6.0.tgz#fa0a8d9007b829504db4d07dd4de0310b65287dc"
+  dependencies:
+    tslib "^2.4.0"
 
 file-type@^16.5.4:
   version "16.5.4"
@@ -4268,6 +4289,18 @@ react-dom@18.1.0:
   dependencies:
     loose-envify "^1.1.0"
     scheduler "^0.22.0"
+
+react-dropzone@14.2.3:
+  version "14.2.3"
+  resolved "https://registry.yarnpkg.com/react-dropzone/-/react-dropzone-14.2.3.tgz#0acab68308fda2d54d1273a1e626264e13d4e84b"
+  dependencies:
+    attr-accept "^2.2.2"
+    file-selector "^0.6.0"
+    prop-types "^15.8.1"
+
+react-hook-form@^7.43.0:
+  version "7.43.0"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.43.0.tgz#d0c19b5c4ec561fbf8d652869ccb513c11c772e7"
 
 react-hot-toast@^2.4.0:
   version "2.4.0"

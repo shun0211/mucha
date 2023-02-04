@@ -18,7 +18,7 @@ const PagesNotices = () => {
       <Header />
       {/* フッターの分を開けたいためmargin-bottom: 96pxとする */}
       <Container className="mb-24">
-        <PageTitle>リマインド設定</PageTitle>
+        <PageTitle>リマインド一覧</PageTitle>
 
         <DisplayCalender user={currentUser} token={token} />
         <div className="flex justify-between items-center py-3">

@@ -6,7 +6,7 @@ type Props = {
   type: "button" | "reset" | "submit";
   isWaiting?: boolean;
   setIsWaiting?: React.Dispatch<React.SetStateAction<boolean>>;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
 };
 
 const MainButton = (props: Props) => {
@@ -19,9 +19,13 @@ const MainButton = (props: Props) => {
       type={props.type}
       loading={props.isWaiting ?? false}
       radius="md"
-      onClick={() => {
+      onClick={(e: any) => {
         if (setIsWaiting) {
           setIsWaiting(true);
+        }
+
+        if (props.onClick) {
+          props.onClick(e);
         }
       }}
     >
