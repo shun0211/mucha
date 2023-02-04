@@ -8,12 +8,16 @@ import MainButton from "../../ui-elements/MainButton";
 import MainText from "../../ui-elements/MainText";
 import NavigationBottom from "../../ui-elements/NavigationBottom";
 import PageTitle from "../../ui-elements/PageTitle";
-import { useFieldArray, useForm } from "react-hook-form";
+import { FieldArrayWithId, useFieldArray, useForm } from "react-hook-form";
 import useFilePreview from "../../../hooks/useFilePreview";
 import Image from "next/image";
 
 interface FormValues {
-  messages: { text: string | null; file: FileList | null; type: "text" | "file" }[];
+  messages: {
+    text: string | null;
+    file: FileList | null;
+    type: "text" | "file";
+  }[];
 }
 
 const MultipleSend = () => {
@@ -47,8 +51,8 @@ const MultipleSend = () => {
 
   if (!liff) return null;
 
-  const buildSendMessagesParams = (fields) => {
-    return fields.map((field) => {
+  const buildSendMessagesParams = (fields: any) => {
+    return fields.map((field: any) => {
       if (field.type === "text") {
         return {
           type: "text",
@@ -61,19 +65,16 @@ const MultipleSend = () => {
           previewImageUrl: field.file,
         };
       }
-    })
-  }
+    });
+  };
 
   const selectDestinations = () => {
     if (liff.isLoggedIn()) {
       if (liff.isApiAvailable("shareTargetPicker")) {
         liff
-          .shareTargetPicker(
-            buildSendMessagesParams(fields),
-            {
-              isMultiple: true,
-            }
-          )
+          .shareTargetPicker(buildSendMessagesParams(fields), {
+            isMultiple: true,
+          })
           .then((res) => {
             if (res) {
               toast.success("メッセージを送信しました😊");
@@ -89,7 +90,10 @@ const MultipleSend = () => {
     }
   };
 
-  const textInput = (field, index) => {
+  const textInput = (
+    field: FieldArrayWithId<FormValues, "messages", "id">,
+    index: number
+  ) => {
     if (field.type === "text") {
       return (
         <>
@@ -116,7 +120,10 @@ const MultipleSend = () => {
     }
   };
 
-  const imageInput = (field, index) => {
+  const imageInput = (
+    field: FieldArrayWithId<FormValues, "messages", "id">,
+    index: number
+  ) => {
     if (field.type === "file") {
       return (
         <input
@@ -139,12 +146,20 @@ const MultipleSend = () => {
             text={`メッセージ\n(個人のアカウントが送信したかのように、グループまたは友だちに表示されます。)`}
           />
           <div className="grid grid-cols-9 place-items-center">
-            {fields.map((field: any, index: number) => textInput(field, index))}
+            {fields.map(
+              (
+                field: FieldArrayWithId<FormValues, "messages", "id">,
+                index: number
+              ) => textInput(field, index)
+            )}
           </div>
 
           <div>
-            {fields.map((field: any, index: number) =>
-              imageInput(field, index)
+            {fields.map(
+              (
+                field: FieldArrayWithId<FormValues, "messages", "id">,
+                index: number
+              ) => imageInput(field, index)
             )}
           </div>
 
