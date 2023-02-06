@@ -1,4 +1,4 @@
-import { Card, Container, Textarea } from "@mantine/core";
+import { Card, Container, Input, Textarea } from "@mantine/core";
 import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { CircleMinus, CirclePlus } from "tabler-icons-react";
@@ -18,6 +18,17 @@ interface FormValues {
     file: FileList | null;
     type: "text" | "file";
   }[];
+}
+
+interface TextParams {
+  type: "text";
+  text: string;
+}
+
+interface ImageParams {
+  type: "image";
+  originalContentUrl: string;
+  previewImageUrl: string;
 }
 
 const MultipleSend = () => {
@@ -51,28 +62,34 @@ const MultipleSend = () => {
 
   if (!liff) return null;
 
-  const buildSendMessagesParams = (fields: any) => {
-    return fields.map((field: any) => {
-      if (field.type === "text") {
-        return {
+  const buildSendMessagesParams = (): (TextParams | ImageParams)[] => {
+    const sendMessageParams: (TextParams | ImageParams)[] = [];
+    messages.forEach((message) => {
+      if (message.type === "text") {
+        sendMessageParams.push({
           type: "text",
-          text: field.text,
-        };
-      } else {
-        return {
-          type: "file",
-          originalContentUrl: field.file,
-          previewImageUrl: field.file,
-        };
+          text: message.text || "",
+        });
       }
     });
+
+    imgSrcList.forEach((imgSrc) => {
+      sendMessageParams.push({
+        type: "image",
+        originalContentUrl: imgSrc,
+        previewImageUrl: imgSrc,
+      });
+    });
+    return sendMessageParams;
   };
 
   const selectDestinations = () => {
+    console.log(buildSendMessagesParams());
+
     if (liff.isLoggedIn()) {
       if (liff.isApiAvailable("shareTargetPicker")) {
         liff
-          .shareTargetPicker(buildSendMessagesParams(fields), {
+          .shareTargetPicker(buildSendMessagesParams(), {
             isMultiple: true,
           })
           .then((res) => {

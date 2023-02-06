@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 
 interface FilePreviewState {
-  imgSrcList: string[] | null;
-  setImgSrcList: React.Dispatch<React.SetStateAction<string[] | null>>;
+  imgSrcList: string[];
+  setImgSrcList: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 const useFilePreview = (
   files: FileList[],
   length: number
 ): FilePreviewState => {
-  const [imgSrcList, setImgSrcList] = useState<string[] | null>(null);
+  const [imgSrcList, setImgSrcList] = useState<string[]>([]);
 
   useEffect(() => {
     console.log(`ファイル数: ${files}`);
