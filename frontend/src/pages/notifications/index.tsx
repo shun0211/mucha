@@ -1,7 +1,7 @@
 import { Container, Text, Title } from "@mantine/core";
 import React from "react";
+import NavigationBottom from "../../components/features/common/components/NavigationBottom";
 import Header from "../../components/ui-elements/Header";
-import NavigationBottom from "../../components/ui-elements/NavigationBottom";
 
 const Notifications = () => {
   return (

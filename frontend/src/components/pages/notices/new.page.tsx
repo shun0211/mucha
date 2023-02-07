@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 import PageTitle from "../../ui-elements/PageTitle";
 import Header from "../../ui-elements/Header";
 import { Container } from "@mantine/core";
-import NavigationBottom from "../../ui-elements/NavigationBottom";
 import { AuthContext } from "../../../providers/AuthContext";
 import CreateNotice from "../../features/notices/components/CreateNotice";
+import NavigationBottom from "../../features/common/components/NavigationBottom";
 
 const PagesNoticesNew = () => {
   const { currentUser, token } = useContext(AuthContext);

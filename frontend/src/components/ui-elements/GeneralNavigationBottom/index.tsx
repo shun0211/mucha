@@ -2,13 +2,13 @@ import React from "react";
 import { Bell, Home, Plus, Settings } from "tabler-icons-react";
 import NavigationBottomItem from "../NavigationBottomItem";
 
-export const NavigationBottom = () => {
+export const GeneralNavigationBottom = () => {
   return (
     <div className="grid grid-cols-4 w-full bottom-0 fixed bg-white shadow-inner">
       <NavigationBottomItem menu="ホーム" path="/notices">
         <Home size={26} strokeWidth={1} color={"black"} className="m-auto" />
       </NavigationBottomItem>
-      <NavigationBottomItem menu="お知らせ" path="/multiple-send">
+      <NavigationBottomItem menu="お知らせ" path="/notifications">
         <Bell size={26} strokeWidth={1} color={"black"} className="m-auto" />
       </NavigationBottomItem>
       <NavigationBottomItem menu="追加" path="/notices/new">
@@ -26,4 +26,4 @@ export const NavigationBottom = () => {
   );
 };
 
-export default NavigationBottom;
+export default GeneralNavigationBottom;

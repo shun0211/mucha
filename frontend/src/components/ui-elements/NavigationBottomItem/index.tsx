@@ -13,7 +13,7 @@ export const NavigationBottomItem = ({
 }) => {
   return (
     <Link href={path}>
-      <Button variant="outline" className="h-16 w-full border-white" radius={0}>
+      <Button compact variant="outline" className="h-16 w-full border-white" radius={0}>
         <div>
           {children}
           <Text color="black" weight={500} size="xs" className="text-center">

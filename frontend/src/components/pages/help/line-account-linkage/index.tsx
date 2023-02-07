@@ -2,9 +2,9 @@ import { Container, Text, Title } from "@mantine/core";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import { OFFICIAL_ACCOUNT_LINE_ID } from "../../../../config/constants";
+import NavigationBottom from "../../../features/common/components/NavigationBottom";
 import Header from "../../../ui-elements/Header";
 import MainLinkButton from "../../../ui-elements/MainLinkButton";
-import NavigationBottom from "../../../ui-elements/NavigationBottom";
 import PageTitle from "../../../ui-elements/PageTitle";
 
 const PagesLineAccountLinkage = () => {
