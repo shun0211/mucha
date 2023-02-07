@@ -52,7 +52,7 @@ class Notice < ApplicationRecord
   def repeated_weeks
     # すべてがfalseの場合、「なし」
     # true のものだけ羅列
-    return 'なし' if !repeat || (!sunday && !tuesday && !wednesday && !thursday && !friday && !saturday && !sunday)
+    return 'なし' if !repeat || (!monday && !tuesday && !wednesday && !thursday && !friday && !saturday && !sunday)
 
     repeated_weeks_arr = []
     repeated_weeks_arr.push('月') if monday
