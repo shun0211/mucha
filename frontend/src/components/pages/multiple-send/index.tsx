@@ -6,11 +6,12 @@ import { AuthContext } from "../../../providers/AuthContext";
 import Header from "../../ui-elements/Header";
 import MainButton from "../../ui-elements/MainButton";
 import MainText from "../../ui-elements/MainText";
-import NavigationBottom from "../../ui-elements/NavigationBottom";
 import PageTitle from "../../ui-elements/PageTitle";
 import { FieldArrayWithId, useFieldArray, useForm } from "react-hook-form";
 import useFilePreview from "../../../hooks/useFilePreview";
 import Image from "next/image";
+import NavigationBottom from "../../features/common/components/NavigationBottom";
+import LiffNavigationBottom from "../../ui-elements/LiffNavigationBottom";
 
 interface FormValues {
   messages: {
@@ -44,21 +45,13 @@ const MultipleSend = () => {
   const { fields, append, remove } = useFieldArray({
     control,
     name: "messages",
-    rules: { maxLength: 5 },
   });
-
-  //   messages: {
-  //     text: string | null;
-  //     file: FileList | null;
-  //   }[]
 
   const messages = watch(["messages"])[0];
   const fileList = messages
     .map((message) => message.file)
     .filter((file): file is FileList => file != null);
   const { imgSrcList } = useFilePreview(fileList, fileList.length);
-  console.log(`imgSrcList: ${imgSrcList}`);
-  console.log(messages);
 
   if (!liff) return null;
 
@@ -73,19 +66,17 @@ const MultipleSend = () => {
       }
     });
 
-    imgSrcList.forEach((imgSrc) => {
-      sendMessageParams.push({
-        type: "image",
-        originalContentUrl: imgSrc,
-        previewImageUrl: imgSrc,
-      });
-    });
+    // messages.forEach((message) => {
+    //   sendMessageParams.push({
+    //     type: "image",
+    //     originalContentUrl: 'https://mucha.s3.ap-northeast-1.amazonaws.com/logo-only-image.png',
+    //     previewImageUrl: 'https://mucha.s3.ap-northeast-1.amazonaws.com/logo-only-image.png',
+    //   });
+    // });
     return sendMessageParams;
   };
 
   const selectDestinations = () => {
-    console.log(buildSendMessagesParams());
-
     if (liff.isLoggedIn()) {
       if (liff.isApiAvailable("shareTargetPicker")) {
         liff
@@ -129,6 +120,8 @@ const MultipleSend = () => {
             />
           </div>
           <Textarea
+            autosize
+            minRows={2}
             className="col-span-8 w-full"
             {...register(`messages.${index}.text`)}
           />
@@ -172,15 +165,15 @@ const MultipleSend = () => {
           </div>
 
           <div>
-            {fields.map(
+            {/* {fields.map(
               (
                 field: FieldArrayWithId<FormValues, "messages", "id">,
                 index: number
               ) => imageInput(field, index)
-            )}
+            )} */}
           </div>
 
-          {imgSrcList?.map((imgSrc, idx) => (
+          {/* {imgSrcList?.map((imgSrc, idx) => (
             <Image
               src={imgSrc}
               key={idx}
@@ -188,7 +181,7 @@ const MultipleSend = () => {
               width={200}
               height={200}
             />
-          ))}
+          ))} */}
 
           <MainButton
             text="送信先を選択"
@@ -197,7 +190,7 @@ const MultipleSend = () => {
           />
         </Card>
       </Container>
-      <NavigationBottom />
+      <LiffNavigationBottom />
     </>
   );
 };
