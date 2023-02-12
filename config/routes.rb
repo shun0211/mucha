@@ -15,9 +15,16 @@ Rails.application.routes.draw do
       resources :group_talk_rooms
       post 'line_bots/link', to: "line_bots#link"
       post 'custom-token', to: "auths#fetch_custom_token"
+
       # Liff アプリからトークンを取得する場合のエンドポイント
       namespace 'liff' do
         get 'custom-token', to: "auths#fetch_custom_token"
+      end
+
+      # Google カレンダー連携
+      namespace 'google_calendar' do
+        get 'authorize', to: "auths#authorize"
+        get 'callback', to: "auths#callback", as: 'callback'
       end
     end
   end
