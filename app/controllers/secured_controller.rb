@@ -8,7 +8,7 @@ class SecuredController < ApplicationController
   private
 
   def authorize_request
-    service = Auths::AuthorizationService.new(request.headers)
+    service = Auths::AuthorizationService.new(id_token)
     service.authenticate_request!
     @current_user = service.user
 
@@ -17,5 +17,11 @@ class SecuredController < ApplicationController
          Firebase::Admin::Auth::CertificateRequestError,
          Firebase::Admin::Auth::InvalidCertificateError => e
     render_unauthorized_error('不正なIDトークンです👎', e)
+  end
+
+  def id_token
+    if request.headers['Authorization'].present?
+      request.headers['Authorization'].split(' ').last
+    end
   end
 end

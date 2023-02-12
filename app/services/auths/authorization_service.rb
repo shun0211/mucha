@@ -1,11 +1,11 @@
 class Auths::AuthorizationService
-  def initialize(headers = {})
-    @headers = headers
+  def initialize(id_token)
+    @id_token = id_token
     @jwt = nil
   end
 
   def authenticate_request!
-    @jwt = app.auth.verify_id_token(http_token)
+    @jwt = app.auth.verify_id_token(@id_token)
   end
 
   def user
@@ -13,12 +13,6 @@ class Auths::AuthorizationService
   end
 
   private
-
-  def http_token
-    if @headers['Authorization'].present?
-      @headers['Authorization'].split(' ').last
-    end
-  end
 
   def app
     file_name = Rails.env.production? ? 'prod-adminsdk.json' : 'dev-adminsdk.json'
