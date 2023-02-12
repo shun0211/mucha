@@ -10,7 +10,7 @@ import DisplayNotices from "../../features/notices/components/DisplayNotices";
 import NavigationBottom from "../../features/common/components/NavigationBottom";
 
 const PagesNotices = () => {
-  const { currentUser, token } = useContext(AuthContext);
+  const { currentUser, token, liff } = useContext(AuthContext);
   if (!currentUser) return null;
 
   return (
@@ -31,7 +31,7 @@ const PagesNotices = () => {
               </Anchor>
               をご確認ください
             </Text>
-            <GoogleCalendarButton token={token} />
+            <GoogleCalendarButton liff={liff} token={token} />
           </div>
           <NoticeTarget user={currentUser} token={token} />
         </div>
