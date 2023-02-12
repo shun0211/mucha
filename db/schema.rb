@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_19_235232) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_09_231630) do
+  create_table "google_calendar_tokens", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "google_calendar_id", null: false
+    t.string "refresh_token", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_google_calendar_tokens_on_user_id"
+  end
+
   create_table "group_talk_rooms", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "line_name", null: false
@@ -50,7 +59,27 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_19_235232) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "job_id"
+    t.bigint "schedule_id"
+    t.integer "source", default: 0, null: false
+    t.index ["schedule_id"], name: "index_notices_on_schedule_id"
     t.index ["user_id"], name: "index_notices_on_user_id"
+  end
+
+  create_table "schedules", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.datetime "start_time", null: false
+    t.datetime "end_time", null: false
+    t.string "title", null: false
+    t.text "description"
+    t.string "uid", null: false
+    t.bigint "user_id", null: false
+    t.integer "source", null: false
+    t.boolean "all_day", default: false, null: false
+    t.string "source_url", null: false
+    t.integer "notice_minutes_ago"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["uid"], name: "index_schedules_on_uid", unique: true
+    t.index ["user_id"], name: "index_schedules_on_user_id"
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -66,4 +95,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_19_235232) do
     t.index ["line_user_id"], name: "index_users_on_line_user_id", unique: true
   end
 
+  add_foreign_key "notices", "schedules"
 end
