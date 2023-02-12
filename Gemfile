@@ -41,6 +41,7 @@ gem 'rollbar'
 gem 'seed-fu', github: 'shun0211/seed-fu', branch: 'support-rails-7'
 gem "sidekiq-scheduler"
 gem "slack-notifier"
+gem 'whenever'
 
 group :production do
   gem 'unicorn'
