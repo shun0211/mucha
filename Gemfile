@@ -27,7 +27,6 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
-gem 'devise_token_auth'
 gem 'dotenv-rails'
 gem 'enum_help'
 gem 'faraday'
@@ -41,7 +40,7 @@ gem 'rails-i18n', '~> 7.0.0'
 gem 'rollbar'
 gem 'seed-fu', github: 'shun0211/seed-fu', branch: 'support-rails-7'
 gem "sidekiq-scheduler"
-gem 'slack-ruby-client'
+gem "slack-notifier"
 
 group :production do
   gem 'unicorn'
