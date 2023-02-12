@@ -20,6 +20,8 @@
 class User < ApplicationRecord
   has_many :notices, dependent: :destroy
   has_many :group_talk_rooms, dependent: :destroy
+  has_one :google_calendar_token, dependent: :destroy
+  has_many :schedules, dependent: :destroy
 
   validates :firebase_user_id, presence: true
 end

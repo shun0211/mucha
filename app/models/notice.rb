@@ -10,6 +10,7 @@
 #  saturday     :boolean          default(FALSE), not null
 #  scheduled_at :datetime         not null
 #  sent_at      :datetime
+#  source       :integer          default("none"), not null
 #  status       :integer          not null
 #  sunday       :boolean          default(FALSE), not null
 #  talk_type    :integer          not null
@@ -20,15 +21,22 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  job_id       :string(255)
+#  schedule_id  :bigint
 #  to_line_id   :string(255)      not null
 #  user_id      :bigint           not null
 #
 # Indexes
 #
-#  index_notices_on_user_id  (user_id)
+#  index_notices_on_schedule_id  (schedule_id)
+#  index_notices_on_user_id      (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (schedule_id => schedules.id)
 #
 class Notice < ApplicationRecord
   belongs_to :user
+  belongs_to :schedule, optional: true
   has_many :line_message_jobs, dependent: :destroy
 
   validates :title, presence: true
@@ -36,6 +44,8 @@ class Notice < ApplicationRecord
   validates :repeat, inclusion: { in: [true, false] }
   validates :monday, :tuesday, :wednesday, :tuesday, :friday, :saturday, :sunday, inclusion: { in: [true, false] }
   validates :to_line_id, presence: true
+
+  attribute :message, :string, default: ''
 
   enum talk_type: {
     dm: 10,
@@ -47,6 +57,11 @@ class Notice < ApplicationRecord
     draft: 20,
     sent: 30
   }
+
+  enum :source, {
+    none: 0,
+    google_calendar: 10
+  }, suffix: true
 
   # デコレーターに切り出す
   def repeated_weeks
