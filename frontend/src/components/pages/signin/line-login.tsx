@@ -12,7 +12,7 @@ import Skeleton from "../Skeleton";
 
 const PagesLineLogin = () => {
   const router = useRouter();
-  const { setCurrentUser, setToken } = useContext(AuthContext)
+  const { setCurrentUser, setToken } = useContext(AuthContext);
 
   const inner = async () => {
     const code = router.query.code as string;
@@ -24,7 +24,11 @@ const PagesLineLogin = () => {
       const user: User = await getCurrentUser(firebaseToken);
       setToken(firebaseToken);
       setCurrentUser(user);
-      router.push("/help/add-friend")
+      if (user.isFriend) {
+        router.push("/notices");
+      } else {
+        router.push("/help/add-friend");
+      }
       toast.success("ログインしました😊");
     }
   };
