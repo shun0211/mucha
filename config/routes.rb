@@ -31,9 +31,9 @@ Rails.application.routes.draw do
   end
 
   namespace 'admin' do
-    Sidekiq::Web.use(Rack::Auth::Basic) do |user, password|
-      [user, password] == [ENV['SIDEKIQ_WEB_BASIC_AUTHENTICATION_USER'], ENV['SIDEKIQ_WEB_BASIC_AUTHENTICATION_PASSWORD']]
-    end
+    # Sidekiq::Web.use(Rack::Auth::Basic) do |user, password|
+    #   [user, password] == [ENV['SIDEKIQ_WEB_BASIC_AUTHENTICATION_USER'], ENV['SIDEKIQ_WEB_BASIC_AUTHENTICATION_PASSWORD']]
+    # end
     mount Sidekiq::Web, at: '/sidekiq'
   end
 end
