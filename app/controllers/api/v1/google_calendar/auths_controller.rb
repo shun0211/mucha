@@ -74,7 +74,7 @@ class Api::V1::GoogleCalendar::AuthsController < SecuredController
       end
     end
 
-    redirect_to "#{ENV['FRONT_URI']}/notices", allow_other_host: true
+    redirect_to "#{ENV['FRONT_URI']}/notices?googleCalendarLinkageSuccess=true", allow_other_host: true
   end
 
   private def auth_client

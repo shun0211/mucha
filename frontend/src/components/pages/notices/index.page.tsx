@@ -8,10 +8,18 @@ import DisplayCalender from "../../features/calendar/components/DisplayCalendar"
 import { AuthContext } from "../../../providers/AuthContext";
 import DisplayNotices from "../../features/notices/components/DisplayNotices";
 import NavigationBottom from "../../features/common/components/NavigationBottom";
+import { useRouter } from "next/router";
+import { toast } from "react-hot-toast";
 
 const PagesNotices = () => {
   const { currentUser, token, liff } = useContext(AuthContext);
+  const router = useRouter()
+
   if (!currentUser) return null;
+
+  if (router.query.googleCalendarLinkageSuccess === "true") {
+    toast.success('Google カレンダー連携が成功しました✨')
+  }
 
   return (
     <>

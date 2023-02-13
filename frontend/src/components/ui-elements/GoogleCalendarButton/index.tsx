@@ -4,7 +4,13 @@ import axios from "axios";
 import React from "react";
 import { API_URL, FRONT_URI } from "../../../config/constants";
 
-const GoogleCalendarButton = ({ liff, token }: { liff: Liff | null, token: string }) => {
+const GoogleCalendarButton = ({
+  liff,
+  token,
+}: {
+  liff: Liff | null;
+  token: string;
+}) => {
   const syncCalendar = async () => {
     const res = await axios.get(`${API_URL}/google_calendar/authorize`, {
       withCredentials: true,
@@ -16,7 +22,7 @@ const GoogleCalendarButton = ({ liff, token }: { liff: Liff | null, token: strin
     window.location.href = `${redirectUrl}?test=aaa`;
   };
 
-  if (!liff) return null
+  if (!liff) return null;
 
   return (
     <>
@@ -24,18 +30,18 @@ const GoogleCalendarButton = ({ liff, token }: { liff: Liff | null, token: strin
         className="bg-blue-500 text-white"
         onClick={() => {
           // ブラウザの403 dissallowed_useragent に引っかかるため LINE ブラウザではなく外部のブラウザを立ち上げる
-          const context = liff.getContext()
-          if (liff.isLoggedIn() && context?.type === 'utou') {
-            if (window.confirm('外部ブラウザへ移動します')) {
+          const context = liff.getContext();
+          if (liff.isLoggedIn() && context?.type === "utou") {
+            if (window.confirm("外部ブラウザへ移動します")) {
               liff.openWindow({
                 url: `${FRONT_URI}/notices`,
                 external: true,
               });
             }
-          }
-
-          if (window.confirm('開発中の機能のため警告画面が出ます')) {
-            syncCalendar();
+          } else {
+            if (window.confirm("開発中の機能のため警告画面が出ます")) {
+              syncCalendar();
+            }
           }
         }}
       >
