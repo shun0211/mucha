@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     namespace 'v1' do
       resources :users, only: [:create]
       get 'current-user', to: 'users#show_current_user'
+      put 'users/:id/follow', to: 'users#follow'
       resources :notices
       put 'notices/:id/draft', to: "notices#update_to_draft"
       put 'notices/:id/scheduled', to: "notices#update_to_scheduled"

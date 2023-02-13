@@ -3,4 +3,9 @@ class Api::V1::UsersController < SecuredController
     @user = current_user
     render :show, status: :ok
   end
+
+  def follow
+    current_user.update(is_friend: true)
+    render json: {}, status: :ok
+  end
 end

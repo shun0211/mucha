@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_09_231630) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_13_111541) do
   create_table "google_calendar_tokens", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "google_calendar_id", null: false
@@ -91,6 +91,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_09_231630) do
     t.string "line_profile_image_url"
     t.string "auth0_user_id"
     t.string "firebase_user_id", null: false
+    t.boolean "is_friend", default: false, null: false
     t.index ["firebase_user_id"], name: "index_users_on_firebase_user_id", unique: true
     t.index ["line_user_id"], name: "index_users_on_line_user_id", unique: true
   end
