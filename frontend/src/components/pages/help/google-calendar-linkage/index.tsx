@@ -10,7 +10,7 @@ const PagesGoogleCalendarLinkage = () => {
       <Header />
       <PageTitle>Google カレンダー連携について</PageTitle>
       <Container size={300}>
-        <Text fw={700} className="whitespace-pre-wrap">
+        <Text className="whitespace-pre-wrap">
           {`現在、Google の審査中のため以下の画面が表示されます。\n\n左下の「詳細」をクリックして「muchualchat.com (安全ではないページ)に移動」をクリックしてください。`}
         </Text>
 

@@ -24,13 +24,14 @@ const Mucha = ({
       router.pathname === "/signup" ||
       router.pathname === "/line-account-linkage" ||
       router.pathname === "/help/group-talk-linkage" ||
-      router.pathname === "/help/google-login-error"
+      router.pathname === "/help/google-login-error" ||
+      router.pathname === "/help/google-calendar-linkage"
     ) {
       return <Component {...pageProps} />;
     } else {
       // ログインしていないときは/signinにリダイレクト
       if (!authChecking && currentUser === null) {
-        router.push("/");
+        router.push("/signin");
       }
       if (
         !authChecking &&
