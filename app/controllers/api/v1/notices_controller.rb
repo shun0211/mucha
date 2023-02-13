@@ -64,7 +64,7 @@ class Api::V1::NoticesController < SecuredController
 
     Notice.transaction do
       Notices::DeleteJobService.new(@notice).execute!
-      @notice.delete
+      @notice.destroy!
     end
   end
 

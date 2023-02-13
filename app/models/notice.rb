@@ -47,6 +47,8 @@ class Notice < ApplicationRecord
 
   attribute :message, :string, default: ''
 
+  after_destroy :destroy_schedule
+
   enum talk_type: {
     dm: 10,
     groupTalk: 20
@@ -79,5 +81,11 @@ class Notice < ApplicationRecord
     repeated_weeks_arr.push('日') if sunday
 
     repeated_weeks_arr.join('、')
+  end
+
+  private def destroy_schedule
+    if self.schedule.present?
+      self.schedule.destroy!
+    end
   end
 end
