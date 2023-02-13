@@ -5,6 +5,7 @@ export type User = {
   isLineAccountLinkaged: boolean;
   lineName: string;
   lineProfileImageUrl: string;
+  isFriend: boolean;
 };
 
 export type Notice = {

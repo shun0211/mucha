@@ -3,6 +3,7 @@ import { signInWithCustomToken } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { auth } from "../config/firebase";
 import { User } from "../types";
+import { addFriend } from "./addFriend";
 import { getLiffCostomToken } from "./getCostomToken";
 import { getCurrentUser } from "./getCurrentUser";
 
@@ -24,6 +25,10 @@ export const useSetCurrentUser = (
           const userCredential = await signInWithCustomToken(auth, customToken);
           const firebaseToken = await userCredential.user.getIdToken(true);
           const user: User = await getCurrentUser(firebaseToken);
+          // Liff の場合は友だち登録していることが確定するのでフラグを立てる
+          if (!user.isFriend) {
+            await addFriend(user.id, firebaseToken)
+          }
           setToken(firebaseToken);
           setCurrentUser(user);
           setAuthChecking(false);
