@@ -6,3 +6,9 @@
 :queues:
   - default
   - mailers
+  - low
+:scheduler:
+  :schedule:
+    cron_test:
+      cron: '0 * * * * *'   # Runs once per minute
+      class: CronTestJob
