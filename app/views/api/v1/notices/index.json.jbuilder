@@ -20,6 +20,16 @@ json.set! :notices do
     json.repeatedWeeks notice.repeated_weeks
     json.message notice.message
     json.scheduledDatetimes notice.line_message_jobs.map(&:scheduled_at)
+    json.source notice.source
+    if notice.schedule.present?
+      json.set! :schedule do
+        json.title notice.schedule.title
+        json.description notice.schedule.description
+        json.source_url notice.schedule.source_url
+        json.source notice.schedule.source
+        json.bookingDetail notice.schedule.booking_detail
+      end
+    end
   end
 end
 json.set! :page do

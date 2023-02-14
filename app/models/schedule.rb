@@ -36,4 +36,11 @@ class Schedule < ApplicationRecord
   enum source: {
     google_calendar: 10
   }
+
+  def booking_detail
+    date = self.start_time.strftime('%Y/%m/%d')
+    start_time = self.start_time.strftime('%H:%M')
+    end_time = self.end_time.strftime('%H:%M')
+    "#{date} #{start_time} ~ #{end_time}"
+  end
 end
