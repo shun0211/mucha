@@ -3,7 +3,8 @@ import React from "react";
 import useDraftNotices from "../../../../hooks/useDraftNotices";
 import useScheduledNotices from "../../../../hooks/useScheduledNotices";
 import useSentNotices from "../../../../hooks/useSentNotices";
-import { Notice, User } from "../../../../types";
+import { GoogleCalendarNotice, Notice, User } from "../../../../types";
+import GoogleCalendarNoticeCard from "./GoogleCalendarNoticeCard";
 import NoticeCard from "./NoticeCard";
 
 const DisplayNotices = ({ user, token }: { user: User; token: string }) => {
@@ -29,7 +30,11 @@ const DisplayNotices = ({ user, token }: { user: User; token: string }) => {
         </Tabs.List>
 
         <Tabs.Panel value="scheduled" pt="xs">
-          {scheduledNotices.map((notice: Notice) => {
+          {scheduledNotices.map((notice: Notice | GoogleCalendarNotice) => {
+            // noticeType ではなく noticeStatus にしたい
+            if ("schedule" in notice) {
+              return <GoogleCalendarNoticeCard notice={notice} key={notice.id} />
+            }
             return <NoticeCard notice={notice} key={notice.id} noticeType="scheduled" />;
           })}
         </Tabs.Panel>

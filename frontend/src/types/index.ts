@@ -30,6 +30,18 @@ export type Notice = {
 };
 export type Notices = Notice[];
 
+type Schedule = {
+  title: string;
+  description: string;
+  source_url: string;
+  source: string;
+  bookingDetail: string;
+}
+
+export type GoogleCalendarNotice = Notice & {
+  schedule: Schedule
+}
+
 export type GroupTalkRoom = {
   id: number;
   lineName: string;
