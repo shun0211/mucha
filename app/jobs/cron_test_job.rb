@@ -1,3 +1,5 @@
+require 'sidekiq-scheduler'
+
 class CronTestJob
   include Sidekiq::Worker
   queue_as :default
