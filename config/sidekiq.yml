@@ -12,5 +12,5 @@
   #   cron: '0 * * * * *'   # Runs once per minute
   #   class: CronTestJob
   daily_check:
-    cron: '0 * * * * *'
+    cron: '0 0 7 * * *'
     class: DailyCheckJob
