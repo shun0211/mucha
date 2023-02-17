@@ -9,6 +9,7 @@ class Api::V1::NoticesController < SecuredController
       .notices
       .includes(:line_message_jobs)
       .where(status: params[:status])
+      .order(scheduled_at: :asc)
       .page(params[:page])
   end
 
