@@ -40,7 +40,7 @@ const CreateNotice = ({ user, token }: { user: User; token: string }) => {
   const form = useForm({
     initialValues: {
       title: "",
-      scheduledAt: dayjs().startOf('day').toDate(),
+      scheduledAt: dayjs().toDate(),
       repeat: false,
       monday: false,
       tuesday: false,
