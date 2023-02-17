@@ -12,5 +12,6 @@
   #   cron: '0 * * * * *'   # Runs once per minute
   #   class: CronTestJob
   daily_check:
-    cron: '0 0 7 * * *'
+    # 7:00 だと LineMessageJob と被るので30 秒遅らせる
+    cron: '30 0 7 * * *'
     class: DailyCheckJob
