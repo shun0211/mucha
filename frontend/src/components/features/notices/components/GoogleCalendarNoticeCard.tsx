@@ -19,7 +19,7 @@ const GoogleCalendarNoticeCard = ({
         </Title>
         <Text>予定 {notice.schedule.bookingDetail}</Text>
         <Text>通知日 {notice.scheduledDate}</Text>
-        <Text>時間{notice.scheduledTime}</Text>
+        <Text>時間 {notice.scheduledTime}</Text>
         <ChevronDown
           size={36}
           strokeWidth={1}
