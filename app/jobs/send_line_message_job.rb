@@ -35,10 +35,10 @@ class SendLineMessageJob
     message = case notice.talk_type
               when "dm"
                 <<-"MESSAGE".gsub(/^\s+/, '').chomp
-                  リマインドをお知らせします😊
-                  　
                   [#{notice.title}]
                   #{notice.message}
+                  　
+                  リマインドのお知らせです😊
                 MESSAGE
               when "groupTalk"
                 notice.message << "\n\n" + notice.user.line_name + " より"
