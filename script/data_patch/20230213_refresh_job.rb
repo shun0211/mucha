@@ -26,9 +26,11 @@ module DataPatch
 
       puts 'Job の登録'
       scheduled_line_message_jobs.each do |job|
-        SendLineMessageJob
+        job_id = SendLineMessageJob
           .set(wait_until: job.scheduled_at)
           .perform_async(job.notice_id)
+        job.job_id = job_id
+        job.save!
       end
 
       puts '【実行後】'
