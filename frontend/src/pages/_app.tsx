@@ -45,14 +45,14 @@ export default function App(props: AppProps) {
   return (
     <>
       <DefaultSeo
-        defaultTitle="Mucha"
+        defaultTitle="Mucha (ミューチャ) | LINE リマインドツール"
         description="家族や恋人同士で使える便利なリマインドチャットツール"
         canonical="https://muchualchat.com/"
         openGraph={{
           type: "website",
-          title: "Mucha",
+          title: "Mucha (ミューチャ) | LINE リマインドツール",
           description: "家族や恋人同士で使える便利なリマインドチャットツール",
-          site_name: "Mucha",
+          site_name: "Mucha (ミューチャ) | LINE リマインドツール",
           url: "https://muchualchat.com/",
           images: [
             {
