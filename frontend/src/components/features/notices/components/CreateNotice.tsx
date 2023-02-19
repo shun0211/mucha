@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import React, { useEffect, useState } from "react";
 import {
   Anchor,
   Button,
@@ -13,8 +14,7 @@ import { useForm } from "@mantine/form";
 import { DateTimePicker } from "mantine-dates-6";
 import toast from "react-hot-toast";
 import { useRouter } from "next/router";
-import { TalkType, User } from "../../../../types";
-import { useNoticeTargetData } from "../../../../hooks/useNoticeTargetData";
+import { NoticeTargetData, TalkType, User } from "../../../../types";
 import {
   NotAcceptableError,
   UnauthorizedError,
@@ -26,16 +26,31 @@ import { Help } from "tabler-icons-react";
 import { postDraftNotice } from "../hooks/postDraftNotice";
 import SkeletonElement from "../../../ui-elements/SkeletonElement";
 import dayjs from "dayjs";
+import { getNoticeTargetData } from "../../../../hooks/getNoticeTargetData";
 
-const CreateNotice = ({ user, token }: { user: User; token: string }) => {
+const CreateNotice = ({ user, token }: { user?: User; token?: string }) => {
   const router = useRouter();
   const repeatValue = [
     { value: false, label: "しない" },
     { value: true, label: "する" },
   ];
+  const [noticeTargetData, setNoticeTargetData] =
+    useState<NoticeTargetData | null>(null);
   const [repeated, setRepeated] = useState(false);
-  const noticeTargetData = useNoticeTargetData(user, token);
   const [talkType, setTalkType] = useState<TalkType>("dm");
+
+  // ログインが完了したかどうかを表すフラグ
+  const [signinCompleted, setSigninCompleted] = useState<boolean>(false);
+  useEffect(() => {
+    if (user && token) {
+      setSigninCompleted(true);
+      form.setFieldValue("toLineId", user.lineUserId);
+      const func = async () => {
+        setNoticeTargetData(await getNoticeTargetData(user, token));
+      };
+      func();
+    }
+  }, [user]);
 
   const form = useForm({
     initialValues: {
@@ -50,7 +65,7 @@ const CreateNotice = ({ user, token }: { user: User; token: string }) => {
       saturday: false,
       sunday: false,
       message: "",
-      toLineId: user.lineUserId,
+      toLineId: user ? user.lineUserId : "",
     },
   });
 
@@ -71,8 +86,8 @@ const CreateNotice = ({ user, token }: { user: User; token: string }) => {
     toLineId: string
   ) => {
     await postNotice(
-      user.id,
-      token,
+      user!.id,
+      token!,
       title,
       scheduledAt,
       repeat,
@@ -127,12 +142,12 @@ const CreateNotice = ({ user, token }: { user: User; token: string }) => {
           <Select
             label="💬 送付先"
             data={noticeTargetData}
-            defaultValue="DM"
+            defaultValue="トーク"
             className="py-2"
             {...form.getInputProps("toLineId")}
             onChange={(value: React.ChangeEvent<HTMLSelectElement>) => {
               form.setFieldValue("toLineId", String(value));
-              if (String(value) === user.lineUserId) {
+              if (String(value) === user!.lineUserId) {
                 setTalkType("dm");
               } else {
                 setTalkType("groupTalk");
@@ -242,12 +257,13 @@ const CreateNotice = ({ user, token }: { user: User; token: string }) => {
         <div className="flex gap-x-3">
           <Button
             color="gray.6"
-            className="text-white text-lg my-4"
+            className="text-white text-lg my-4 disabled:bg-draft-button disabled:text-white"
             type="button"
             radius="md"
+            disabled={!signinCompleted}
             onClick={() => {
               postDraftNotice(
-                token,
+                token!,
                 form.values.title,
                 form.values.scheduledAt,
                 form.values.repeat,
@@ -267,7 +283,11 @@ const CreateNotice = ({ user, token }: { user: User; token: string }) => {
           >
             下書きに保存
           </Button>
-          <MainButton text="登録する" type="submit" />
+          <MainButton
+            text="登録する"
+            type="submit"
+            disabled={!signinCompleted}
+          />
         </div>
       </form>
     </Card>

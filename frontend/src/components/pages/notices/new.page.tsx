@@ -4,11 +4,27 @@ import Header from "../../ui-elements/Header";
 import { Container } from "@mantine/core";
 import { AuthContext } from "../../../providers/AuthContext";
 import CreateNotice from "../../features/notices/components/CreateNotice";
-import NavigationBottom from "../../features/common/components/NavigationBottom";
+import { Liff } from "@line/liff/dist/lib";
+import Skeleton from "../Skeleton";
+import { NextPage } from "next";
+import NavigationBottom from "../../features/notices/components/NavigationBottom";
+import { useRouter } from "next/router";
 
-const PagesNoticesNew = () => {
+interface Props {
+  liff: Liff | null;
+}
+
+// eslint-disable-next-line react/prop-types
+const PagesNoticesNew: NextPage<Props> = ({ liff }) => {
   const { currentUser, token } = useContext(AuthContext);
-  if (!currentUser) return null;
+  const router = useRouter()
+  // ログインしていない場合、ログインページへリダイレクトする
+  if (currentUser === null) {
+    router.push("/signin")
+    return null
+  };
+
+  if (liff === null) return <Skeleton />;
 
   return (
     <>
@@ -17,7 +33,7 @@ const PagesNoticesNew = () => {
       <Container className="pb-24">
         <CreateNotice user={currentUser} token={token} />
       </Container>
-      <NavigationBottom />
+      <NavigationBottom liff={liff} />
     </>
   );
 };

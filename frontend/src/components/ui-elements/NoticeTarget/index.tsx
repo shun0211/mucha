@@ -1,10 +1,19 @@
 import { Select } from "@mantine/core";
-import React from "react";
-import { useNoticeTargetData } from "../../../hooks/useNoticeTargetData";
-import { User } from "../../../types";
+import React, { useEffect, useState } from "react";
+import { getNoticeTargetData } from "../../../hooks/getNoticeTargetData";
+import { NoticeTargetData, User } from "../../../types";
 
-const NoticeTarget = ({ user, token }: { user: User, token: string }) => {
-  const noticeTargetData = useNoticeTargetData(user, token);
+const NoticeTarget = ({ user, token }: { user: User; token: string }) => {
+  // カスタムフックにリファクタリングする
+  const [noticeTargetData, setNoticeTargetData] =
+    useState<NoticeTargetData | null>(null);
+  useEffect(() => {
+    const func = async () => {
+      setNoticeTargetData(await getNoticeTargetData(user, token));
+    };
+    func();
+  }, []);
+
   if (!noticeTargetData) return null;
 
   return (

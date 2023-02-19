@@ -25,7 +25,8 @@ const Mucha = ({
       router.pathname === "/line-account-linkage" ||
       router.pathname === "/help/group-talk-linkage" ||
       router.pathname === "/help/google-login-error" ||
-      router.pathname === "/help/google-calendar-linkage"
+      router.pathname === "/help/google-calendar-linkage" ||
+      router.pathname === "/notices/new"
     ) {
       return <Component {...pageProps} />;
     } else {

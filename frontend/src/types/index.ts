@@ -50,6 +50,11 @@ export type GroupTalkRoom = {
 };
 export type GroupTalkRooms = GroupTalkRoom[];
 
+export type NoticeTargetData = {
+  value: string;
+  label: string;
+}[]
+
 export type ErrorMessage = {
   message: string;
   forDeveloperMessage: string;
