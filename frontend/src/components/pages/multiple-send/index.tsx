@@ -152,9 +152,9 @@ const MultipleSend = () => {
       <PageTitle>メッセージ一斉送信</PageTitle>
       <Container>
         <Card shadow="md" radius="lg" className="pb-8">
-          <MainText
-            text={`メッセージ\n(個人のアカウントが送信したかのように、グループまたは友だちに表示されます。)`}
-          />
+          <MainText>
+            {`メッセージ\n(個人のアカウントが送信したかのように、グループまたは友だちに表示されます。)`}
+          </MainText>
           <div className="grid grid-cols-9 place-items-center">
             {fields.map(
               (

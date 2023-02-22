@@ -8,11 +8,11 @@ export const PagesTemporaryComplete = () => {
     <div>
       <Header />
       <Container size={300} className="mt-5">
-        <MainText
-          text={`新規登録のメールを送付いたしました。
+        <MainText>
+          {`新規登録のメールを送付いたしました。
             メール内のURLをクリックしますと、新規登録が完了します。\n
             ※ メールの送付に5分ほどお時間がかかることがあります。`}
-        />
+        </MainText>
       </Container>
     </div>
   );
