@@ -26,6 +26,9 @@ const Mucha = ({
       router.pathname === "/help/group-talk-linkage" ||
       router.pathname === "/help/google-login-error" ||
       router.pathname === "/help/google-calendar-linkage" ||
+      router.pathname === "/terms" ||
+      router.pathname === "/privacy" ||
+      // LIFF から開かれるページはログインなしで表示する (バックグラウンドでログインする)
       router.pathname === "/notices/new"
     ) {
       return <Component {...pageProps} />;
