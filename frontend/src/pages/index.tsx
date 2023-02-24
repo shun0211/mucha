@@ -22,7 +22,7 @@ export default function Home() {
           覚えておくストレスがなくなる
         </Text>
         <Text size="xs" className="whitespace-pre-line text-center">
-          \友だち追加はこちらから/
+          \友だち追加から使えます/
         </Text>
         <div className="grid grid-cols-2 my-2 items-center">
           <AddFriendButton />
@@ -146,8 +146,8 @@ export default function Home() {
           <Text fz="xs" fw="bold">20代 女性</Text>
           <Text fz="md" fw="bold" className="pt-3">予定を管理・把握できるようになった</Text>
           <Text fz="md" className="pt-1 text-left">
-            LINEと連携されていることで 通知に気づきやすかったです。
-            また、繰り返し機能があるなど機能性が高く、非常に重宝しています！
+            LINEと連携されていることで通知に気付きやすかったです。
+            また、繰り返し機能があるなど機能性が高くて非常に重宝しています！
           </Text>
         </Card>
       </Container>
