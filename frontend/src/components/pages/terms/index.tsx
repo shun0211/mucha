@@ -1,5 +1,6 @@
 import { Container, List, Title } from "@mantine/core";
 import React from "react";
+import Footer from "../../ui-elements/Footer";
 import Header from "../../ui-elements/Header";
 import MainText from "../../ui-elements/MainText";
 import PageTitle from "../../ui-elements/PageTitle";
@@ -9,7 +10,7 @@ const PagesTerms = () => {
     <>
       <Header />
       <PageTitle>利用規約</PageTitle>
-      <Container size={350}>
+      <Container size={350} className="pb-5">
         <MainText classNames="pb-2">
           この利用規約（以下、「本規約」といいます。）は、Mucha
           運営者（以下、「当社」といいます。）がこのウェブサイト上で提供するサービス（以下、「本サービス」といいます。）の利用条件を定めるものです。登録ユーザーの皆さま（以下、「ユーザー」といいます。）には、本規約に従って本サービスをご利用いただきます。
@@ -138,6 +139,7 @@ const PagesTerms = () => {
           本規約の解釈にあたっては、日本法を準拠法とします。本サービスに関して紛争が生じた場合には、当社の本店所在地を管轄する裁判所を専属的合意管轄とします。
         </MainText>
       </Container>
+      <Footer />
     </>
   );
 };

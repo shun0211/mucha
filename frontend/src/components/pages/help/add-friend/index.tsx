@@ -49,7 +49,7 @@ const PagesAddFriend = () => {
           ></div>
         </div>
         <Image
-          src="/S_gainfriends_2dbarcodes_GW.png"
+          src="/add-friend-qr-code.png"
           alt="add friend screen"
           width={200}
           height={200}

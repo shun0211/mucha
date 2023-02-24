@@ -10,7 +10,8 @@ module.exports = {
         'white': '#FFFFFF',
         'line-color': '#06c755',
         'light-yellow': '#FFF7C1',
-        'draft-button': '#868e96'
+        'draft-button': '#868e96',
+        'light-gray': '#FAF9F4'
       },
       width: {}
     },
