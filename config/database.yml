@@ -21,6 +21,11 @@ default: &default
 
 development:
   <<: *default
+  # For Planet Scale
+  # adapter: mysql2
+  # database: mucha_production
+  # host: host.docker.internal
+  # port: 3309
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
