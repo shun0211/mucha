@@ -1,24 +1,14 @@
-# README
+## Port
+server: 4434
+client: 3100
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+# Data Check
+```
+$ bundle exec rake verify_line_message_job_and_scheduled_job:exec RAILS_ENV=production
+```
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Refresh Job
+```
+$ bundle exec rails runner 'load "script/data_patch/20230213_refresh_job.rb"; DataPatch::RefreshJob.new.execute! RAILS_ENV=production'
+```
