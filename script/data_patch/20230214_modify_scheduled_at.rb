@@ -4,7 +4,7 @@
 module DataPatch
   class ModifyScheduledAt
     def initialize
-      @logger = Logger.new("#{Rails.root}/modify_scheduled_at.log")
+      @logger = Logger.new("#{Rails.root}/log/modify_scheduled_at.log")
     end
 
     def execute!

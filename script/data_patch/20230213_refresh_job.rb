@@ -4,7 +4,7 @@
 module DataPatch
   class RefreshJob
     def initialize
-      @logger = Logger.new("#{Rails.root}/refresh_job.log")
+      @logger = Logger.new("#{Rails.root}/log/refresh_job.log")
     end
 
     def execute!
