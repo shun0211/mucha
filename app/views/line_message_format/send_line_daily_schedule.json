@@ -1,0 +1,81 @@
+{
+  "type": "bubble",
+  "hero": {
+    "type": "image",
+    "url": "https://mucha.s3.ap-northeast-1.amazonaws.com/good-morning-removebg.png",
+    "aspectMode": "cover",
+    "size": "4xl"
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "今日の予定",
+        "weight": "bold",
+        "size": "xl"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "margin": "lg",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "text",
+            "text": "ゴミの日",
+            "size": "lg"
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "text",
+                "text": "時間",
+                "color": "#aaaaaa",
+                "size": "lg",
+                "flex": 1
+              },
+              {
+                "type": "text",
+                "text": "10:00 - 23:00",
+                "wrap": true,
+                "color": "#666666",
+                "size": "lg",
+                "flex": 5
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "今日もいい一日になりますように！",
+        "size": "md",
+        "margin": "none"
+      },
+      {
+        "type": "text",
+        "text": "※ 通知は設定からオフにできます。",
+        "size": "sm",
+        "offsetTop": "sm"
+      }
+    ],
+    "paddingStart": "xxl",
+    "paddingBottom": "xxl",
+    "offsetBottom": "md"
+  },
+  "styles": {
+    "hero": {
+      "backgroundColor": "#fdf5e6"
+    }
+  }
+}
