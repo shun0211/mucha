@@ -3,6 +3,7 @@
 # Table name: users
 #
 #  id                     :bigint           not null, primary key
+#  is_friend              :boolean          default(FALSE), not null
 #  line_name              :string(255)
 #  line_nonce             :string(255)
 #  line_profile_image_url :string(255)

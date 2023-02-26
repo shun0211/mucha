@@ -10,6 +10,7 @@
 #  saturday     :boolean          default(FALSE), not null
 #  scheduled_at :datetime         not null
 #  sent_at      :datetime
+#  source       :integer          default("none"), not null
 #  status       :integer          not null
 #  sunday       :boolean          default(FALSE), not null
 #  talk_type    :integer          not null
@@ -20,12 +21,15 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  job_id       :string(255)
+#  schedule_id  :bigint
 #  to_line_id   :string(255)      not null
 #  user_id      :bigint           not null
 #
 # Indexes
 #
-#  index_notices_on_user_id  (user_id)
+#  index_notices_on_schedule_id   (schedule_id)
+#  index_notices_on_scheduled_at  (scheduled_at)
+#  index_notices_on_user_id       (user_id)
 #
 FactoryBot.define do
   factory :notice do
