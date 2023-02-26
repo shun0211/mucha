@@ -27,12 +27,9 @@
 #
 # Indexes
 #
-#  index_notices_on_schedule_id  (schedule_id)
-#  index_notices_on_user_id      (user_id)
-#
-# Foreign Keys
-#
-#  fk_rails_...  (schedule_id => schedules.id)
+#  index_notices_on_schedule_id   (schedule_id)
+#  index_notices_on_scheduled_at  (scheduled_at)
+#  index_notices_on_user_id       (user_id)
 #
 class Notice < ApplicationRecord
   belongs_to :user
@@ -64,6 +61,8 @@ class Notice < ApplicationRecord
     none: 0,
     google_calendar: 10
   }, suffix: true
+
+  scope :within, ->(date) { where(scheduled_at: date.beginning_of_day..date.end_of_day) }
 
   # デコレーターに切り出す
   def repeated_weeks

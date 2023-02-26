@@ -43,4 +43,10 @@ class Schedule < ApplicationRecord
     end_time = self.end_time.strftime('%H:%M')
     "#{date} #{start_time} ~ #{end_time}"
   end
+
+  def booking_time
+    start_time = self.start_time.strftime('%H:%M')
+    end_time = self.end_time.strftime('%H:%M')
+    "#{start_time} ~ #{end_time}"
+  end
 end

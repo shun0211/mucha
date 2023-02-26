@@ -23,6 +23,13 @@ class User < ApplicationRecord
   has_many :group_talk_rooms, dependent: :destroy
   has_one :google_calendar_token, dependent: :destroy
   has_many :schedules, dependent: :destroy
+  has_one :user_setting, dependent: :destroy
 
   validates :firebase_user_id, presence: true
+
+  after_create :create_user_setting
+
+  private def create_user_setting
+    UserSetting.create!(user_id: self.id)
+  end
 end
