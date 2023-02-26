@@ -15,3 +15,6 @@
     # 7:00 だと LineMessageJob と被るので30 秒遅らせる
     cron: '30 0 7 * * *'
     class: DailyCheckJob
+  send_line_daily_schedule:
+    cron: '0 0 7 * * *'
+    class: SendLineDailyScheduleJob
