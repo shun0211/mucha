@@ -116,7 +116,7 @@ class SendLineDailyScheduleJob
       end
 
       if notice.google_calendar_source?
-        contens.push(
+        contents.push(
           {
             "type": "text",
             "text": notice.schedule.title,
