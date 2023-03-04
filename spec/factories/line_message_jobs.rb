@@ -16,6 +16,16 @@
 FactoryBot.define do
   factory :line_message_job do
     job_id { SecureRandom.hex(24) }
-    association :notice
+
+    after(:build) do |line_message_job|
+      if line_message_job.notice.nil?
+        notice = create(:notice)
+        line_message_job.notice = notice
+      else
+        notice = line_message_job.notice
+      end
+      line_message_job.scheduled_at = notice.scheduled_at
+      line_message_job.save!
+    end
   end
 end
