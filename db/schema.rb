@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_26_024018) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_02_121123) do
   create_table "google_calendar_tokens", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "google_calendar_id", null: false
@@ -39,6 +39,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_26_024018) do
     t.index ["notice_id"], name: "index_line_message_jobs_on_notice_id"
   end
 
+  create_table "monthly_message_metrics", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "year", null: false
+    t.integer "month", null: false
+    t.integer "send_count", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_monthly_message_metrics_on_user_id"
+  end
+
   create_table "notices", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "title", null: false
@@ -58,7 +68,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_26_024018) do
     t.integer "talk_type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "job_id"
     t.bigint "schedule_id"
     t.integer "source", default: 0, null: false
     t.index ["schedule_id"], name: "index_notices_on_schedule_id"
@@ -98,9 +107,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_26_024018) do
     t.datetime "updated_at", null: false
     t.string "line_name"
     t.string "line_profile_image_url"
-    t.string "auth0_user_id"
     t.string "firebase_user_id", null: false
     t.boolean "is_friend", default: false, null: false
+    t.integer "plan", default: 0, null: false
     t.index ["firebase_user_id"], name: "index_users_on_firebase_user_id", unique: true
     t.index ["line_user_id"], name: "index_users_on_line_user_id", unique: true
   end

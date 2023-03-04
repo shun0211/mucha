@@ -7,9 +7,9 @@
 #  line_name              :string(255)
 #  line_nonce             :string(255)
 #  line_profile_image_url :string(255)
+#  plan                   :integer          default(0), not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  auth0_user_id          :string(255)
 #  firebase_user_id       :string(255)      not null
 #  line_user_id           :string(255)
 #
@@ -24,6 +24,7 @@ class User < ApplicationRecord
   has_one :google_calendar_token, dependent: :destroy
   has_many :schedules, dependent: :destroy
   has_one :user_setting, dependent: :destroy
+  has_many :monthly_message_metrics, dependent: :destroy
 
   validates :firebase_user_id, presence: true
 

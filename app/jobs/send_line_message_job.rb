@@ -8,7 +8,12 @@ class SendLineMessageJob
       type: 'text',
       text: build_message_text(notice)
     }
-    line_bot_client.push_message(notice.to_line_id, message)
+
+    MonthlyMessageMetric.transaction do
+      monthly_message_metrics = notice.user.monthly_message_metrics.find_or_create_by(year: Time.current.year, month: Time.current.month)
+      monthly_message_metrics.increment!(:send_count)
+      line_bot_client.push_message(notice.to_line_id, message)
+    end
 
     line_message_job = notice.line_message_jobs.find_by(job_id: self.jid)
     Notice.transaction do

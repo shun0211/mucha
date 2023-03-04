@@ -20,7 +20,6 @@
 #  wednesday    :boolean          default(FALSE), not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  job_id       :string(255)
 #  schedule_id  :bigint
 #  to_line_id   :string(255)      not null
 #  user_id      :bigint           not null
