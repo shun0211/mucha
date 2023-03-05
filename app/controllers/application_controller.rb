@@ -1,21 +1,21 @@
 class ApplicationController < ActionController::API
   def render_bad_request_error(message, for_developer_message)
     render json: {
-      message:,
+      errorMessage: message,
       forDeveloperMessage: for_developer_message
     }, status: :bad_request
   end
 
   def render_unauthorized_error(message, for_developer_message)
     render json: {
-      message:,
+      errorMessage: message,
       forDeveloperMessage: for_developer_message
     }, status: :unauthorized
   end
 
   def render_not_acceptable_error(messages, for_developer_message)
     render json: {
-      messages:,
+      errorMessages: messages,
       forDeveloperMessage: for_developer_message
     }, status: :not_acceptable
   end

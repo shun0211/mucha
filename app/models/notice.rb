@@ -36,10 +36,11 @@ class Notice < ApplicationRecord
   has_many :line_message_jobs, dependent: :destroy
 
   validates :title, presence: true
-  validates :scheduled_at, presence: true # 未来の日付しか登録できないようにしたい
+  validates :scheduled_at, presence: true
   validates :repeat, inclusion: { in: [true, false] }
   validates :monday, :tuesday, :wednesday, :tuesday, :friday, :saturday, :sunday, inclusion: { in: [true, false] }
   validates :to_line_id, presence: true
+  validate :scheduled_at_must_be_in_future
 
   attribute :message, :string, default: ''
 
@@ -84,6 +85,12 @@ class Notice < ApplicationRecord
   private def destroy_schedule
     if self.schedule.present?
       self.schedule.destroy!
+    end
+  end
+
+  private def scheduled_at_must_be_in_future
+    if scheduled_at.present? && scheduled_at < Time.zone.now
+      errors.add(:scheduled_at, 'は未来の日時を指定してください')
     end
   end
 end

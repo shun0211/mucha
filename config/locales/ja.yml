@@ -1,0 +1,9 @@
+ja:
+  activerecord:
+    models:
+      notice: 通知
+    attributes:
+      notice:
+        title: タイトル
+        message: メッセージ
+        scheduled_at: リマインド日時
