@@ -6,7 +6,7 @@ export function isErrorMessage(value: any): value is ErrorMessage {
   if (value == null) return false;
 
   return (
-    typeof value.message == "string" &&
+    typeof value.errorMessage == "string" &&
     typeof value.forDeveloperMessage == "string"
   );
 }

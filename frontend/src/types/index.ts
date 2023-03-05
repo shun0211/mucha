@@ -56,12 +56,12 @@ export type NoticeTargetData = {
 }[]
 
 export type ErrorMessage = {
-  message: string;
+  errorMessage: string;
   forDeveloperMessage: string;
 };
 
 export type ErrorMessages = {
-  messages: string[];
+  errorMessages: string[];
   forDeveloperMessage: string;
 };
 

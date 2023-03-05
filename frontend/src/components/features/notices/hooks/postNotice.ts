@@ -60,13 +60,13 @@ export const postNotice = async (
         e.response?.status === 401 &&
         isErrorMessage(e.response.data)
       ) {
-        throw new UnauthorizedError(e.response.data.message);
+        throw new UnauthorizedError(e.response.data.errorMessage);
       } else if (
         axios.isAxiosError(e) &&
         e.response?.status === 406 &&
         isErrorMessages(e.response.data)
       ) {
-        throw new NotAcceptableError(e.response.data.messages);
+        throw new NotAcceptableError(e.response.data.errorMessages);
       }
     });
   const notice: Notice = res?.data;
