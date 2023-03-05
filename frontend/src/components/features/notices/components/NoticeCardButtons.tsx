@@ -50,9 +50,9 @@ const NoticeCardButtons = ({ noticeType, noticeId, token, router }: Props) => {
             size="md"
             type="button"
             radius="md"
-            onClick={() => putScheduledNotice(noticeId, token, router)}
+            onClick={() => router.push(`/notices/${noticeId}/edit`)}
           >
-            {`リマインドする`}
+            編集する
           </Button>
           <Button
             color="red"
