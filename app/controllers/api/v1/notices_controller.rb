@@ -27,12 +27,26 @@ class Api::V1::NoticesController < SecuredController
     end
   end
 
-  # 現状使っていない
+  def show
+    @notice = current_user.notices.find_by(id: params[:id])
+    if @notice
+      render :show, status: :ok
+    else
+      render_unauthorized_error('', 'Invalid Notice Id')
+    end
+  end
+
   def update
     @notice = current_user.notices.find_by(id: params[:id])
     return render_unauthorized_error('', 'Invalid Notice Id') if @notice.nil?
+    return render_bad_request_error('', 'Not update draft notice') unless @notice.draft?
 
-    if @notice.update(notice_params)
+    @notice.update_columns(notice_params.to_h)
+    if @notice.valid?
+      Notice.transaction do
+        @notice.save!
+        Notices::SetJobService.new(@notice).execute! if @notice.scheduled?
+      end
       render :show, status: :ok
     else
       render_not_acceptable_error(@notice.errors.full_messages, '')
