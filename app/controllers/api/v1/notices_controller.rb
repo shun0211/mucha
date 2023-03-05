@@ -15,7 +15,7 @@ class Api::V1::NoticesController < SecuredController
 
   def create
     @notice = current_user.notices.build(notice_params)
-    if @notice.valid?
+    if @notice.valid?(:input_by_user)
       # line_message_jobs の作成に失敗したときは notice レコードも作らない
       Notice.transaction do
         @notice.save!
@@ -42,7 +42,7 @@ class Api::V1::NoticesController < SecuredController
     return render_bad_request_error('', 'Not update draft notice') unless @notice.draft?
 
     @notice.update_columns(notice_params.to_h)
-    if @notice.valid?
+    if @notice.valid?(:input_by_user)
       Notice.transaction do
         @notice.save!
         Notices::SetJobService.new(@notice).execute! if @notice.scheduled?
