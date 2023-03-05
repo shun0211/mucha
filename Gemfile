@@ -35,9 +35,11 @@ gem 'google-apis-calendar_v3'
 gem 'jwt'
 gem 'kaminari'
 gem 'line-bot-api'
+# gem 'openai'
 gem 'rack-cors'
 gem 'rails-i18n', '~> 7.0.0'
 gem 'rollbar'
+gem 'ruby-openai'
 gem 'seed-fu', github: 'shun0211/seed-fu', branch: 'support-rails-7'
 gem "sidekiq-scheduler"
 gem "slack-notifier"

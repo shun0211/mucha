@@ -26,6 +26,7 @@ module Mucha
     config.time_zone = 'Tokyo'
     # Rubyプロセス(JST)と同じにする
     config.active_record.default_timezone = :local
+    config.autoload_paths += %W(#{Rails.root}/lib/utils)
 
     # Use Middleware
     config.middleware.use ActionDispatch::Cookies
