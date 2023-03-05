@@ -27,13 +27,13 @@ export const putScheduledNotice = async (
         e.response?.status === 401 &&
         isErrorMessage(e.response.data)
       ) {
-        toast.error(e.response.data.message);
+        toast.error(e.response.data.errorMessage);
       } else if (
         axios.isAxiosError(e) &&
         e.response?.status === 404 &&
         isErrorMessage(e.response.data)
       ) {
-        toast.error(e.response.data.message);
+        toast.error(e.response.data.errorMessage);
       }
       throw e;
     });

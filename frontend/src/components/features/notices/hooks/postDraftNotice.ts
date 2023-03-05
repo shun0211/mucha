@@ -58,13 +58,13 @@ export const postDraftNotice = async (
         e.response?.status === 401 &&
         isErrorMessage(e.response.data)
       ) {
-        toast.error(e.response.data.message);
+        toast.error(e.response.data.errorMessage);
       } else if (
         axios.isAxiosError(e) &&
         e.response?.status === 406 &&
         isErrorMessages(e.response.data)
       ) {
-        e.response.data.messages.map((message) => toast.error(message));
+        e.response.data.errorMessages.map((message) => toast.error(message));
       }
       throw e;
     });

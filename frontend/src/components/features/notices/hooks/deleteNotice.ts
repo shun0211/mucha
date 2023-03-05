@@ -28,13 +28,13 @@ export const deleteNotice = async (
           e.response?.status === 401 &&
           isErrorMessage(e.response.data)
         ) {
-          throw new UnauthorizedError(e.response.data.message);
+          throw new UnauthorizedError(e.response.data.errorMessage);
         } else if (
           axios.isAxiosError(e) &&
           e.response?.status === 404 &&
           isErrorMessage(e.response.data)
         ) {
-          throw new NotFoundError(e.response.data.message);
+          throw new NotFoundError(e.response.data.errorMessage);
         }
       });
     toast.success("削除しました🗑");
