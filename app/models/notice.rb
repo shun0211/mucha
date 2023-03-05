@@ -40,7 +40,7 @@ class Notice < ApplicationRecord
   validates :repeat, inclusion: { in: [true, false] }
   validates :monday, :tuesday, :wednesday, :tuesday, :friday, :saturday, :sunday, inclusion: { in: [true, false] }
   validates :to_line_id, presence: true
-  validate :scheduled_at_must_be_in_future
+  validate :scheduled_at_must_be_in_future, on: :input_by_user
 
   attribute :message, :string, default: ''
 
