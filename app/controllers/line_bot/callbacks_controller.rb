@@ -12,28 +12,78 @@ class LineBot::CallbacksController < ApplicationController
 
     # トークルームにメッセージが送られてきたときの処理
     if type == 'message'
-      response = openai_client.chat(
-        parameters: {
-          model: 'gpt-3.5-turbo',
-          messages: [{ role: 'user', content: generate_question(message:) }],
-          max_tokens: 100
-        }
-      )
-      response_json = JSON.parse(response['choices'].first['message']['content'])
+      user = User.find_by(line_user_id:)
+      # ユーザーが登録されていない場合は、ログイン画面へのリンクを送信
+      if user.nil?
+        line_bot_client.reply_message(
+          params['events'].first['replyToken'],
+          {
+            type: 'text',
+            text: "こちらの URL からログインを行い、ユーザー登録を完了してください！\n#{ENV["FRONT_URI"]}/signin"
+          }
+        )
+        return render_unauthorized_error('', 'Not found user')
+      end
 
-      user = User.find_by!(line_user_id:)
-      notice = Notice.new(
-        user_id: user.id,
-        talk_type: 'dm',
-        title: response_json['title'],
-        message: "",
-        scheduled_at: response_json['scheduled_at'],
-        status: 'draft',
-        to_line_id: user.line_user_id,
-        repeat: false
-      )
-      notice.save!(context: :input_by_user)
-      line_bot_client.reply_message(params['events'].first['replyToken'], build_message(notice))
+      if message == 'AIとチャット'
+        user.user_setting.chat_with_ai!
+        line_bot_client.reply_message(
+          params['events'].first['replyToken'],
+          {
+            type: 'text',
+            text: 'AIとのチャットモードです🤖'
+          }
+        )
+        return render json: {}, status: :ok
+      elsif message == 'チャットでリマインド登録'
+        user.user_setting.create_notice!
+        line_bot_client.reply_message(
+          params['events'].first['replyToken'],
+          {
+            type: 'text',
+            text: 'リマインドの内容を入力してください↓'
+          }
+        )
+        return render json: {}, status: :ok
+      end
+
+      if user.user_setting.create_notice?
+        response = openai_client.chat(
+          parameters: {
+            model: 'gpt-3.5-turbo',
+            messages: [{ role: 'user', content: generate_question_for_notice(message:) }],
+            max_tokens: 100
+          }
+        )
+        response_json = JSON.parse(response['choices'].first['message']['content'])
+        notice = Notice.new(
+          user_id: user.id,
+          talk_type: 'dm',
+          title: response_json['title'],
+          message: "",
+          scheduled_at: response_json['scheduled_at'],
+          status: 'draft',
+          to_line_id: user.line_user_id,
+          repeat: false
+        )
+        notice.save!(context: :input_by_user)
+        line_bot_client.reply_message(params['events'].first['replyToken'], draft_notice_message(notice))
+      elsif user.user_setting.chat_with_ai?
+        response = openai_client.chat(
+          parameters: {
+            model: 'gpt-3.5-turbo',
+            messages: [{ role: 'user', content: message }]
+          }
+        )
+        reply_message = response['choices'].first['message']['content'].delete_prefix("\n\n")
+        line_bot_client.reply_message(
+          params['events'].first['replyToken'],
+          {
+            type: 'text',
+            text: reply_message
+          }
+        )
+      end
       return render json: {}, status: :ok
     end
 
@@ -93,11 +143,11 @@ class LineBot::CallbacksController < ApplicationController
     @openai_client ||= OpenAI::Client.new
   end
 
-  private def generate_question(message:)
+  private def generate_question_for_notice(message:)
     "「#{message}」の内容でリマインドを設定するための「title」、「scheduled_at」のJSON形式で変換してください。今日の日付を#{Time.current}とします。JSONのみを出力してください。"
   end
 
-  private def build_message(notice)
+  private def draft_notice_message(notice)
     {
       "type": 'flex',
       "altText": 'リマインド 下書き',

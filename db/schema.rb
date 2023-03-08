@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_02_121123) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_06_140242) do
   create_table "google_calendar_tokens", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "google_calendar_id", null: false
@@ -97,6 +97,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_02_121123) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "chat_role", default: 10, null: false
     t.index ["user_id"], name: "index_user_settings_on_user_id"
   end
 
