@@ -2,13 +2,14 @@
 #
 # Table name: monthly_message_metrics
 #
-#  id         :bigint           not null, primary key
-#  month      :integer          not null
-#  send_count :integer          default(0), not null
-#  year       :integer          not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  user_id    :bigint           not null
+#  id                  :bigint           not null, primary key
+#  chatgpt_usage_count :integer          default(0), not null
+#  month               :integer          not null
+#  send_count          :integer          default(0), not null
+#  year                :integer          not null
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  user_id             :bigint           not null
 #
 # Indexes
 #

@@ -31,7 +31,7 @@ class LineBot::CallbacksController < ApplicationController
           params['events'].first['replyToken'],
           {
             type: 'text',
-            text: 'AIとのチャットモードです🤖'
+            text: "困ったことがあったらAIに聞いてみよう！\n何でも答えてくれます🤖"
           }
         )
         return render json: {}, status: :ok
@@ -41,7 +41,7 @@ class LineBot::CallbacksController < ApplicationController
           params['events'].first['replyToken'],
           {
             type: 'text',
-            text: 'リマインドの内容を入力してください↓'
+            text: "リマインドの内容を入力してください↓\n例) 明日の9時に美容院にいく"
           }
         )
         return render json: {}, status: :ok
@@ -69,6 +69,8 @@ class LineBot::CallbacksController < ApplicationController
         notice.save!(context: :input_by_user)
         line_bot_client.reply_message(params['events'].first['replyToken'], draft_notice_message(notice))
       elsif user.user_setting.chat_with_ai?
+        monthly_message_metrics = notice.user.monthly_message_metrics.find_or_create_by(year: Time.current.year, month: Time.current.month)
+        monthly_message_metrics.increment!(:chatgpt_usage_count)
         response = openai_client.chat(
           parameters: {
             model: 'gpt-3.5-turbo',

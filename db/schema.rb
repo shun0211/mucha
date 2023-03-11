@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_06_140242) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_08_124258) do
   create_table "google_calendar_tokens", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "google_calendar_id", null: false
@@ -46,6 +46,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_06_140242) do
     t.integer "send_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "chatgpt_usage_count", default: 0, null: false
     t.index ["user_id"], name: "index_monthly_message_metrics_on_user_id"
   end
 
