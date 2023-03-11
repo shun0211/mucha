@@ -69,7 +69,7 @@ class LineBot::CallbacksController < ApplicationController
         notice.save!(context: :input_by_user)
         line_bot_client.reply_message(params['events'].first['replyToken'], draft_notice_message(notice))
       elsif user.user_setting.chat_with_ai?
-        monthly_message_metrics = notice.user.monthly_message_metrics.find_or_create_by(year: Time.current.year, month: Time.current.month)
+        monthly_message_metrics = user.monthly_message_metrics.find_or_create_by(year: Time.current.year, month: Time.current.month)
         monthly_message_metrics.increment!(:chatgpt_usage_count)
         response = openai_client.chat(
           parameters: {
