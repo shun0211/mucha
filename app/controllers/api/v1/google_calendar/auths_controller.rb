@@ -39,6 +39,11 @@ class Api::V1::GoogleCalendar::AuthsController < SecuredController
     google_calendar_token.save!
 
     event_list = service.list_events('primary', time_min: Time.zone.now.rfc3339, time_max: 1.month.since.in_time_zone.rfc3339 )
+
+    # Google カレンダー上で消されたスケジュールを全て削除する
+    i_cal_uids = event_list.items.map(&:i_cal_uid)
+    current_user.schedules.where.not(uid: i_cal_uids).destroy_all
+
     event_list.items.each do |event|
       Schedule.transaction do
         schedule = current_user.schedules.find_or_initialize_by(uid: event.i_cal_uid)
