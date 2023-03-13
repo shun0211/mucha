@@ -33,6 +33,27 @@ const PagesPrivacy = () => {
           ※ ユーザーIDは電話番号やLINE
           IDとは異なり、LINEプラットフォーム上で登録するプロバイダーごとに異なるユーザー識別用管理用の識別子です。
         </MainText>
+        <Title order={6} className="pt-3 whitespace-pre-line">
+          {`Googleカレンダーへのアクセスについて\nAbout access to Google Calendar`}
+        </Title>
+        <MainText classNames="py-2">
+          お客様は、本サービスに
+          Googleカレンダーに登録した情報に基づいて通知を設定することができます。本サービスは、上記目的以外でお客様が利用する
+          Googleカレンダーのデータにアクセスすることはありません。
+        </MainText>
+        <MainText classNames="pb-2">
+          Customers may set up notifications based on the information they have
+          registered with Google Calendar for this service. The Service will not
+          access your Google Calendar data for any purposes other than those
+          described above.
+        </MainText>
+        <MainText classNames="pb-2">
+          Google、Googleカレンダーは、Google Inc. の商標または登録商標です。
+        </MainText>
+        <MainText classNames="pb-2">
+          Google and Google Calendar are trademarks or registered trademarks of
+          Google Inc.
+        </MainText>
         <Title order={5} className="pt-3">
           第二条 (個人情報の利用目的)
         </Title>

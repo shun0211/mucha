@@ -65,6 +65,18 @@ const Setting = () => {
         >
           問い合わせ
         </Anchor>
+        <Anchor
+          href="/terms"
+          className="border-y-gray-300 text-black border-t flex h-14 items-center cursor-pointer hover:bg-hover-color p-2"
+        >
+          利用規約
+        </Anchor>
+        <Anchor
+          href="/privacy"
+          className="border-y-gray-300 text-black border-t flex h-14 items-center cursor-pointer hover:bg-hover-color p-2"
+        >
+          プライバシーポリシー
+        </Anchor>
         <div
           onClick={handleLogout}
           className="border-y-gray-300 border-t flex h-14 items-center cursor-pointer hover:bg-hover-color p-2"
