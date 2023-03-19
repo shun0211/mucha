@@ -58,7 +58,7 @@ const PagesPrivacy = () => {
           を遵守するものとします。
         </MainText>
         <MainText classNames="pb-2">
-          (App’s) use and transfer to any other app of information received from
+          Mucha use and transfer to any other app of information received from
           Google Accounts will adhere to{" "}
           <Anchor
             href="https://developers.google.com/terms/api-services-user-data-policy?hl=ja"
