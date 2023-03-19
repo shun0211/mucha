@@ -48,6 +48,27 @@ const PagesPrivacy = () => {
           described above.
         </MainText>
         <MainText classNames="pb-2">
+          Googleアカウントから受け取った情報の使用および他のアプリへの転送は、使用制限要件を含む
+          <Anchor
+            href="https://developers.google.com/terms/api-services-user-data-policy?hl=ja"
+            target="_blank"
+          >
+            Google API サービスのユーザーデータに関するポリシー
+          </Anchor>
+          を遵守するものとします。
+        </MainText>
+        <MainText classNames="pb-2">
+          (App’s) use and transfer to any other app of information received from
+          Google Accounts will adhere to{" "}
+          <Anchor
+            href="https://developers.google.com/terms/api-services-user-data-policy?hl=ja"
+            target="_blank"
+          >
+            Google API Services User Data Policy
+          </Anchor>
+          , including the Limited Use requirements.
+        </MainText>
+        <MainText classNames="pb-2">
           Google、Googleカレンダーは、Google Inc. の商標または登録商標です。
         </MainText>
         <MainText classNames="pb-2">

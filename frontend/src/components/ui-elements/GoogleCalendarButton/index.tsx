@@ -3,7 +3,7 @@ import { Button } from "@mantine/core";
 import axios from "axios";
 import React from "react";
 import { API_URL, FRONT_URI } from "../../../config/constants";
-import { BsGoogle } from 'react-icons/bs';
+import Image from "next/image";
 
 const GoogleCalendarButton = ({
   liff,
@@ -28,8 +28,15 @@ const GoogleCalendarButton = ({
   return (
     <>
       <Button
-        className="bg-blue-500 text-white"
-        leftIcon={<BsGoogle />}
+        className="bg-white text-black hover:bg-slate-50"
+        leftIcon={
+          <Image
+            src="/google_calendar_icon.png"
+            alt="Google Calendar Icon"
+            width={30}
+            height={30}
+          />
+        }
         onClick={() => {
           // ブラウザの403 dissallowed_useragent に引っかかるため LINE ブラウザではなく外部のブラウザを立ち上げる
           const context = liff.getContext();
@@ -47,7 +54,7 @@ const GoogleCalendarButton = ({
           }
         }}
       >
-        Googleカレンダー連携
+        Googleカレンダーから予定を取得
       </Button>
     </>
   );
