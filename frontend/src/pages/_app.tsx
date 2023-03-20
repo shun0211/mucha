@@ -56,7 +56,7 @@ export default function App(props: AppProps) {
           url: "https://muchualchat.com/",
           images: [
             {
-              url: "https://mucha.s3.ap-northeast-1.amazonaws.com/logo-only-image.png",
+              url: "https://mucha.s3.ap-northeast-1.amazonaws.com/logo.png",
               width: 600,
               height: 600,
               alt: "Muchaのロゴ",

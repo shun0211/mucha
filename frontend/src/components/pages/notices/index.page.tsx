@@ -1,4 +1,4 @@
-import { Anchor, Container, Text } from "@mantine/core";
+import { Container } from "@mantine/core";
 import React, { useContext } from "react";
 import Header from "../../ui-elements/Header";
 import PageTitle from "../../ui-elements/PageTitle";
