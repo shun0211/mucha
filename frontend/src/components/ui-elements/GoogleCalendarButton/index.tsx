@@ -48,9 +48,7 @@ const GoogleCalendarButton = ({
               });
             }
           } else {
-            if (window.confirm("開発中の機能のため警告画面が出ます")) {
-              syncCalendar();
-            }
+            syncCalendar();
           }
         }}
       >

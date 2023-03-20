@@ -13,12 +13,12 @@ import { toast } from "react-hot-toast";
 
 const PagesNotices = () => {
   const { currentUser, token, liff } = useContext(AuthContext);
-  const router = useRouter()
+  const router = useRouter();
 
   if (!currentUser) return null;
 
   if (router.query.googleCalendarLinkageSuccess === "true") {
-    toast.success('Google カレンダー連携が成功しました✨')
+    toast.success("Google カレンダー連携が成功しました✨");
   }
 
   return (
@@ -30,17 +30,7 @@ const PagesNotices = () => {
 
         <DisplayCalender user={currentUser} token={token} />
         <div className="flex justify-between items-end py-3">
-          <div>
-            <Text fz="xs">※ 開発中の機能のため警告画面が出ます</Text>
-            <Text fz="xs" className="pb-1">
-              &emsp;詳しくは
-              <Anchor href="/help/google-calendar-linkage" target="_blank">
-                こちら
-              </Anchor>
-              をご確認ください
-            </Text>
-            <GoogleCalendarButton liff={liff} token={token} />
-          </div>
+          <GoogleCalendarButton liff={liff} token={token} />
           <NoticeTarget user={currentUser} token={token} />
         </div>
         <DisplayNotices user={currentUser} token={token} />
