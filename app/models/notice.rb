@@ -44,6 +44,7 @@ class Notice < ApplicationRecord
 
   attribute :message, :string, default: ''
 
+  before_destroy :delete_job
   after_destroy :destroy_schedule
 
   enum talk_type: {
@@ -86,6 +87,10 @@ class Notice < ApplicationRecord
     if self.schedule.present?
       self.schedule.destroy!
     end
+  end
+
+  private def delete_job
+    Notices::DeleteJobService.new(self).execute!
   end
 
   private def scheduled_at_must_be_in_future

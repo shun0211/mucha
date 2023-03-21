@@ -30,6 +30,10 @@ class User < ApplicationRecord
 
   after_create :create_user_setting
 
+  def google_calendar_sync_enabled?
+    google_calendar_token.present?
+  end
+
   private def create_user_setting
     UserSetting.create!(user_id: self.id)
   end
