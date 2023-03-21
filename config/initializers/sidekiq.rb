@@ -2,6 +2,8 @@ require 'sidekiq/web'
 
 Sidekiq.configure_server do |config|
   config.redis = { url: ENV['REDIS_URL'] }
+  # Sidekiqのログを標準出力に出す
+  # config.logger = Sidekiq::Logger.new($stdout)
 end
 
 Sidekiq.configure_client do |config|

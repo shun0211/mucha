@@ -2,6 +2,7 @@
 # https://qiita.com/ts-3156/items/a5f8794a79148c9cfcbe
 :pidfile: ./tmp/pids/sidekiq.pid
 :logfile: ./log/sidekiq.log
+:verbose: true
 :concurrency: 5
 :queues:
   - default
