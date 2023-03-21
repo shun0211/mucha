@@ -19,3 +19,6 @@
   send_line_daily_schedule:
     cron: '0 0 7 * * *'
     class: SendLineDailyScheduleJob
+  sync_google_calendar_schedule:
+    cron: '0 0 1 * * *'
+    class: SyncGoogleCalendarSchedulesJob
