@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_08_124258) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_23_130948) do
+  create_table "chatgpt_messages", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.text "message", null: false
+    t.integer "role", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_chatgpt_messages_on_user_id"
+  end
+
   create_table "google_calendar_tokens", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "google_calendar_id", null: false
