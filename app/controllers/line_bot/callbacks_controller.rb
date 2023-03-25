@@ -69,15 +69,39 @@ class LineBot::CallbacksController < ApplicationController
         notice.save!(context: :input_by_user)
         line_bot_client.reply_message(params['events'].first['replyToken'], draft_notice_message(notice))
       elsif user.user_setting.chat_with_ai?
-        monthly_message_metrics = user.monthly_message_metrics.find_or_create_by(year: Time.current.year, month: Time.current.month)
-        monthly_message_metrics.increment!(:chatgpt_usage_count)
-        response = openai_client.chat(
-          parameters: {
-            model: 'gpt-3.5-turbo',
-            messages: [{ role: 'user', content: message }]
-          }
-        )
-        reply_message = response['choices'].first['message']['content'].delete_prefix("\n\n")
+        ActiveRecord::Base.transaction do
+          monthly_message_metrics = user.monthly_message_metrics.find_or_create_by(year: Time.current.year, month: Time.current.month)
+          monthly_message_metrics.increment!(:chatgpt_usage_count)
+          past_messages = user.chatgpt_messages.order(created_at: :desc).limit(4).map { |m| { role: m.role, content: m.message } }
+          user.chatgpt_messages.create!(message: message, role: 'user')
+
+          # OpenAI API を叩く
+          begin
+            response = openai_client.chat(
+              parameters: {
+                model: 'gpt-3.5-turbo',
+                messages: [
+                  { role: 'system', content: 'You are the AI assistant who answers many times' },
+                  *past_messages,
+                  { role: 'user', content: message }
+                ]
+              }
+            )
+            reply_message = response['choices'].first['message']['content'].delete_prefix("\n\n")
+          rescue => e
+            line_bot_client.reply_message(
+              params['events'].first['replyToken'],
+              {
+                type: 'text',
+                text: "エラーが発生しました。しばらくしてから再度お試しください。"
+              }
+            )
+            ErrorUtility.logger(e)
+            return
+          end
+          user.chatgpt_messages.create!(message: reply_message, role: 'assistant')
+        end
+
         line_bot_client.reply_message(
           params['events'].first['replyToken'],
           {

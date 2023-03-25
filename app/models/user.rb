@@ -25,6 +25,7 @@ class User < ApplicationRecord
   has_many :schedules, dependent: :destroy
   has_one :user_setting, dependent: :destroy
   has_many :monthly_message_metrics, dependent: :destroy
+  has_many :chatgpt_messages, dependent: :destroy
 
   validates :firebase_user_id, presence: true
 
