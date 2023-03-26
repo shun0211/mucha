@@ -1,18 +1,12 @@
 {
   "type": "bubble",
-  "hero": {
-    "type": "image",
-    "url": "https://mucha.s3.ap-northeast-1.amazonaws.com/good-morning-removebg.png",
-    "aspectMode": "cover",
-    "size": "4xl"
-  },
   "body": {
     "type": "box",
     "layout": "vertical",
     "contents": [
       {
         "type": "text",
-        "text": "今日の予定",
+        "text": "今日の予定 ",
         "weight": "bold",
         "size": "xl"
       },
@@ -57,10 +51,28 @@
     "layout": "vertical",
     "contents": [
       {
+        "type": "box",
+        "layout": "baseline",
+        "contents": [
+          {
+            "type": "text",
+            "text": "天気",
+            "flex": 1,
+            "size": "lg"
+          },
+          {
+            "type": "text",
+            "text": "晴れ",
+            "flex": 5,
+            "size": "lg"
+          }
+        ]
+      },
+      {
         "type": "text",
         "text": "今日もいい一日になりますように！",
         "size": "md",
-        "margin": "none"
+        "margin": "md"
       },
       {
         "type": "text",

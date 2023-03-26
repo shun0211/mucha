@@ -5,6 +5,8 @@ class SendLineDailyScheduleJob
   def perform
     User.find_each do |user|
       if user.user_setting.send_line_daily_schedule && user.notices.within(Time.current).exists?
+        res = weather_conn.get('/api/forecast', { city: 130010 })
+        @weather_info = JSON.parse(res.body)
         line_bot_client.push_message(user.line_user_id, build_message(user))
       end
     end
@@ -24,19 +26,13 @@ class SendLineDailyScheduleJob
       "altText": "今日の予定です！ 今日も一日頑張っていきましょう😊",
       "contents": {
         "type": "bubble",
-        "hero": {
-          "type": "image",
-          "url": "https://mucha.s3.ap-northeast-1.amazonaws.com/good-morning-removebg.png",
-          "aspectMode": "cover",
-          "size": "4xl"
-        },
         "body": {
           "type": "box",
           "layout": "vertical",
           "contents": [
             {
               "type": "text",
-              "text": "今日の予定",
+              "text": "今日の予定 ",
               "weight": "bold",
               "size": "xl"
             },
@@ -54,10 +50,63 @@ class SendLineDailyScheduleJob
           "layout": "vertical",
           "contents": [
             {
+              "type": "box",
+              "layout": "baseline",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "天気",
+                  "flex": 1,
+                  "size": "lg"
+                },
+                {
+                  "type": "text",
+                  "text": @weather_info["forecasts"][0]["telop"],
+                  "flex": 1,
+                  "size": "lg"
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "baseline",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "最高/最低(℃)",
+                  "flex": 1,
+                  "size": "lg"
+                },
+                {
+                  "type": "text",
+                  "text": "#{@weather_info["forecasts"][0]["temperature"]["max"]["celsius"] ? @weather_info["forecasts"][0]["temperature"]["max"]["celsius"] : "-"}/#{@weather_info["forecasts"][0]["temperature"]["min"]["celsius"] ? @weather_info["forecasts"][0]["temperature"]["max"]["celsius"] : "-"}℃",
+                  "flex": 1,
+                  "size": "lg"
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "baseline",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "降水確率(%)",
+                  "flex": 1,
+                  "size": "lg"
+                },
+                {
+                  "type": "text",
+                  "text": "#{@weather_info["forecasts"][0]["chanceOfRain"]["T00_06"].chop}/#{@weather_info["forecasts"][0]["chanceOfRain"]["T06_12"].chop}/#{@weather_info["forecasts"][0]["chanceOfRain"]["T12_18"].chop}/#{@weather_info["forecasts"][0]["chanceOfRain"]["T18_24"].chop}",
+                  "size": "lg"
+                }
+              ]
+            },
+            {
               "type": "text",
-              "text": "今日もいい一日になりますように！☀️",
+              "text": "今日もいい一日になりますように🔥",
               "size": "md",
-              "margin": "none"
+              "margin": "lg"
             },
             {
               "type": "text",
@@ -149,5 +198,11 @@ class SendLineDailyScheduleJob
     end
 
     contents
+  end
+
+  def weather_conn
+    Faraday.new(
+      url: 'https://weather.tsukumijima.net'
+    )
   end
 end
