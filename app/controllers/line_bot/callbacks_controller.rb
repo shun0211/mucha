@@ -165,7 +165,7 @@ class LineBot::CallbacksController < ApplicationController
         #     "engineVersion"=>"202304_02a",
         #     "ResourceURI"=>
         #      "https://roote.ekispert.net/result?arr=%E6%B8%8B%E8%B0%B7&arr_code=22715&connect=true&dep=%E6%B5%A6%E5%AE%89(%E5%8D%83%E8%91%89%E7%9C%8C)&dep_code=22206&express=true&highway=true&hour&liner=true&local=true&minute&plane=true&shinkansen=true&ship=true&sleep=false&sort=time&surcharge=3&type=dep&via1=&via1_code=&via2=&via2_code="}}
-        res = ekispert_conn.get('/v1/json/search/course/light', { from: 22206, to: station_code })
+        res = ekispert_conn.get('/v1/json/search/course/light', { from: 22828, to: station_code })
         unless res.status == 200
           reply_error_message(params['events'].first['replyToken'], "エラーが発生しました。しばらくしてから再度お試しください。")
           raise EkiSpertClientError.new("Error: #{res.status} #{res.body}")
