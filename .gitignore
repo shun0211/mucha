@@ -26,3 +26,4 @@
 .env*
 /config/firebase/dev-adminsdk.json
 /config/firebase/prod-adminsdk.json
+/lambda_function/*

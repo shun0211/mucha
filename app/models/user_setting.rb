@@ -18,6 +18,7 @@ class UserSetting < ApplicationRecord
 
   enum chat_role: {
     create_notice: 10,
-    chat_with_ai: 20
+    chat_with_ai: 20,
+    route_search: 30
   }
 end
