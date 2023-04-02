@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_23_130948) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_01_222531) do
   create_table "chatgpt_messages", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.text "message", null: false
@@ -100,6 +100,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_23_130948) do
     t.datetime "updated_at", null: false
     t.index ["uid"], name: "index_schedules_on_uid", unique: true
     t.index ["user_id"], name: "index_schedules_on_user_id"
+  end
+
+  create_table "stations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "name_kana", null: false
+    t.string "code", null: false
+    t.string "prefecture", null: false
+    t.string "prefecture_code", null: false
+    t.decimal "lat", precision: 8, scale: 6, null: false
+    t.decimal "lng", precision: 9, scale: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["code"], name: "index_stations_on_code", unique: true
+    t.index ["name"], name: "index_stations_on_name"
+    t.index ["prefecture"], name: "index_stations_on_prefecture"
+    t.index ["prefecture_code"], name: "index_stations_on_prefecture_code"
   end
 
   create_table "user_settings", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
