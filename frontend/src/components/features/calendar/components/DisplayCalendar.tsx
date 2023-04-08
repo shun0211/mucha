@@ -1,9 +1,11 @@
 import FullCalendar from "@fullcalendar/react";
 import React from "react";
 import dayGridPlugin from "@fullcalendar/daygrid";
+import interactionPlugin from "@fullcalendar/interaction";
 import jaLocale from "@fullcalendar/core/locales/ja";
 import { User } from "../../../../types";
 import useScheduledNotices from "../../../../hooks/useScheduledNotices";
+import dayjs from "dayjs";
 
 type CalendarEvent = {
   title: string;
@@ -21,7 +23,7 @@ const DisplayCalender = ({ user, token }: { user: User; token: string }) => {
     events.push.apply(
       events,
       notice.scheduledDatetimes.map((datetime) => {
-        return { title: notice.title, start: datetime };
+        return { title: notice.title, start: dayjs(datetime).format("YYYY-MM-DD") };
       })
     );
   });
@@ -29,7 +31,7 @@ const DisplayCalender = ({ user, token }: { user: User; token: string }) => {
   return (
     <>
       <FullCalendar
-        plugins={[dayGridPlugin]}
+        plugins={[dayGridPlugin, interactionPlugin]}
         initialView="dayGridMonth"
         locale={jaLocale}
         events={events}
@@ -44,6 +46,7 @@ const DisplayCalender = ({ user, token }: { user: User; token: string }) => {
         dayCellClassNames="bg-white leading-3"
         dayMaxEvents={2}
         dayCellContent={(e) => e.dayNumberText.replace("日", "")}
+        // dateClick={(selectionInfo) => console.log(selectionInfo)}
       />
     </>
   );

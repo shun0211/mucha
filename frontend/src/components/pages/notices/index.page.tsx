@@ -27,7 +27,6 @@ const PagesNotices = () => {
       {/* フッターの分を開けたいためmargin-bottom: 96pxとする */}
       <Container className="mb-24">
         <PageTitle>リマインド一覧</PageTitle>
-
         <DisplayCalender user={currentUser} token={token} />
         <div className="flex justify-between items-end py-3">
           <GoogleCalendarButton liff={liff} token={token} />
