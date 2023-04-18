@@ -8,6 +8,10 @@ import AddFriendButton from "../../ui-elements/AddFriendButton";
 import MainLinkButton from "../../ui-elements/MainLinkButton";
 import Footer from "../../ui-elements/Footer";
 
+const divStyle = {
+  height: 'calc(100vh - 500px)',
+};
+
 const PagesLandingPage = () => {
   const { currentUser } = useContext(AuthContext);
 
@@ -23,7 +27,7 @@ const PagesLandingPage = () => {
             height={500}
             className="absolute top-8 right-0"
           />
-          <div className="h-[40vh]"></div>
+          <div style={divStyle}></div>
           {/* drop-shadow が効いていない */}
           <Text
             fz="xl"
@@ -35,7 +39,7 @@ const PagesLandingPage = () => {
             src="/lp/LP-title.png"
             alt="Mucha タイトル"
             width={300}
-            height={500}
+            height={100}
             className=""
           />
           <Text fz="md" className="text-left text-white">

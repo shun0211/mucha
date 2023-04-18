@@ -41,6 +41,7 @@ export default class _Document extends Document {
           />
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#ffffff" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
           <link
             href="https://fonts.googleapis.com/css2?family=Bellota+Text&display=swap"
             rel="stylesheet"
