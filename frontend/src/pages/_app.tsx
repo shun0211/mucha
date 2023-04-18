@@ -74,9 +74,7 @@ export default function App(props: AppProps) {
         <Script
           src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"
           onLoad={() => {
-            {
-              /* @ts-ignore */
-            }
+            {/* @ts-ignore */}
             new window.VConsole();
           }}
         />
