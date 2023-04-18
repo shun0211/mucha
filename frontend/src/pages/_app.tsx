@@ -9,6 +9,7 @@ import { LIFF_ID, ENV } from "../config/constants";
 import { Liff } from "@line/liff";
 import LIFFInspectorPlugin from "@line/liff-inspector";
 import Script from "next/script";
+import Head from "next/head";
 
 export default function App(props: AppProps) {
   const [liffObject, setLiffObject] = useState<Liff | null>(null);
@@ -44,6 +45,10 @@ export default function App(props: AppProps) {
 
   return (
     <>
+      {/* https://nextjs.org/docs/messages/no-document-viewport-meta */}
+      <Head>
+        <meta name="viewport" content="viewport-fit=cover" />
+      </Head>
       <DefaultSeo
         defaultTitle="Mucha (ミューチャ) | LINE リマインドツール"
         description="家族や恋人同士で使える便利なリマインドチャットツール"
@@ -67,9 +72,11 @@ export default function App(props: AppProps) {
       {/* Preview 環境ではコンソールを出す */}
       {ENV === "preview" ?? (
         <Script
-        src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"
-        onLoad={() => {
-            {/* @ts-ignore */}
+          src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"
+          onLoad={() => {
+            {
+              /* @ts-ignore */
+            }
             new window.VConsole();
           }}
         />

@@ -8,7 +8,7 @@ import AddFriendButton from "../../ui-elements/AddFriendButton";
 import MainLinkButton from "../../ui-elements/MainLinkButton";
 import Footer from "../../ui-elements/Footer";
 
-const divStyle = {
+const heightStyle = {
   height: 'calc(100vh - 500px)',
 };
 
@@ -27,7 +27,7 @@ const PagesLandingPage = () => {
             height={500}
             className="absolute top-8 right-0"
           />
-          <div style={divStyle}></div>
+          <div style={heightStyle}></div>
           {/* drop-shadow が効いていない */}
           <Text
             fz="xl"
