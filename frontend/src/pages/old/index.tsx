@@ -1,77 +1,40 @@
 import React, { useContext } from "react";
-import { Card, Container, Divider, List, Text, Title } from "@mantine/core";
+import Header from "../components/ui-elements/Header";
+import { Card, Container, List, Text, Title } from "@mantine/core";
 import Image from "next/image";
 import { AuthContext } from "../providers/AuthContext";
 import MainLinkButton from "../components/ui-elements/MainLinkButton";
 import AddFriendButton from "../components/ui-elements/AddFriendButton";
 import { MoodSadDizzy } from "tabler-icons-react";
 import Footer from "../components/ui-elements/Footer";
-import LPHeader from "../components/ui-elements/LP/Header";
 
 export default function Home() {
   const { currentUser } = useContext(AuthContext);
 
   return (
-    <div className="bg-background">
-      <div className="h-[100vh] bg-primary relative">
-        <LPHeader />
-        <div className="pl-5">
+    <div className="bg-white">
+      <Header />
+      <Container className="py-2">
+        <Title order={2} className="text-center whitespace-pre-wrap">
+          {`「忘れた」がなくなる！\nLINEリマインドツール`}
+        </Title>
+        <Text fz="md" className="whitespace-pre-wrap text-center py-2">
+          覚えておくストレスがなくなる
+        </Text>
+        <Text size="xs" className="whitespace-pre-line text-center">
+          \友だち追加から使えます/
+        </Text>
+        <div className="grid grid-cols-2 my-2 items-center">
+          <AddFriendButton />
           <Image
-            src="/LP-background-image.png"
-            alt="Mucha 背景画像"
-            width={330}
-            height={500}
-            className="absolute top-8 right-0"
-          />
-          <div className="h-[40vh]"></div>
-          {/* drop-shadow が効いていない */}
-          <Text
-            fz="xl"
-            className="text-left font-bellota text-white !drop-shadow"
-          >
-            LINEで<span className="text-[#FFF7C3]">リマインド</span>生活
-          </Text>
-          <Image
-            src="/LP-title.png"
-            alt="Mucha タイトル"
-            width={300}
-            height={500}
-            className=""
-          />
-          <Text fz="md" className="text-left text-white">
-            ミューチャ
-          </Text>
-        </div>
-        <div className="grid grid-cols-4 my-2">
-          {/* color と text 両方指定する必要がある */}
-          <Divider
-            size="xs"
-            color="accent"
-            className="col-span-3 text-accent"
-          />
-          <Divider size="md" color="accent" className="text-accent" />
-        </div>
-        <div className="pl-5">
-          <Text size="md" className="text-left text-white py-1">
-            いつも忙しいあなたへ
-          </Text>
-          <Text size="md" className="text-left text-white py-1">
-            MUCHAのリマインドでスマートな1日を
-          </Text>
-          <Text size="md" className="text-left text-white py-1">
-            LINEで利用できるリマインドツール
-          </Text>
-          <Image
-            src="/LP-add-friend-qr-code.png"
+            src="/add-friend-qr-code.png"
             alt="友だち追加用のQRコード"
             width={150}
             height={150}
             className="mx-auto"
           />
-          <AddFriendButton />
         </div>
-        <div className="h-4 w-full bg-accent absolute bottom-0"></div>
-      </div>
+      </Container>
 
       <Container className="bg-light-yellow py-2">
         <Title order={3} className="text-center py-2">
@@ -155,11 +118,7 @@ export default function Home() {
           こんなお悩みありませんか？
         </Title>
         <Card shadow="md" radius="lg" className="mt-2 mb-5">
-          <List
-            size="sm"
-            icon={<MoodSadDizzy />}
-            className="px-3 py-2 font-semibold"
-          >
+          <List size="sm" icon={<MoodSadDizzy />} className="px-3 py-2 font-semibold">
             <List.Item className="py-1">予定をすぐに忘れてしまう...</List.Item>
             <List.Item className="py-1">
               カレンダーに予定を入れていたのに見てなくてすっぽかしてしまった...
@@ -184,12 +143,8 @@ export default function Home() {
             height={100}
             className="mx-auto"
           />
-          <Text fz="xs" fw="bold">
-            20代 女性
-          </Text>
-          <Text fz="md" fw="bold" className="pt-3">
-            予定を管理・把握できるようになった
-          </Text>
+          <Text fz="xs" fw="bold">20代 女性</Text>
+          <Text fz="md" fw="bold" className="pt-3">予定を管理・把握できるようになった</Text>
           <Text fz="md" className="pt-1 text-left">
             LINEと連携されていることで通知に気付きやすかったです。
             また、繰り返し機能があるなど機能性が高くて非常に重宝しています！

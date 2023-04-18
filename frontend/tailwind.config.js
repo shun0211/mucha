@@ -3,6 +3,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        'primary': '#65A7A3',
+        'accent': '#F5E682',
+        'shadow': '#ACACAC',
+        'background': '#F5F5F5',
         'yellow': '#FFDC00',
         'link-color': '#0073CC',
         'hover-color': '#f8f9fa',
@@ -12,6 +16,9 @@ module.exports = {
         'light-yellow': '#FFF7C1',
         'draft-button': '#868e96',
         'light-gray': '#FAF9F4'
+      },
+      fontFamily: {
+        bellota: ['Bellota Text'],
       },
       width: {}
     },
