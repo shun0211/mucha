@@ -6,7 +6,7 @@ const LPHeader = () => {
     <>
       <header className="h-4 bg-accent">
         <Image
-          src="/LP-header-title.png"
+          src="/lp/LP-header-title.png"
           alt="Mucha"
           width={130}
           height={60}
