@@ -14,6 +14,7 @@ import LPHeader from "../../ui-elements/LP/Header";
 import AddFriendButton from "../../ui-elements/AddFriendButton";
 import MainLinkButton from "../../ui-elements/MainLinkButton";
 import Footer from "../../ui-elements/Footer";
+import { FaUserTimes } from 'react-icons/fa';
 
 const heightStyle = {
   height: "calc(100vh - 500px)",
@@ -109,6 +110,25 @@ const PagesLandingPage = () => {
           height={100}
           className="mx-auto py-3 pb-6"
         />
+      </Container>
+
+      <Container className="py-2">
+        <Title order={3} className="text-center pt-8 pb-2 font-semibold text-light-black">
+        <span className="bg-shadow bg-opacity-10 py-1 px-3 rounded-lg">こんなお悩みありませんか？</span>
+        </Title>
+        <List
+            size="md"
+            icon={<FaUserTimes />}
+            className="px-8 py-5"
+          >
+            <List.Item className="py-2">ちょっとした要件を手軽にリマインドしたい</List.Item>
+            <List.Item className="py-2">
+              スケジュールアプリを見る習慣がなくて予定を見逃してしまう
+            </List.Item>
+            <List.Item className="py-2">
+              スケジュールアプリでリマインド設定するのがめんどくさい
+            </List.Item>
+          </List>
       </Container>
 
       <Container className="bg-light-gray py-2">
