@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Card, Container, Divider, List, Text, Title } from "@mantine/core";
 import Image from "next/image";
-import { MoodSadDizzy } from "tabler-icons-react";
+import { Bulb, MoodSadDizzy } from "tabler-icons-react";
 import { AuthContext } from "../../../providers/AuthContext";
 import LPHeader from "../../ui-elements/LP/Header";
 import AddFriendButton from "../../ui-elements/AddFriendButton";
@@ -23,7 +23,7 @@ const PagesLandingPage = () => {
         <div className="pl-5">
           <Image
             src="/lp/LP-background-image.png"
-            alt="Mucha 背景画像"
+            alt="MUCHA 背景画像"
             width={330}
             height={500}
             className="absolute top-8 right-0"
@@ -134,6 +134,38 @@ const PagesLandingPage = () => {
 
       <div className="bg-primary text-white text-center py-0.5 text-lg">
         そんなあなたに...
+      </div>
+
+      <div className="py-10">
+        <Title
+          order={3}
+          className="text-center pb-2 font-semibold text-light-black"
+        >
+          <span className="bg-shadow bg-opacity-10 py-1 px-3 rounded-lg">
+            <Bulb className="inline" /> MUCHAでお悩みを解決
+          </span>
+        </Title>
+        <Text
+          className="underline decoration-[#C9BC9C] decoration-3 text-center text-[#DB7F58] pt-3"
+          size="xl"
+        >
+          だれでも・いますぐ・かんたん
+        </Text>
+        <Text className="text-center py-3">に始められます！</Text>
+        <Image
+          src="/logo.png"
+          alt="MUCHA ロゴ"
+          width={100}
+          height={100}
+          className="mx-auto py-2"
+        />
+        <Image
+          src="/lp/LP-title-black.png"
+          alt="MUCHA タイトル"
+          width={100}
+          height={100}
+          className="mx-auto pt-2"
+        />
       </div>
 
       <Container className="bg-light-gray py-2">
