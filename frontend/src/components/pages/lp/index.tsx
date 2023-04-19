@@ -1,5 +1,12 @@
 import React, { useContext } from "react";
-import { Card, Container, Divider, List, Text, Title } from "@mantine/core";
+import {
+  Card,
+  Container,
+  Divider,
+  List,
+  Text,
+  Title,
+} from "@mantine/core";
 import Image from "next/image";
 import { MoodSadDizzy } from "tabler-icons-react";
 import { AuthContext } from "../../../providers/AuthContext";
@@ -9,7 +16,7 @@ import MainLinkButton from "../../ui-elements/MainLinkButton";
 import Footer from "../../ui-elements/Footer";
 
 const heightStyle = {
-  height: 'calc(100vh - 500px)',
+  height: "calc(100vh - 500px)",
 };
 
 const PagesLandingPage = () => {
@@ -77,19 +84,30 @@ const PagesLandingPage = () => {
         <div className="h-4 w-full bg-accent absolute bottom-0"></div>
       </div>
 
-      <Container className="bg-light-yellow py-2">
-        <Title order={3} className="text-center py-2">
-          Mucha(ミューチャ)とは？
+      <Container className="bg-primary py-2">
+        <Title order={3} className="text-center pt-8 pb-2 text-white font-semibold">
+          <span className="bg-white bg-opacity-10 py-1 px-3 rounded-lg">MUCHAのポイント</span>
         </Title>
-        <Text fz="sm" className="whitespace-pre-wrap text-center py-2">
-          {`リマインドの設定をすると\nLINEトークでリマインドすることができるツールです`}
-        </Text>
         <Image
-          src="/usecase.jpg"
-          alt="ユースケース"
-          width={400}
+          src="/lp/LP-daredemo.png"
+          alt="だれでも"
+          width={300}
           height={100}
-          className="mx-auto"
+          className="mx-auto py-3 pt-6"
+        />
+        <Image
+          src="/lp/LP-imasugu.png"
+          alt="いますぐ"
+          width={300}
+          height={100}
+          className="mx-auto py-3"
+        />
+        <Image
+          src="/lp/LP-kantan.png"
+          alt="かんたん"
+          width={300}
+          height={100}
+          className="mx-auto py-3 pb-6"
         />
       </Container>
 
@@ -226,7 +244,7 @@ const PagesLandingPage = () => {
       </Container>
       <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default PagesLandingPage
+export default PagesLandingPage;
