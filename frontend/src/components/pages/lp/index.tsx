@@ -181,66 +181,107 @@ const PagesLandingPage = () => {
         />
       </div>
 
-      <Container className="bg-light-gray py-2">
-        <Title order={3} className="text-center py-2">
-          Mucha でできること
-        </Title>
-        <Card shadow="md" radius="lg" className="mt-2 mb-5">
-          <Title order={5} className="text-center mt-3">
-            LINE トーク画面から簡単リマインド設定
-          </Title>
-          <Image
-            src="/how-to-use.jpg"
-            alt="ユースケース"
-            width={300}
-            height={100}
-            className="mx-auto my-2"
-          />
-          <Text
-            fz="sm"
-            c="gray.8"
-            className="whitespace-pre-wrap text-center py-2"
+      <div className="bg-primary">
+        <div className="grid grid-cols-12">
+          <div className="col-span-1 bg-[#4B7E7B]"></div>
+          <Title
+            order={3}
+            className="text-center font-semibold text-white col-span-11 py-5"
           >
-            {`LINE のトーク画面からカンタンに\nリマインドを設定`}
-          </Text>
+            <span className="bg-white bg-opacity-10 py-1 px-3 rounded-lg">
+              <BsGearFill className="inline" /> 使いやすい3つの機能
+            </span>
+          </Title>
+        </div>
 
-          <Title order={5} className="text-center mt-3">
-            Google カレンダーとの連携
-          </Title>
-          <Image
-            src="/google_calendar.png"
-            alt="ユースケース"
-            width={180}
-            height={180}
-            className="mx-auto"
-          />
-          <Text
-            fz="sm"
-            c="gray.8"
-            className="whitespace-pre-wrap text-center py-2"
-          >
-            {`Google カレンダーと連携することで\n自動でリマインドを設定`}
-          </Text>
+        <div className="grid grid-cols-12 bg-[#4B7E7B] py-3">
+          <div className="col-span-1 bg-[#4B7E7B]"></div>
+          <div className="col-span-11 flex">
+            <div className="text-6xl text-white">01</div>
+            <div className="border-l-2 mx-3"></div>
+            <div>
+              <Text className="text-[#FFF7C3] text-2xl">AIチャットで</Text>
+              <Text className="text-white text-2xl">リマインド登録</Text>
+            </div>
+          </div>
+        </div>
 
-          <Title order={5} className="text-center mt-3">
-            毎朝の日程通知 (実装中)
-          </Title>
-          <Image
-            src="/good-morning.jpg"
-            alt="毎朝の日程通知"
-            width={200}
-            height={200}
-            className="mx-auto my-2"
-          />
-          <Text
-            fz="sm"
-            c="gray.8"
-            className="whitespace-pre-wrap text-center py-2"
-          >
-            {`毎朝その日の予定を送付できるので\n一日のスケジュールを思い出す時間を作れる`}
-          </Text>
-        </Card>
-      </Container>
+        <div className="grid grid-cols-12">
+          <div className="col-span-1 bg-[#4B7E7B]"></div>
+          <div className="col-span-11 pb-8 pt-10">
+            <Image
+              src="/how-to-use.jpg"
+              alt="ユースケース"
+              width={300}
+              height={100}
+              className="mx-auto my-2"
+            />
+            <Text className="text-white bg-white bg-opacity-10 p-2 m-5 rounded-lg">
+              トーク画面で『〜日〜時に〜に行く』と予定を入力すれば自動でリマインド設定を行ってくれます。(chatGPT搭載)
+            </Text>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-12 bg-[#316966] py-3">
+          <div className="col-span-1 bg-[#316966]"></div>
+          <div className="col-span-11 flex">
+            <div className="text-6xl text-white">02</div>
+            <div className="border-l-2 mx-3"></div>
+            <div>
+              <Text className="text-[#FFF7C3] text-2xl">
+                Googleカレンダー連携
+              </Text>
+              <Text className="text-white text-2xl">でリマインド設定</Text>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-12">
+          <div className="col-span-1 bg-[#316966]"></div>
+          <div className="col-span-11 pb-8 pt-5">
+            <Image
+              src="/google_calendar.png"
+              alt="Googleカレンダーアイコン"
+              width={200}
+              height={100}
+              className="mx-auto m-7"
+            />
+            <Text className="text-white bg-white bg-opacity-10 p-2 m-5 rounded-lg">
+              Googleカレンダーと連携させることで、カレンダーの予定を自動でリマインド通知することができます。
+            </Text>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-12 bg-[#305755] py-3">
+          <div className="col-span-1 bg-[#305755]"></div>
+          <div className="col-span-11 flex">
+            <div className="text-6xl text-white">03</div>
+            <div className="border-l-2 mx-3"></div>
+            <div>
+              <Text className="text-[#FFF7C3] text-2xl">
+                メニューからかんたん
+              </Text>
+              <Text className="text-white text-2xl">リマインド登録</Text>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-12">
+          <div className="col-span-1 bg-[#305755]"></div>
+          <div className="col-span-11 pb-8 pt-10">
+            <Image
+              src="/google_calendar.png"
+              alt="Googleカレンダーアイコン"
+              width={200}
+              height={100}
+              className="mx-auto m-7"
+            />
+            <Text className="text-white bg-white bg-opacity-10 p-2 m-5 rounded-lg">
+              リッチメニューからブラウザを立ち上げてかんたんにリマインドを登録することができます。
+            </Text>
+          </div>
+        </div>
+      </div>
 
       <div className="pt-10 pb-5">
         <Title
