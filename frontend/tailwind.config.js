@@ -16,7 +16,8 @@ module.exports = {
         'light-yellow': '#FFF7C1',
         'draft-button': '#868e96',
         'light-gray': '#FAF9F4',
-        'light-black': '#545454'
+        'light-black': '#545454',
+        'orange': '#DB7F58'
       },
       fontFamily: {
         bellota: ['Bellota Text'],
