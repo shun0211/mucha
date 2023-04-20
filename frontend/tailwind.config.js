@@ -15,13 +15,16 @@ module.exports = {
         'line-color': '#06c755',
         'light-yellow': '#FFF7C1',
         'draft-button': '#868e96',
-        'light-gray': '#FAF9F4'
+        'light-gray': '#FAF9F4',
+        'light-black': '#545454'
       },
       fontFamily: {
         bellota: ['Bellota Text'],
       },
-      width: {}
+      textDecorationThickness: {
+        3: '3px',
+      },
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 };

@@ -8,6 +8,9 @@ import AddFriendButton from "../../ui-elements/AddFriendButton";
 import MainLinkButton from "../../ui-elements/MainLinkButton";
 import Footer from "../../ui-elements/Footer";
 import { FaUserTimes } from "react-icons/fa";
+import { BsGearFill } from "react-icons/bs";
+import { BiRadioCircleMarked } from "react-icons/bi";
+import { IconContext } from "react-icons";
 
 const heightStyle = {
   height: "calc(100vh - 500px)",
@@ -228,6 +231,26 @@ const PagesLandingPage = () => {
           </Text>
         </Card>
       </Container>
+
+      <div className="pt-10 pb-5">
+        <Title
+          order={3}
+          className="text-center pb-2 font-semibold text-light-black"
+        >
+          <span className="bg-shadow bg-opacity-10 py-1 px-3 rounded-lg">
+            <BsGearFill className="inline" /> 他にもこんな機能
+          </span>
+        </Title>
+        <IconContext.Provider value={{ size: "2rem", color: "#545454" }}>
+          <List size="md" icon={<BiRadioCircleMarked />} className="px-10 py-5">
+            <List.Item className="py-2 text-xl">LINEでAIチャットbot</List.Item>
+            <List.Item className="py-2 text-xl">LINEの一斉送信</List.Item>
+            <List.Item className="py-2 text-xl">
+              毎朝当日の予定一覧をLINEで送付
+            </List.Item>
+          </List>
+        </IconContext.Provider>
+      </div>
 
       <Container className="bg-light-yellow py-2">
         <Title order={3} className="text-center py-2">
