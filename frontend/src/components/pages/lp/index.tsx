@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Card, Container, Divider, List, Text, Title } from "@mantine/core";
 import Image from "next/image";
-import { Bulb, MoodSadDizzy } from "tabler-icons-react";
+import { Bulb } from "tabler-icons-react";
 import { AuthContext } from "../../../providers/AuthContext";
 import LPHeader from "../../ui-elements/LP/Header";
 import AddFriendButton from "../../ui-elements/AddFriendButton";
@@ -12,6 +12,7 @@ import { BsGearFill } from "react-icons/bs";
 import { BiRadioCircleMarked } from "react-icons/bi";
 import { IconContext } from "react-icons";
 import { TbTriangleInvertedFilled } from "react-icons/tb";
+import { RiUserVoiceFill } from "react-icons/ri";
 import AddFriendSubButton from "../../ui-elements/AddFriendButton/AddFriendSubButton";
 
 const heightStyle = {
@@ -269,7 +270,7 @@ const PagesLandingPage = () => {
         </Text>
       </div>
 
-      <div className="pt-3 pb-7">
+      <div className="pt-3 pb-7 bg-[#E1E1E1]">
         <IconContext.Provider value={{ size: "1.5rem", color: "#DB7F58" }}>
           <TbTriangleInvertedFilled className="mx-auto" />
         </IconContext.Provider>
@@ -296,52 +297,57 @@ const PagesLandingPage = () => {
         <AddFriendSubButton />
       </div>
 
-      <Container className="bg-light-yellow py-2">
-        <Title order={3} className="text-center py-2">
-          こんなお悩みありませんか？
+      <div className="py-10">
+        <Title
+          order={3}
+          className="text-center pb-2 font-semibold text-light-black"
+        >
+          <span className="bg-shadow bg-opacity-10 py-1 px-3 rounded-lg">
+            <RiUserVoiceFill className="inline" /> ユーザーの声
+          </span>
         </Title>
-        <Card shadow="md" radius="lg" className="mt-2 mb-5">
-          <List
-            size="sm"
-            icon={<MoodSadDizzy />}
-            className="px-3 py-2 font-semibold"
-          >
-            <List.Item className="py-1">予定をすぐに忘れてしまう...</List.Item>
-            <List.Item className="py-1">
-              カレンダーに予定を入れていたのに見てなくてすっぽかしてしまった...
-            </List.Item>
-            <List.Item className="py-1">
-              アプリ内で通知したいけど、関係ない通知が来るのでできれば通知オフにしたい...
-            </List.Item>
-          </List>
-        </Card>
-      </Container>
-
-      <Container className="bg-light-gray py-2 text-center">
-        <Title order={3} className="text-center py-2">
-          ユーザーの声
-        </Title>
-        {/* Card コンポーネントの Padding を上書きしている */}
-        <Card shadow="md" radius="lg" className="mt-2 mb-5 px-7 pb-5">
+        <div className="py-3">
           <Image
-            src="/woman.png"
-            alt="ユーザーの声"
-            width={100}
-            height={100}
+            src="/lp/LP-man.png"
+            alt="ユーザーの声 (20代男性)"
+            width={150}
+            height={150}
             className="mx-auto"
           />
-          <Text fz="xs" fw="bold">
-            20代 女性
+          <Text className="text-center pt-2 text-[#6C9EC6]">20代 男性</Text>
+          <Text className="text-light-black bg-[#E1E1E1] p-2 m-5 rounded-lg">
+            LINEで通知がくるので予定を忘れることが格段になくなりました。リマインド以外にもチャットボットが使えたりとても便利なツールだと思います。
           </Text>
-          <Text fz="md" fw="bold" className="pt-3">
-            予定を管理・把握できるようになった
+        </div>
+
+        <div className="py-3">
+          <Image
+            src="/lp/LP-woman.png"
+            alt="ユーザーの声 (20代女性)"
+            width={150}
+            height={150}
+            className="mx-auto"
+          />
+          <Text className="text-center pt-2 text-[#E887EA]">20代 女性</Text>
+          <Text className="text-light-black bg-[#E1E1E1] p-2 m-5 rounded-lg">
+            Googleカレンダーで予定を管理してましたが、ポップアップの通知をよく見逃していました。MUCHAを使用してからLINEで通知がくるので凄く安心しています。
           </Text>
-          <Text fz="md" className="pt-1 text-left">
-            LINEと連携されていることで通知に気付きやすかったです。
-            また、繰り返し機能があるなど機能性が高くて非常に重宝しています！
+        </div>
+
+        <div className="py-3">
+          <Image
+            src="/lp/LP-man2.png"
+            alt="ユーザーの声 (30代男性)"
+            width={150}
+            height={150}
+            className="mx-auto"
+          />
+          <Text className="text-center pt-2 text-[#6C9EC6]">30代 男性</Text>
+          <Text className="text-light-black bg-[#E1E1E1] p-2 m-5 rounded-lg">
+            MUCHAはチャットで予定が登録できるので、新感覚かつ直感的にリマインド設定ができます。ですので毎日楽しくリマインド設定をさせて頂いております。
           </Text>
-        </Card>
-      </Container>
+        </div>
+      </div>
 
       <Container className="py-2">
         <Title order={3} className="text-center">
