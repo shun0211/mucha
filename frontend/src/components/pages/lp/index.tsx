@@ -13,6 +13,7 @@ import { BiRadioCircleMarked } from "react-icons/bi";
 import { IconContext } from "react-icons";
 import { TbTriangleInvertedFilled } from "react-icons/tb";
 import { RiUserVoiceFill } from "react-icons/ri";
+import { RxTriangleDown } from "react-icons/rx";
 import AddFriendSubButton from "../../ui-elements/AddFriendButton/AddFriendSubButton";
 
 const heightStyle = {
@@ -28,8 +29,6 @@ const dot: React.CSSProperties = {
 };
 
 const PagesLandingPage = () => {
-  const { currentUser } = useContext(AuthContext);
-
   return (
     <div className="bg-background">
       <div className="h-[100vh] bg-primary relative">
@@ -349,29 +348,36 @@ const PagesLandingPage = () => {
         </div>
       </div>
 
-      <Container className="py-2">
-        <Title order={3} className="text-center">
-          さっそく体験しよう！
+      <div className="py-8 bg-primary">
+        <Title order={3} className="text-center text-white">
+          だれでも・いますぐ・かんたん
         </Title>
-        <div className="grid grid-cols-2 my-3 items-center">
-          <AddFriendButton />
+        <Text className="text-center text-white">
+          <RxTriangleDown className="inline" />
+          ご登録はこちらから
+          <RxTriangleDown className="inline" />
+        </Text>
+        <div className="border-x mx-10 py-3 my-2">
           <Image
-            src="/add-friend-qr-code.png"
+            src="/lp/LP-title.png"
+            alt="Mucha タイトル"
+            width={200}
+            height={100}
+            className="mx-auto"
+          />
+          <Text fz="md" className="text-center text-white pt-1">
+            ミューチャ
+          </Text>
+          <Image
+            src="/lp/LP-add-friend-qr-code.png"
             alt="友だち追加用のQRコード"
             width={150}
             height={150}
-            className="mx-auto justify-self-center"
+            className="mx-auto my-5"
           />
+          <AddFriendButton />
         </div>
-        <Text size="xs" className="whitespace-pre-line text-center">
-          ブラウザからもお使いいただけます
-        </Text>
-        {currentUser == null ? (
-          <MainLinkButton text="さっそく使ってみる！" src="/signin" />
-        ) : (
-          <MainLinkButton text="さっそく使ってみる！" src="/notices" />
-        )}
-      </Container>
+      </div>
       <Footer />
     </div>
   );

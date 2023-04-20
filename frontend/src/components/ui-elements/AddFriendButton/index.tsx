@@ -26,7 +26,7 @@ const AddFriendButton = () => {
         },
       })}
     >
-      今すぐ友だち追加！
+      友だち追加
     </Button>
   );
 };
