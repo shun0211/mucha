@@ -11,17 +11,20 @@ import { FaUserTimes } from "react-icons/fa";
 import { BsGearFill } from "react-icons/bs";
 import { BiRadioCircleMarked } from "react-icons/bi";
 import { IconContext } from "react-icons";
+import { TbTriangleInvertedFilled } from "react-icons/tb";
+import AddFriendSubButton from "../../ui-elements/AddFriendButton/AddFriendSubButton";
 
 const heightStyle = {
   height: "calc(100vh - 500px)",
 };
 const dot: React.CSSProperties = {
-  "backgroundImage": "radial-gradient(circle at center, orange 20%, transparent 20%)",
-  "backgroundPosition": "top right",
-  "backgroundRepeat": "repeat-x",
-  "backgroundSize": "1em 0.3em",
-  "paddingTop": ".4em"
-}
+  backgroundImage:
+    "radial-gradient(circle at center, orange 20%, transparent 20%)",
+  backgroundPosition: "top right",
+  backgroundRepeat: "repeat-x",
+  backgroundSize: "1em 0.3em",
+  paddingTop: ".4em",
+};
 
 const PagesLandingPage = () => {
   const { currentUser } = useContext(AuthContext);
@@ -156,7 +159,7 @@ const PagesLandingPage = () => {
           </span>
         </Title>
         <Text
-          className="underline decoration-[#C9BC9C] decoration-3 text-center text-[#DB7F58] pt-3"
+          className="underline decoration-[#C9BC9C] decoration-3 text-center text-orange pt-3"
           size="xl"
         >
           だれでも・いますぐ・かんたん
@@ -260,12 +263,37 @@ const PagesLandingPage = () => {
       </div>
 
       <div className="bg-primary py-1.5">
-        <Text className="text-white text-center">
-          リマインド機能だけでなく
-        </Text>
+        <Text className="text-white text-center">リマインド機能だけでなく</Text>
         <Text className="text-white text-center pt-1.5">
           <span style={dot}>便利な機能</span>が盛りだくさん
         </Text>
+      </div>
+
+      <div className="pt-3 pb-7">
+        <IconContext.Provider value={{ size: "1.5rem", color: "#DB7F58" }}>
+          <TbTriangleInvertedFilled className="mx-auto" />
+        </IconContext.Provider>
+        <Title
+          order={3}
+          className="text-center pt-3 pb-2 text-light-black font-semibold"
+        >
+          ぜひお気軽にお試しください
+        </Title>
+        <Image
+          src="/logo.png"
+          alt="MUCHA ロゴ"
+          width={100}
+          height={100}
+          className="mx-auto py-2"
+        />
+        <Image
+          src="/lp/LP-title-black.png"
+          alt="MUCHA タイトル"
+          width={130}
+          height={100}
+          className="mx-auto pt-2"
+        />
+        <AddFriendSubButton />
       </div>
 
       <Container className="bg-light-yellow py-2">
