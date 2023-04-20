@@ -15,6 +15,13 @@ import { IconContext } from "react-icons";
 const heightStyle = {
   height: "calc(100vh - 500px)",
 };
+const dot: React.CSSProperties = {
+  "backgroundImage": "radial-gradient(circle at center, orange 20%, transparent 20%)",
+  "backgroundPosition": "top right",
+  "backgroundRepeat": "repeat-x",
+  "backgroundSize": "1em 0.3em",
+  "paddingTop": ".4em"
+}
 
 const PagesLandingPage = () => {
   const { currentUser } = useContext(AuthContext);
@@ -250,6 +257,15 @@ const PagesLandingPage = () => {
             </List.Item>
           </List>
         </IconContext.Provider>
+      </div>
+
+      <div className="bg-primary py-1.5">
+        <Text className="text-white text-center">
+          リマインド機能だけでなく
+        </Text>
+        <Text className="text-white text-center pt-1.5">
+          <span style={dot}>便利な機能</span>が盛りだくさん
+        </Text>
       </div>
 
       <Container className="bg-light-yellow py-2">
