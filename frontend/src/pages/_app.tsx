@@ -50,6 +50,7 @@ export default function App(props: AppProps) {
           name="viewport"
           content="width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover"
         />
+        <meta name="theme-color" content="#F5E682"></meta>
       </Head>
       <DefaultSeo
         defaultTitle="Mucha (ミューチャ) | LINE リマインドツール"

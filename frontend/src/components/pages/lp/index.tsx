@@ -1,11 +1,9 @@
-import React, { useContext } from "react";
-import { Card, Container, Divider, List, Text, Title } from "@mantine/core";
+import React from "react";
+import { Container, Divider, List, Text, Title } from "@mantine/core";
 import Image from "next/image";
 import { Bulb } from "tabler-icons-react";
-import { AuthContext } from "../../../providers/AuthContext";
 import LPHeader from "../../ui-elements/LP/Header";
 import AddFriendButton from "../../ui-elements/AddFriendButton";
-import MainLinkButton from "../../ui-elements/MainLinkButton";
 import Footer from "../../ui-elements/Footer";
 import { FaUserTimes } from "react-icons/fa";
 import { BsGearFill } from "react-icons/bs";
@@ -16,9 +14,6 @@ import { RiUserVoiceFill } from "react-icons/ri";
 import { RxTriangleDown } from "react-icons/rx";
 import AddFriendSubButton from "../../ui-elements/AddFriendButton/AddFriendSubButton";
 
-const heightStyle = {
-  height: "calc(100vh - 500px)",
-};
 const dot: React.CSSProperties = {
   backgroundImage:
     "radial-gradient(circle at center, orange 20%, transparent 20%)",
@@ -34,58 +29,64 @@ const PagesLandingPage = () => {
       <div className="h-[100vh] bg-primary relative">
         <LPHeader />
         <div className="pl-5">
-          <Image
-            src="/lp/LP-background-image.png"
-            alt="MUCHA 背景画像"
-            width={330}
-            height={500}
-            className="absolute top-8 right-0"
-          />
-          <div style={heightStyle}></div>
-          {/* drop-shadow が効いていない */}
-          <Text
-            fz="xl"
-            className="text-left font-bellota text-white !drop-shadow"
-          >
-            LINEで<span className="text-[#FFF7C3]">リマインド</span>生活
-          </Text>
-          <Image
-            src="/lp/LP-title.png"
-            alt="Mucha タイトル"
-            width={300}
-            height={100}
-            className=""
-          />
-          <Text fz="md" className="text-left text-white">
-            ミューチャ
-          </Text>
+          <div className="relative w-auto mt-5" style={{ height: "45vh" }}>
+            <Image
+              src="/lp/LP-background-image.png"
+              alt="MUCHA 背景画像"
+              layout="fill"
+              objectFit="contain"
+            />
+          </div>
+          <div className="absolute" style={{ bottom: "51vh" }}>
+            <Text
+              fz="xl"
+              className="text-left font-bellota text-white"
+            >
+              LINEで<span className="text-[#FFF7C3]">リマインド</span>生活
+            </Text>
+            <div className="relative w-auto" style={{ height: "6vh" }}>
+              <Image
+                src="/lp/LP-title.png"
+                alt="Mucha タイトル"
+                layout="fill"
+                objectFit="contain"
+                className=""
+              />
+            </div>
+            <Text fz="md" className="text-left text-white">
+              ミューチャ
+            </Text>
+          </div>
         </div>
-        <div className="grid grid-cols-4 my-2">
+        <div className="grid grid-cols-4 my-2 md:w-3/5">
           {/* color と text 両方指定する必要がある */}
           <Divider
             size="xs"
             color="accent"
-            className="col-span-3 text-accent"
+            className="col-span-3 text-accent mt-[1px]"
           />
           <Divider size="md" color="accent" className="text-accent" />
         </div>
         <div className="pl-5">
-          <Text size="md" className="text-left text-white py-1">
+          <Text size="md" className="text-left text-white py-0.5">
             いつも忙しいあなたへ
           </Text>
-          <Text size="md" className="text-left text-white py-1">
+          <Text size="md" className="text-left text-white py-0.5">
             MUCHAのリマインドでスマートな1日を
           </Text>
-          <Text size="md" className="text-left text-white py-1">
-            LINEで利用できるリマインドツール
+          <Text size="md" className="text-left text-white py-0.5 bg-white bg-opacity-10 rounded-md ml-[-2px] px-1 inline-block">
+            LINEで利用できる<span className="text-[#FFF7C3]">リマインド</span>ツール
           </Text>
+          <div className="relative w-auto" style={{ height: "20vh" }}>
+
           <Image
             src="/lp/LP-add-friend-qr-code.png"
             alt="友だち追加用のQRコード"
-            width={150}
-            height={150}
-            className="mx-auto"
+            layout="fill"
+            objectFit="contain"
+            className="mx-auto mt-3"
           />
+          </div>
           <AddFriendButton />
         </div>
         <div className="h-4 w-full bg-accent absolute bottom-0"></div>
