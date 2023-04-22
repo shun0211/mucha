@@ -298,7 +298,7 @@ const PagesLandingPage = () => {
       <div className="bg-primary py-1.5">
         <Text className="text-white text-center">リマインド機能だけでなく</Text>
         <Text className="text-white text-center pt-1.5">
-          <span style={{ textEmphasis: "dot #DB7F58" }}>便利な機能</span>が盛りだくさん
+          <span style={{ textEmphasis: "circle #DB7F58" }}>便利な機能</span>が盛りだくさん
         </Text>
       </div>
 
