@@ -209,9 +209,9 @@ const PagesLandingPage = () => {
           <div className="col-span-1 bg-[#4B7E7B]"></div>
           <div className="col-span-11 pb-8 pt-10">
             <Image
-              src="/how-to-use.jpg"
-              alt="ユースケース"
-              width={300}
+              src="/lp/LP-ai-remind.png"
+              alt="AIチャットでリマインド登録"
+              width={200}
               height={100}
               className="mx-auto my-2"
             />
@@ -268,13 +268,22 @@ const PagesLandingPage = () => {
         <div className="grid grid-cols-12">
           <div className="col-span-1 bg-[#305755]"></div>
           <div className="col-span-11 pb-8 pt-10">
-            <Image
-              src="/google_calendar.png"
-              alt="Googleカレンダーアイコン"
-              width={200}
-              height={100}
-              className="mx-auto m-7"
-            />
+            <div className="flex">
+              <Image
+                src="/lp/LP-richmenu.png"
+                alt="メニューからリマインド登録"
+                width={160}
+                height={100}
+                className="mx-auto m-7"
+              />
+              <Image
+                src="/lp/LP-registration.png"
+                alt="メニューからリマインド登録"
+                width={160}
+                height={100}
+                className="mx-auto m-7"
+              />
+            </div>
             <Text className="text-white bg-white bg-opacity-10 p-2 m-5 rounded-lg">
               メニューからブラウザを立ち上げてかんたんにリマインドを登録することができます。
             </Text>

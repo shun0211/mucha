@@ -1,11 +1,11 @@
-import { Anchor, Container, Text } from "@mantine/core";
+import { Anchor, Text } from "@mantine/core";
 import React from "react";
 import { CONTACT_URL } from "../../../config/constants";
 
 const Footer = () => {
   return (
     <>
-      <Container className="bg-accent text-center pt-3 pb-5">
+      <div className="bg-accent text-center pt-3 pb-5">
         <Text color="#7E7E7E" fz="xl" fw="bold">
           MUCHA
         </Text>
@@ -31,7 +31,7 @@ const Footer = () => {
         >
           開発者ブログ
         </Anchor>
-      </Container>
+      </div>
     </>
   );
 };
