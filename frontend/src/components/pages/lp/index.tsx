@@ -14,6 +14,9 @@ import { RiUserVoiceFill } from "react-icons/ri";
 import { RxTriangleDown } from "react-icons/rx";
 import AddFriendSubButton from "../../ui-elements/AddFriendButton/AddFriendSubButton";
 
+const dotCSSClass =
+  "relative pt-[5px] before:absolute before:content-[''] before:w-[0.2em] before:h-[0.2em] before:rounded-lg before:bg-orange before:top-0 before:left-1/2";
+
 const PagesLandingPage = () => {
   return (
     <div className="bg-background">
@@ -124,7 +127,11 @@ const PagesLandingPage = () => {
             こんなお悩みありませんか？
           </span>
         </Title>
-        <List size="md" icon={<FaUserTimes className="mt-[3px]" />} className="px-8 py-5">
+        <List
+          size="md"
+          icon={<FaUserTimes className="mt-[3px]" />}
+          className="px-8 py-5"
+        >
           <List.Item className="py-2">
             ちょっとした要件を手軽にリマインドしたい
           </List.Item>
@@ -298,7 +305,11 @@ const PagesLandingPage = () => {
       <div className="bg-primary py-1.5">
         <Text className="text-white text-center">リマインド機能だけでなく</Text>
         <Text className="text-white text-center pt-1.5">
-          <span style={{ textEmphasis: "circle #DB7F58" }}>便利な機能</span>が盛りだくさん
+          <span className={dotCSSClass}>便</span>
+          <span className={dotCSSClass}>利</span>
+          <span className={dotCSSClass}>な</span>
+          <span className={dotCSSClass}>機</span>
+          <span className={dotCSSClass}>能</span>が盛りだくさん
         </Text>
       </div>
 
