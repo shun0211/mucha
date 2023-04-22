@@ -16,6 +16,24 @@ import AddFriendSubButton from "../../ui-elements/AddFriendButton/AddFriendSubBu
 
 const dotCSSClass =
   "relative pt-[5px] before:absolute before:content-[''] before:w-[0.2em] before:h-[0.2em] before:rounded-lg before:bg-orange before:top-0 before:left-1/2";
+const triangle01: React.CSSProperties = {
+  width: 0,
+  height: 0,
+  borderRight: "30px solid transparent",
+  borderTop: "30px solid #4B7E7B",
+};
+const triangle02: React.CSSProperties = {
+  width: 0,
+  height: 0,
+  borderRight: "30px solid transparent",
+  borderTop: "30px solid #316966",
+};
+const triangle03: React.CSSProperties = {
+  width: 0,
+  height: 0,
+  borderRight: "30px solid transparent",
+  borderTop: "30px solid #305755",
+};
 
 const PagesLandingPage = () => {
   return (
@@ -207,6 +225,11 @@ const PagesLandingPage = () => {
 
         <div className="grid grid-cols-12">
           <div className="col-span-1 bg-[#4B7E7B]"></div>
+          <div style={triangle01}></div>
+        </div>
+
+        <div className="grid grid-cols-12">
+          <div className="col-span-1 bg-[#4B7E7B]"></div>
           <div className="col-span-11 pb-8 pt-10">
             <Image
               src="/lp/LP-ai-remind.png"
@@ -237,6 +260,11 @@ const PagesLandingPage = () => {
 
         <div className="grid grid-cols-12">
           <div className="col-span-1 bg-[#316966]"></div>
+          <div style={triangle02}></div>
+        </div>
+
+        <div className="grid grid-cols-12">
+          <div className="col-span-1 bg-[#316966]"></div>
           <div className="col-span-11 pb-8 pt-5">
             <Image
               src="/google_calendar.png"
@@ -263,6 +291,11 @@ const PagesLandingPage = () => {
               <Text className="text-white text-2xl">リマインド登録</Text>
             </div>
           </div>
+        </div>
+
+        <div className="grid grid-cols-12">
+          <div className="col-span-1 bg-[#305755]"></div>
+          <div style={triangle03}></div>
         </div>
 
         <div className="grid grid-cols-12">
