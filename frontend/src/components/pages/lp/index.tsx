@@ -133,7 +133,7 @@ const PagesLandingPage = () => {
             こんなお悩みありませんか？
           </span>
         </Title>
-        <List size="md" icon={<FaUserTimes />} className="px-8 py-5">
+        <List size="md" icon={<FaUserTimes className="mt-[3px]" />} className="px-8 py-5">
           <List.Item className="py-2">
             ちょっとした要件を手軽にリマインドしたい
           </List.Item>
