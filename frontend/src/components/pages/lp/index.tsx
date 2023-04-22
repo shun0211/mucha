@@ -92,10 +92,10 @@ const PagesLandingPage = () => {
         <div className="h-4 w-full bg-accent absolute bottom-0"></div>
       </div>
 
-      <Container className="bg-primary py-2">
+      <div className="bg-primary pt-2 pb-5">
         <Title
           order={3}
-          className="text-center pt-8 pb-2 text-white font-semibold"
+          className="text-center pt-10 pb-2 text-white font-semibold"
         >
           <span className="bg-white bg-opacity-10 py-1 px-3 rounded-lg">
             MUCHAのポイント
@@ -122,12 +122,12 @@ const PagesLandingPage = () => {
           height={100}
           className="mx-auto py-3 pb-6"
         />
-      </Container>
+      </div>
 
-      <Container className="py-2">
+      <div className="pt-2 pb-5">
         <Title
           order={3}
-          className="text-center pt-8 pb-2 font-semibold text-light-black"
+          className="text-center pt-10 pb-2 font-semibold text-light-black"
         >
           <span className="bg-shadow bg-opacity-10 py-1 px-3 rounded-lg">
             こんなお悩みありませんか？
@@ -144,16 +144,16 @@ const PagesLandingPage = () => {
             スケジュールアプリでリマインド設定するのがめんどくさい
           </List.Item>
         </List>
-      </Container>
+      </div>
 
       <div className="bg-primary text-white text-center py-0.5 text-lg">
         そんなあなたに...
       </div>
 
-      <div className="py-10 text-center">
+      <div className="pt-2 pb-10 text-center">
         <Title
           order={3}
-          className="text-center pb-2 font-semibold text-light-black"
+          className="text-center pb-2 pt-10 font-semibold text-light-black"
         >
           <span className="bg-shadow bg-opacity-10 py-1 px-3 rounded-lg">
             <Bulb className="inline" /> MUCHAでお悩みを解決
@@ -284,10 +284,10 @@ const PagesLandingPage = () => {
         </div>
       </div>
 
-      <div className="pt-10 pb-5">
+      <div className="pt-2 pb-5">
         <Title
           order={3}
-          className="text-center pb-2 font-semibold text-light-black"
+          className="text-center pt-10 pb-2 font-semibold text-light-black"
         >
           <span className="bg-shadow bg-opacity-10 py-1 px-3 rounded-lg">
             <BsGearFill className="inline" /> 他にもこんな機能
@@ -338,10 +338,10 @@ const PagesLandingPage = () => {
         <AddFriendSubButton />
       </div>
 
-      <div className="py-10">
+      <div className="pt-2 pb-5">
         <Title
           order={3}
-          className="text-center pb-2 font-semibold text-light-black"
+          className="text-center pb-2 pt-10 font-semibold text-light-black"
         >
           <span className="bg-shadow bg-opacity-10 py-1 px-3 rounded-lg">
             <RiUserVoiceFill className="inline" /> ユーザーの声
