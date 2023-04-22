@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Divider, List, Text, Title } from "@mantine/core";
+import { Divider, List, Text, Title } from "@mantine/core";
 import Image from "next/image";
 import { Bulb } from "tabler-icons-react";
 import LPHeader from "../../ui-elements/LP/Header";
@@ -13,15 +13,6 @@ import { TbTriangleInvertedFilled } from "react-icons/tb";
 import { RiUserVoiceFill } from "react-icons/ri";
 import { RxTriangleDown } from "react-icons/rx";
 import AddFriendSubButton from "../../ui-elements/AddFriendButton/AddFriendSubButton";
-
-const dot: React.CSSProperties = {
-  backgroundImage:
-    "radial-gradient(circle at center, orange 20%, transparent 20%)",
-  backgroundPosition: "top right",
-  backgroundRepeat: "repeat-x",
-  backgroundSize: "1em 0.3em",
-  paddingTop: ".4em",
-};
 
 const PagesLandingPage = () => {
   return (
@@ -307,7 +298,7 @@ const PagesLandingPage = () => {
       <div className="bg-primary py-1.5">
         <Text className="text-white text-center">リマインド機能だけでなく</Text>
         <Text className="text-white text-center pt-1.5">
-          <span style={dot}>便利な機能</span>が盛りだくさん
+          <span style={{ textEmphasis: "dot #DB7F58" }}>便利な機能</span>が盛りだくさん
         </Text>
       </div>
 
