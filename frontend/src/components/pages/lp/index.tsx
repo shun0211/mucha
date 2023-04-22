@@ -38,10 +38,7 @@ const PagesLandingPage = () => {
             />
           </div>
           <div className="absolute" style={{ bottom: "51vh" }}>
-            <Text
-              fz="xl"
-              className="text-left font-bellota text-white"
-            >
+            <Text fz="xl" className="text-left font-bellota text-white">
               LINEで<span className="text-[#FFF7C3]">リマインド</span>生活
             </Text>
             <div className="relative w-auto" style={{ height: "6vh" }}>
@@ -74,18 +71,21 @@ const PagesLandingPage = () => {
           <Text size="md" className="text-left text-white py-0.5">
             MUCHAのリマインドでスマートな1日を
           </Text>
-          <Text size="md" className="text-left text-white py-0.5 bg-white bg-opacity-10 rounded-md ml-[-2px] px-1 inline-block">
-            LINEで利用できる<span className="text-[#FFF7C3]">リマインド</span>ツール
+          <Text
+            size="md"
+            className="text-left text-white py-0.5 bg-white bg-opacity-10 rounded-md ml-[-2px] px-1 inline-block"
+          >
+            LINEで利用できる<span className="text-[#FFF7C3]">リマインド</span>
+            ツール
           </Text>
           <div className="relative w-auto" style={{ height: "20vh" }}>
-
-          <Image
-            src="/lp/LP-add-friend-qr-code.png"
-            alt="友だち追加用のQRコード"
-            layout="fill"
-            objectFit="contain"
-            className="mx-auto mt-3"
-          />
+            <Image
+              src="/lp/LP-add-friend-qr-code.png"
+              alt="友だち追加用のQRコード"
+              layout="fill"
+              objectFit="contain"
+              className="mx-auto mt-3"
+            />
           </div>
           <AddFriendButton />
         </div>
@@ -150,7 +150,7 @@ const PagesLandingPage = () => {
         そんなあなたに...
       </div>
 
-      <div className="py-10">
+      <div className="py-10 text-center">
         <Title
           order={3}
           className="text-center pb-2 font-semibold text-light-black"
@@ -160,7 +160,7 @@ const PagesLandingPage = () => {
           </span>
         </Title>
         <Text
-          className="underline decoration-[#C9BC9C] decoration-3 text-center text-orange pt-3"
+          className="decoration-3 align-middle text-orange pt-3 relative inline-block after:content-[''] after:absolute after:w-full after:h-1 after:bg-[#C9BC9C] after:bottom-0 after:left-0 after:shadow-[0_0_2px_rgba(0,0,0,0.4)] after:opacity-60"
           size="xl"
         >
           だれでも・いますぐ・かんたん
@@ -278,7 +278,7 @@ const PagesLandingPage = () => {
               className="mx-auto m-7"
             />
             <Text className="text-white bg-white bg-opacity-10 p-2 m-5 rounded-lg">
-              リッチメニューからブラウザを立ち上げてかんたんにリマインドを登録することができます。
+              メニューからブラウザを立ち上げてかんたんにリマインドを登録することができます。
             </Text>
           </div>
         </div>
