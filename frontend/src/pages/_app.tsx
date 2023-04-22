@@ -53,21 +53,21 @@ export default function App(props: AppProps) {
         <meta name="theme-color" content="#F5E682"></meta>
       </Head>
       <DefaultSeo
-        defaultTitle="Mucha (ミューチャ) | LINE リマインドツール"
-        description="家族や恋人同士で使える便利なリマインドチャットツール"
+        defaultTitle="MUCHA (ミューチャ) | LINE リマインドツール"
+        description="LINEで利用できるリマインドツール"
         canonical="https://muchualchat.com/"
         openGraph={{
           type: "website",
-          title: "Mucha (ミューチャ) | LINE リマインドツール",
-          description: "家族や恋人同士で使える便利なリマインドチャットツール",
-          site_name: "Mucha (ミューチャ) | LINE リマインドツール",
+          title: "MUCHA (ミューチャ) | LINE リマインドツール",
+          description: "LINEで利用できるリマインドツール",
+          site_name: "MUCHA (ミューチャ) | LINE リマインドツール",
           url: "https://muchualchat.com/",
           images: [
             {
               url: "https://mucha.s3.ap-northeast-1.amazonaws.com/logo.png",
               width: 600,
               height: 600,
-              alt: "Muchaのロゴ",
+              alt: "MUCHA (ミューチャ) のロゴ",
             },
           ],
         }}
