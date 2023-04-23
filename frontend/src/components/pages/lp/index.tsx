@@ -82,13 +82,13 @@ const PagesLandingPage = () => {
             </div>
             <div className="pl-5 md:flex">
               <div className="md:basis-9/12">
-                <Text className="text-left text-white py-0.5 md:py-2 md:text-xl">
+                <Text className="text-left text-white py-0.5 md:py-6 md:text-2xl">
                   いつも忙しいあなたへ
                 </Text>
-                <Text className="text-left text-white py-0.5 md:py-2 md:text-xl">
+                <Text className="text-left text-white py-0.5 md:py-6 md:text-2xl">
                   MUCHAのリマインドでスマートな1日を
                 </Text>
-                <Text className="text-left text-white py-0.5 bg-white bg-opacity-10 rounded-md ml-[-2px] px-1 inline-block md:my-2 md:text-xl">
+                <Text className="text-left text-white py-0.5 bg-white bg-opacity-10 rounded-md ml-[-2px] px-1 inline-block md:my-7 md:text-2xl">
                   LINEで利用できる
                   <span className="text-[#FFF7C3]">リマインド</span>
                   ツール
