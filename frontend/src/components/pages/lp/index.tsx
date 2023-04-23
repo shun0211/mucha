@@ -210,7 +210,7 @@ const PagesLandingPage = () => {
           <div className="col-span-1 bg-[#4B7E7B] pt-10"></div>
           <Title
             order={3}
-            className="text-center font-semibold text-white col-span-11 py-5 pt-10"
+            className="text-center font-semibold text-white col-span-11 pb-5 pt-10 pr-[8.3%]"
           >
             <span className="bg-white bg-opacity-10 py-1 px-3 rounded-lg">
               <BsGearFill className="inline" /> 使いやすい3つの機能
