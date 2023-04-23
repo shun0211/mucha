@@ -401,7 +401,7 @@ const PagesLandingPage = () => {
             <RiUserVoiceFill className="inline" /> ユーザーの声
           </span>
         </Title>
-        <div className="py-3">
+        <div className="py-3 max-w-xl mx-auto">
           <Image
             src="/lp/LP-man.png"
             alt="ユーザーの声 (20代男性)"
@@ -415,7 +415,7 @@ const PagesLandingPage = () => {
           </Text>
         </div>
 
-        <div className="py-3">
+        <div className="py-3 max-w-xl mx-auto">
           <Image
             src="/lp/LP-woman.png"
             alt="ユーザーの声 (20代女性)"
@@ -429,7 +429,7 @@ const PagesLandingPage = () => {
           </Text>
         </div>
 
-        <div className="py-3">
+        <div className="py-3 max-w-xl mx-auto">
           <Image
             src="/lp/LP-man2.png"
             alt="ユーザーの声 (30代男性)"
