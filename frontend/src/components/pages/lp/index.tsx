@@ -100,7 +100,7 @@ const PagesLandingPage = () => {
                   alt="友だち追加用のQRコード"
                   layout="fill"
                   objectFit="contain"
-                  className="mx-auto mt-3"
+                  className="mx-auto mt-4"
                 />
               </div>
               <AddFriendButton />

@@ -7,7 +7,7 @@ const AddFriendButton = () => {
       component="a"
       target="_blank"
       href="https://lin.ee/QPiwqec"
-      className="block mx-auto mt-5"
+      className="block mx-auto mt-7"
       styles={(theme) => ({
         root: {
           backgroundColor: "#FFFFFF",
