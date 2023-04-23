@@ -41,7 +41,7 @@ const PagesLandingPage = () => {
       <LPHeader />
       {/* ヘッダーとフッターで 4vh なので 96 vh とする */}
       <div className="h-[96vh] bg-primary relative w-full">
-        <div className="relative w-auto h-[47vh] md:h-[100vh] md:w-2/5 md:max-w-lg md:absolute md:right-10 md:bottom-0">
+        <div className="relative w-auto h-[45vh] md:h-[100vh] md:w-2/5 md:max-w-lg md:absolute md:right-10 md:bottom-0">
           <Image
             src="/lp/LP-background-image.png"
             alt="MUCHA 背景画像"
@@ -52,8 +52,8 @@ const PagesLandingPage = () => {
         </div>
         <div className="md:w-3/5 md:pl-10">
           {/* 背景画像の代わりに設置 */}
-          <div className="h-[47vh] hidden md:block"></div>
-          <div className="absolute pl-5" style={{ bottom: "50vh" }}>
+          <div className="h-[45vh] hidden md:block"></div>
+          <div className="absolute pl-5" style={{ bottom: "51vh" }}>
             <Text className="text-left font-bellota text-white md:text-3xl">
               LINEで<span className="text-[#FFF7C3]">リマインド</span>生活
             </Text>
