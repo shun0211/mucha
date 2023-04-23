@@ -320,14 +320,14 @@ const PagesLandingPage = () => {
               <Image
                 src="/lp/LP-richmenu.png"
                 alt="メニューからリマインド登録"
-                width={160}
+                width={145}
                 height={100}
                 className="mx-auto m-7"
               />
               <Image
                 src="/lp/LP-registration.png"
                 alt="メニューからリマインド登録"
-                width={160}
+                width={145}
                 height={100}
                 className="mx-auto m-7"
               />
