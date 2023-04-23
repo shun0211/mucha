@@ -4,7 +4,7 @@ import React from "react";
 const LPHeader = () => {
   return (
     <>
-      <header className="h-4 bg-accent">
+      <header className="h-[2vh] bg-accent">
         <Image
           src="/lp/LP-header-title.png"
           alt="Mucha"

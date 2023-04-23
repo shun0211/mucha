@@ -38,71 +38,77 @@ const triangle03: React.CSSProperties = {
 const PagesLandingPage = () => {
   return (
     <div className="bg-background">
-      <div className="h-[100vh] bg-primary relative">
-        <LPHeader />
-        <div className="pl-5">
-          <div className="relative w-auto mt-5" style={{ height: "45vh" }}>
-            <Image
-              src="/lp/LP-background-image.png"
-              alt="MUCHA 背景画像"
-              layout="fill"
-              objectFit="contain"
-            />
-          </div>
-          <div className="absolute" style={{ bottom: "51vh" }}>
-            <Text fz="xl" className="text-left font-bellota text-white">
+      <LPHeader />
+      {/* ヘッダーとフッターで 4vh なので 96 vh とする */}
+      <div className="h-[96vh] bg-primary relative w-full">
+        <div className="relative w-auto h-[47vh] md:h-[100vh] md:w-2/5 md:max-w-lg md:absolute md:right-10 md:bottom-0">
+          <Image
+            src="/lp/LP-background-image.png"
+            alt="MUCHA 背景画像"
+            layout="fill"
+            objectFit="contain"
+            className="pt-5"
+          />
+        </div>
+        <div className="md:w-3/5 md:pl-10">
+          {/* 背景画像の代わりに設置 */}
+          <div className="h-[47vh] hidden md:block"></div>
+          <div className="absolute pl-5" style={{ bottom: "50vh" }}>
+            <Text className="text-left font-bellota text-white md:text-3xl">
               LINEで<span className="text-[#FFF7C3]">リマインド</span>生活
             </Text>
-            <div className="relative w-auto" style={{ height: "6vh" }}>
+            <div className="relative w-[250px] h-[6vh] md:w-[500px] md:h-[100px]">
               <Image
                 src="/lp/LP-title.png"
                 alt="Mucha タイトル"
                 layout="fill"
                 objectFit="contain"
-                className=""
+                className="!w-auto"
               />
             </div>
-            <Text fz="md" className="text-left text-white">
+            <Text className="text-left text-white md:text-xl">
               ミューチャ
             </Text>
           </div>
-        </div>
-        <div className="grid grid-cols-4 my-2 md:w-3/5">
-          {/* color と text 両方指定する必要がある */}
-          <Divider
-            size="xs"
-            color="accent"
-            className="col-span-3 text-accent mt-[1px]"
-          />
-          <Divider size="md" color="accent" className="text-accent" />
-        </div>
-        <div className="pl-5">
-          <Text size="md" className="text-left text-white py-0.5">
-            いつも忙しいあなたへ
-          </Text>
-          <Text size="md" className="text-left text-white py-0.5">
-            MUCHAのリマインドでスマートな1日を
-          </Text>
-          <Text
-            size="md"
-            className="text-left text-white py-0.5 bg-white bg-opacity-10 rounded-md ml-[-2px] px-1 inline-block"
-          >
-            LINEで利用できる<span className="text-[#FFF7C3]">リマインド</span>
-            ツール
-          </Text>
-          <div className="relative w-auto" style={{ height: "20vh" }}>
-            <Image
-              src="/lp/LP-add-friend-qr-code.png"
-              alt="友だち追加用のQRコード"
-              layout="fill"
-              objectFit="contain"
-              className="mx-auto mt-3"
+          <div className="grid grid-cols-4 my-2">
+            {/* color と text 両方指定する必要がある */}
+            <Divider
+              size="xs"
+              color="accent"
+              className="col-span-3 text-accent mt-[1px]"
             />
+            <Divider size="md" color="accent" className="text-accent" />
           </div>
-          <AddFriendButton />
+          <div className="pl-5 md:flex">
+            <div className="md:basis-9/12">
+              <Text className="text-left text-white py-0.5 md:py-2 md:text-xl">
+                いつも忙しいあなたへ
+              </Text>
+              <Text className="text-left text-white py-0.5 md:py-2 md:text-xl">
+                MUCHAのリマインドでスマートな1日を
+              </Text>
+              <Text className="text-left text-white py-0.5 bg-white bg-opacity-10 rounded-md ml-[-2px] px-1 inline-block md:my-2 md:text-xl">
+                LINEで利用できる
+                <span className="text-[#FFF7C3]">リマインド</span>
+                ツール
+              </Text>
+            </div>
+            <div className="md:basis-3/12">
+              <div className="relative w-auto" style={{ height: "20vh" }}>
+                <Image
+                  src="/lp/LP-add-friend-qr-code.png"
+                  alt="友だち追加用のQRコード"
+                  layout="fill"
+                  objectFit="contain"
+                  className="mx-auto mt-3"
+                />
+              </div>
+              <AddFriendButton />
+            </div>
+          </div>
         </div>
-        <div className="h-4 w-full bg-accent absolute bottom-0"></div>
       </div>
+      <div className="h-[2vh] w-full bg-accent absolute bottom-0"></div>
 
       <div className="bg-primary pt-2 pb-5">
         <Title
