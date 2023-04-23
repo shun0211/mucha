@@ -354,9 +354,9 @@ const PagesLandingPage = () => {
         </IconContext.Provider>
       </div>
 
-      <div className="bg-primary py-1.5">
-        <Text className="text-white text-center">リマインド機能だけでなく</Text>
-        <Text className="text-white text-center pt-1.5">
+      <div className="bg-primary py-1.5 text-center md:flex md:justify-center">
+        <Text className="text-white md:pt-1.5">リマインド機能だけでなく</Text>
+        <Text className="text-white pt-1.5">
           <span className={dotCSSClass}>便</span>
           <span className={dotCSSClass}>利</span>
           <span className={dotCSSClass}>な</span>
