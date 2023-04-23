@@ -207,10 +207,10 @@ const PagesLandingPage = () => {
 
       <div className="bg-primary">
         <div className="grid grid-cols-12">
-          <div className="col-span-1 bg-[#4B7E7B]"></div>
+          <div className="col-span-1 bg-[#4B7E7B] pt-10"></div>
           <Title
             order={3}
-            className="text-center font-semibold text-white col-span-11 py-5"
+            className="text-center font-semibold text-white col-span-11 py-5 pt-10"
           >
             <span className="bg-white bg-opacity-10 py-1 px-3 rounded-lg">
               <BsGearFill className="inline" /> 使いやすい3つの機能
@@ -223,9 +223,13 @@ const PagesLandingPage = () => {
           <div className="col-span-11 flex">
             <div className="text-6xl text-white">01</div>
             <div className="border-l-2 mx-3"></div>
-            <div>
-              <Text className="text-[#FFF7C3] text-2xl">AIチャットで</Text>
-              <Text className="text-white text-2xl">リマインド登録</Text>
+            <div className="md:flex md:items-center">
+              <Text className="text-[#FFF7C3] text-2xl md:text-4xl">
+                AIチャットで
+              </Text>
+              <Text className="text-white text-2xl md:text-4xl">
+                リマインド登録
+              </Text>
             </div>
           </div>
         </div>
@@ -237,7 +241,7 @@ const PagesLandingPage = () => {
 
         <div className="grid grid-cols-12">
           <div className="col-span-1 bg-[#4B7E7B]"></div>
-          <div className="col-span-11 pb-8 pt-10">
+          <div className="col-span-11 pb-12 pt-3 max-w-[1000px] mx-auto md:flex md:items-center">
             <Image
               src="/lp/LP-ai-remind.png"
               alt="AIチャットでリマインド登録"
@@ -245,7 +249,7 @@ const PagesLandingPage = () => {
               height={100}
               className="mx-auto my-2"
             />
-            <Text className="text-white bg-white bg-opacity-10 p-2 m-5 rounded-lg">
+            <Text className="text-white bg-white bg-opacity-10 p-2 m-5 rounded-lg h-fit md:w-[50%]">
               トーク画面で『〜日〜時に〜に行く』と予定を入力すれば自動でリマインド設定を行ってくれます。(chatGPT搭載)
             </Text>
           </div>
@@ -256,11 +260,13 @@ const PagesLandingPage = () => {
           <div className="col-span-11 flex">
             <div className="text-6xl text-white">02</div>
             <div className="border-l-2 mx-3"></div>
-            <div>
-              <Text className="text-[#FFF7C3] text-2xl">
+            <div className="md:flex md:items-center">
+              <Text className="text-[#FFF7C3] text-2xl md:text-4xl">
                 Googleカレンダー連携
               </Text>
-              <Text className="text-white text-2xl">でリマインド設定</Text>
+              <Text className="text-white text-2xl md:text-4xl">
+                でリマインド設定
+              </Text>
             </div>
           </div>
         </div>
@@ -272,7 +278,7 @@ const PagesLandingPage = () => {
 
         <div className="grid grid-cols-12">
           <div className="col-span-1 bg-[#316966]"></div>
-          <div className="col-span-11 pb-8 pt-5">
+          <div className="col-span-11 pb-12 pt-3 max-w-[1000px] mx-auto md:flex md:items-center">
             <Image
               src="/google_calendar.png"
               alt="Googleカレンダーアイコン"
@@ -280,7 +286,7 @@ const PagesLandingPage = () => {
               height={100}
               className="mx-auto m-7"
             />
-            <Text className="text-white bg-white bg-opacity-10 p-2 m-5 rounded-lg">
+            <Text className="text-white bg-white bg-opacity-10 p-2 m-5 rounded-lg h-fit md:w-[50%]">
               Googleカレンダーと連携させることで、カレンダーの予定を自動でリマインド通知することができます。
             </Text>
           </div>
@@ -291,11 +297,13 @@ const PagesLandingPage = () => {
           <div className="col-span-11 flex">
             <div className="text-6xl text-white">03</div>
             <div className="border-l-2 mx-3"></div>
-            <div>
-              <Text className="text-[#FFF7C3] text-2xl">
+            <div className="md:flex md:items-center">
+              <Text className="text-[#FFF7C3] text-2xl md:text-4xl">
                 メニューからかんたん
               </Text>
-              <Text className="text-white text-2xl">リマインド登録</Text>
+              <Text className="text-white text-2xl md:text-4xl">
+                リマインド登録
+              </Text>
             </div>
           </div>
         </div>
@@ -307,8 +315,8 @@ const PagesLandingPage = () => {
 
         <div className="grid grid-cols-12">
           <div className="col-span-1 bg-[#305755]"></div>
-          <div className="col-span-11 pb-8 pt-10">
-            <div className="flex">
+          <div className="col-span-11 pb-12 pt-3 max-w-[1000px] mx-auto md:flex md:items-center">
+            <div className="flex mx-auto md:gap-10">
               <Image
                 src="/lp/LP-richmenu.png"
                 alt="メニューからリマインド登録"
@@ -324,7 +332,7 @@ const PagesLandingPage = () => {
                 className="mx-auto m-7"
               />
             </div>
-            <Text className="text-white bg-white bg-opacity-10 p-2 m-5 rounded-lg">
+            <Text className="text-white bg-white bg-opacity-10 p-2 m-5 rounded-lg h-fit md:w-[50%]">
               メニューからブラウザを立ち上げてかんたんにリマインドを登録することができます。
             </Text>
           </div>
