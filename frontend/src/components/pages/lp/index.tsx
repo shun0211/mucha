@@ -144,11 +144,8 @@ const PagesLandingPage = () => {
         />
       </div>
 
-      <div className="pt-2 pb-5">
-        <Title
-          order={3}
-          className="text-center pt-10 pb-2 font-semibold text-light-black"
-        >
+      <div className="pt-2 pb-5 text-center">
+        <Title order={3} className="pt-10 pb-2 font-semibold text-light-black">
           <span className="bg-shadow bg-opacity-10 py-1 px-3 rounded-lg">
             こんなお悩みありませんか？
           </span>
@@ -156,15 +153,15 @@ const PagesLandingPage = () => {
         <List
           size="md"
           icon={<FaUserTimes className="mt-[3px]" />}
-          className="px-8 py-5"
+          className="px-8 py-5 md:inline-block"
         >
-          <List.Item className="py-2">
+          <List.Item className="py-2 text-left">
             ちょっとした要件を手軽にリマインドしたい
           </List.Item>
-          <List.Item className="py-2">
+          <List.Item className="py-2 text-left">
             スケジュールアプリを見る習慣がなくて予定を見逃してしまう
           </List.Item>
-          <List.Item className="py-2">
+          <List.Item className="py-2 text-left">
             スケジュールアプリでリマインド設定するのがめんどくさい
           </List.Item>
         </List>
@@ -344,8 +341,12 @@ const PagesLandingPage = () => {
             icon={<BiRadioCircleMarked />}
             className="px-10 py-5 md:inline-block"
           >
-            <List.Item className="py-2 text-xl text-left">LINEでAIチャットbot</List.Item>
-            <List.Item className="py-2 text-xl text-left">LINEの一斉送信</List.Item>
+            <List.Item className="py-2 text-xl text-left">
+              LINEでAIチャットbot
+            </List.Item>
+            <List.Item className="py-2 text-xl text-left">
+              LINEの一斉送信
+            </List.Item>
             <List.Item className="py-2 text-xl text-left">
               毎朝当日の予定一覧をLINEで送付
             </List.Item>
