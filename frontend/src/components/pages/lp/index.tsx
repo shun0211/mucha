@@ -121,27 +121,29 @@ const PagesLandingPage = () => {
             MUCHAのポイント
           </span>
         </Title>
-        <Image
-          src="/lp/LP-daredemo.png"
-          alt="だれでも"
-          width={300}
-          height={100}
-          className="mx-auto py-3 pt-6"
-        />
-        <Image
-          src="/lp/LP-imasugu.png"
-          alt="いますぐ"
-          width={300}
-          height={100}
-          className="mx-auto py-3"
-        />
-        <Image
-          src="/lp/LP-kantan.png"
-          alt="かんたん"
-          width={300}
-          height={100}
-          className="mx-auto py-3 pb-6"
-        />
+        <div className="max-w-[1044px] mx-auto md:flex md:pt-5">
+          <Image
+            src="/lp/LP-daredemo.png"
+            alt="だれでも"
+            width={300}
+            height={100}
+            className="mx-auto py-3 pt-6"
+          />
+          <Image
+            src="/lp/LP-imasugu.png"
+            alt="いますぐ"
+            width={300}
+            height={100}
+            className="mx-auto py-3"
+          />
+          <Image
+            src="/lp/LP-kantan.png"
+            alt="かんたん"
+            width={300}
+            height={100}
+            className="mx-auto py-3 pb-6"
+          />
+        </div>
       </div>
 
       <div className="pt-2 pb-5 text-center">
