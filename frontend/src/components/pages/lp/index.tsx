@@ -453,7 +453,7 @@ const PagesLandingPage = () => {
           ご登録はこちらから
           <RxTriangleDown className="inline" />
         </Text>
-        <div className="border-x mx-10 py-3 my-2">
+        <div className="border-x mx-10 py-3 my-2 max-w-3xl md:mx-auto">
           <Image
             src="/lp/LP-title.png"
             alt="Mucha タイトル"
