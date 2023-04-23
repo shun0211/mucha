@@ -332,20 +332,21 @@ const PagesLandingPage = () => {
         </div>
       </div>
 
-      <div className="pt-2 pb-5">
-        <Title
-          order={3}
-          className="text-center pt-10 pb-2 font-semibold text-light-black"
-        >
+      <div className="pt-2 pb-5 text-center">
+        <Title order={3} className="pt-10 pb-2 font-semibold text-light-black">
           <span className="bg-shadow bg-opacity-10 py-1 px-3 rounded-lg">
             <BsGearFill className="inline" /> 他にもこんな機能
           </span>
         </Title>
         <IconContext.Provider value={{ size: "2rem", color: "#545454" }}>
-          <List size="md" icon={<BiRadioCircleMarked />} className="px-10 py-5">
-            <List.Item className="py-2 text-xl">LINEでAIチャットbot</List.Item>
-            <List.Item className="py-2 text-xl">LINEの一斉送信</List.Item>
-            <List.Item className="py-2 text-xl">
+          <List
+            size="md"
+            icon={<BiRadioCircleMarked />}
+            className="px-10 py-5 md:inline-block"
+          >
+            <List.Item className="py-2 text-xl text-left">LINEでAIチャットbot</List.Item>
+            <List.Item className="py-2 text-xl text-left">LINEの一斉送信</List.Item>
+            <List.Item className="py-2 text-xl text-left">
               毎朝当日の予定一覧をLINEで送付
             </List.Item>
           </List>
