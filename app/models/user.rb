@@ -26,6 +26,7 @@ class User < ApplicationRecord
   has_one :user_setting, dependent: :destroy
   has_many :monthly_message_metrics, dependent: :destroy
   has_many :chatgpt_messages, dependent: :destroy
+  has_many :shopping_lists, dependent: :destroy
 
   validates :firebase_user_id, presence: true
 

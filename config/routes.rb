@@ -16,6 +16,14 @@ Rails.application.routes.draw do
       resources :group_talk_rooms
       post 'line_bots/link', to: "line_bots#link"
       post 'custom-token', to: "auths#fetch_custom_token"
+      resources :shopping_lists, only: [:index, :create, :update] do
+        collection do
+          delete 'bulk_destroy'
+        end
+        member do
+          put 'done'
+        end
+      end
 
       # Liff アプリからトークンを取得する場合のエンドポイント
       namespace 'liff' do

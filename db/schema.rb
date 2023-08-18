@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_01_222531) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_18_054508) do
   create_table "chatgpt_messages", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.text "message", null: false
@@ -100,6 +100,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_01_222531) do
     t.datetime "updated_at", null: false
     t.index ["uid"], name: "index_schedules_on_uid", unique: true
     t.index ["user_id"], name: "index_schedules_on_user_id"
+  end
+
+  create_table "shopping_lists", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name", null: false
+    t.boolean "is_done", default: false, null: false
+    t.datetime "done_at"
+    t.integer "disp_order", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_shopping_lists_on_user_id"
   end
 
   create_table "stations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
