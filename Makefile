@@ -19,3 +19,6 @@ rspec:
 mysql_prod:
 	pscale auth login
 	pscale shell mucha_production main
+
+rubocop_fix:
+	docker-compose run --rm mucha bundle exec rubocop -a ${file_path}

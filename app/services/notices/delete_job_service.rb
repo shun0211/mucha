@@ -1,3 +1,4 @@
+# Notice に関連する Job をすべて取り消すサービス
 class Notices::DeleteJobService
   require 'sidekiq/api'
 
