@@ -36,11 +36,11 @@ type Schedule = {
   source_url: string;
   source: string;
   bookingDetail: string;
-}
+};
 
 export type GoogleCalendarNotice = Notice & {
-  schedule: Schedule
-}
+  schedule: Schedule;
+};
 
 export type GroupTalkRoom = {
   id: number;
@@ -53,7 +53,7 @@ export type GroupTalkRooms = GroupTalkRoom[];
 export type NoticeTargetData = {
   value: string;
   label: string;
-}[]
+}[];
 
 export type ErrorMessage = {
   errorMessage: string;
@@ -74,3 +74,16 @@ export type Page = {
 
 export type TalkType = "dm" | "groupTalk";
 export type NoticeType = "scheduled" | "draft" | "sent";
+
+export type ShoppingList = {
+  id: number;
+  name: string;
+  isDone: boolean;
+  doneAt: string;
+  dispOrder: number;
+  createdAt: string;
+  updatedAt: string;
+  userId: number;
+};
+
+export type ShoppingLists = ShoppingList[];
