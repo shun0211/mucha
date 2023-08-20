@@ -3,7 +3,7 @@ class Api::V1::ShoppingListsController < SecuredController
     @shopping_lists = current_user
       .shopping_lists
       .where(is_done: false)
-      .order(created_at: :desc)
+      .order(disp_order: :asc)
       .limit(10)
     render :index, status: :ok
   end
@@ -12,7 +12,7 @@ class Api::V1::ShoppingListsController < SecuredController
     @shopping_list = ShoppingList.new(
       user_id: current_user.id,
       name: params[:name],
-      disp_order: current_user.shopping_lists.max(:disp_order) + 1,
+      disp_order: current_user.shopping_lists.maximum(:disp_order) + 1,
       is_done: false,
     )
     if @shopping_list.save
@@ -24,7 +24,7 @@ class Api::V1::ShoppingListsController < SecuredController
 
   def update
     @shopping_list = current_user
-      .notices
+      .shopping_lists
       .find(params[:id])
     if @shopping_list.update(name: params[:name])
       render :show, status: :ok
