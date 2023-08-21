@@ -27,6 +27,17 @@ module.exports = {
       textDecorationThickness: {
         3: '3px',
       },
+      /** 既存のborderWidthを上書きする */
+      borderWidth: {
+        DEFAULT: '1px',
+        '0': '0',
+        '0.5': '0.5px',
+        '2': '2px',
+        '3': '3px',
+        '4': '4px',
+        '6': '6px',
+        '8': '8px',
+      }
     },
   },
 };

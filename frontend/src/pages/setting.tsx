@@ -13,6 +13,7 @@ import PageTitle from "../components/ui-elements/PageTitle";
 import { CONTACT_URL } from "../config/constants";
 import { auth } from "../config/firebase";
 import { AuthContext } from "../providers/AuthContext";
+import Link from "next/link";
 
 const Setting = () => {
   const { currentUser } = useContext(AuthContext);
@@ -61,25 +62,31 @@ const Setting = () => {
         <PageTitle>その他</PageTitle>
         <Anchor
           href={CONTACT_URL}
-          className="border-y-gray-300 text-black border-t flex h-14 items-center cursor-pointer hover:bg-hover-color p-2"
+          className="border-gray text-black border-t-0.5 flex h-14 items-center cursor-pointer hover:bg-hover-color p-2"
         >
           問い合わせ
         </Anchor>
-        <Anchor
+        <Link
+          href="/notifications"
+          className="border-gray text-black border-t-0.5 flex h-14 items-center cursor-pointer hover:bg-hover-color p-2"
+        >
+          お知らせ
+        </Link>
+        <Link
           href="/terms"
-          className="border-y-gray-300 text-black border-t flex h-14 items-center cursor-pointer hover:bg-hover-color p-2"
+          className="border-gray text-black border-t-0.5 flex h-14 items-center cursor-pointer hover:bg-hover-color p-2"
         >
           利用規約
-        </Anchor>
-        <Anchor
+        </Link>
+        <Link
           href="/privacy"
-          className="border-y-gray-300 text-black border-t flex h-14 items-center cursor-pointer hover:bg-hover-color p-2"
+          className="border-gray text-black border-t-0.5 flex h-14 items-center cursor-pointer hover:bg-hover-color p-2"
         >
           プライバシーポリシー
-        </Anchor>
+        </Link>
         <div
           onClick={handleLogout}
-          className="border-y-gray-300 border-t flex h-14 items-center cursor-pointer hover:bg-hover-color p-2"
+          className="border-gray border-t-0.5 flex h-14 items-center cursor-pointer hover:bg-hover-color p-2"
         >
           ログアウト
         </div>
