@@ -1,6 +1,7 @@
 import React from "react";
-import { Bell, Home, Plus, Settings } from "tabler-icons-react";
+import { Home, Plus, Settings } from "tabler-icons-react";
 import NavigationBottomItem from "../NavigationBottomItem";
+import { AiOutlineUnorderedList } from "react-icons/ai";
 
 export const GeneralNavigationBottom = () => {
   return (
@@ -8,8 +9,8 @@ export const GeneralNavigationBottom = () => {
       <NavigationBottomItem menu="ホーム" path="/notices">
         <Home size={26} strokeWidth={1} color={"black"} className="m-auto" />
       </NavigationBottomItem>
-      <NavigationBottomItem menu="お知らせ" path="/notifications">
-        <Bell size={26} strokeWidth={1} color={"black"} className="m-auto" />
+      <NavigationBottomItem menu="買い物リスト" path="/shopping-lists">
+        <AiOutlineUnorderedList size={26} strokeWidth={1} color={"black"} className="m-auto" />
       </NavigationBottomItem>
       <NavigationBottomItem menu="追加" path="/notices/new">
         <Plus size={26} strokeWidth={1} color={"black"} className="m-auto" />

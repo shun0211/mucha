@@ -8,7 +8,7 @@ export const LiffNavigationBottom = () => {
       <NavigationBottomItem menu="ホーム" path="/notices">
         <Home size={26} strokeWidth={1} color={"black"} className="m-auto" />
       </NavigationBottomItem>
-      <NavigationBottomItem menu="お知らせ" path="/notifications">
+      <NavigationBottomItem menu="買い物リスト" path="/shopping-lists">
         <Bell size={26} strokeWidth={1} color={"black"} className="m-auto" />
       </NavigationBottomItem>
       <NavigationBottomItem menu="一斉送信" path="/multiple-send">
