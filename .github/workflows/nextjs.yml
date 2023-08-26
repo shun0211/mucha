@@ -81,9 +81,9 @@ jobs:
 
       - name: Static HTML export with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next export
-        working-directory: ./frontend
         with:
           path: ./out
+        working-directory: ./frontend
 
   # Deployment job
   deploy:
