@@ -8,7 +8,8 @@
     "dev:proxy": "local-ssl-proxy --key localhost-key.pem --cert localhost.pem --source 3200 --target 3100",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "export": "next build && next export"
   },
   "dependencies": {
     "@auth0/auth0-react": "^1.12.0",
