@@ -58,6 +58,16 @@ class LineBot::CallbacksController < ApplicationController
           }
         )
         return render json: {}, status: :ok
+      elsif message == '買い物リスト追加'
+        user.user_setting.create_shopping_list!
+        line_bot_client.reply_message(
+          params['events'].first['replyToken'],
+          {
+            type: 'text',
+            text: "買い物リストを入力してください↓\n例) シャンプー"
+          }
+        )
+        return render json: {}, status: :ok
       end
 
       if user.user_setting.create_notice?
@@ -154,6 +164,19 @@ class LineBot::CallbacksController < ApplicationController
             text: "お店: #{nearest_station["name"]}\n最寄り駅: #{station.name}\n経路: #{course_url}"
           }
         )
+      elsif user.user_setting.create_shopping_list?
+        user.shopping_lists.create!(
+          name: message,
+          disp_order: user.shopping_lists.maximum(:disp_order) + 1,
+          is_done: false
+        )
+        line_bot_client.reply_message(
+          params['events'].first['replyToken'],
+          {
+            type: 'text',
+            text: "買い物リストに「#{message}」を追加しました🛒"
+          }
+        )
       end
       return render json: {}, status: :ok
     end
@@ -204,6 +227,7 @@ class LineBot::CallbacksController < ApplicationController
     ErrorUtility.logger(e)
   rescue => e
     ErrorUtility.logger(e)
+
   end
 
   private def line_bot_client
