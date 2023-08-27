@@ -167,7 +167,7 @@ class LineBot::CallbacksController < ApplicationController
       elsif user.user_setting.create_shopping_list?
         user.shopping_lists.create!(
           name: message,
-          disp_order: user.shopping_lists.maximum(:disp_order) + 1,
+          disp_order: (user.shopping_lists.maximum(:disp_order) || 0) + 1,
           is_done: false
         )
         line_bot_client.reply_message(
