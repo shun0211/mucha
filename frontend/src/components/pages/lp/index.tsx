@@ -114,10 +114,10 @@ const PagesLandingPage = () => {
       </div>
       <div className="h-[2vh] w-full bg-accent"></div>
 
-      <div className="bg-primary pt-2 pb-5">
+      <div className="bg-primary pt-2 pb-8">
         <Title
           order={3}
-          className="text-center pt-10 pb-2 text-white font-semibold"
+          className="text-center pt-10 pb-5 md:pb-2 text-white font-semibold"
         >
           <span className="bg-white bg-opacity-10 py-1 px-3 rounded-lg">
             MUCHAのポイント
@@ -129,7 +129,7 @@ const PagesLandingPage = () => {
             alt="だれでも"
             width={300}
             height={100}
-            className="mx-auto py-3 pt-6"
+            className="mx-auto py-3"
           />
           <Image
             src="/lp/LP-imasugu.png"
@@ -143,7 +143,7 @@ const PagesLandingPage = () => {
             alt="かんたん"
             width={300}
             height={100}
-            className="mx-auto py-3 pb-6"
+            className="mx-auto py-3"
           />
         </div>
       </div>
