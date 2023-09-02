@@ -23,6 +23,7 @@ services:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_PORT: 3306
       FRONT_URI: http://localhost:3100
+      TZ: Asia/Tokyo
     volumes:
       - .:/mucha
     ports:
