@@ -207,7 +207,7 @@ const EditNotice = () => {
           >
             下書き保存
           </Button>
-          <MainButton text="リマインドする" type="submit" />
+          <MainButton text="更新する" type="submit" />
         </div>
       </form>
     </Card>

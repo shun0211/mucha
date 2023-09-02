@@ -19,7 +19,6 @@ const NoticeCard = ({ notice, noticeType }: Props) => {
   return (
     <>
       <Card shadow="md" radius="xl" className="my-5">
-        {/* <Badge color="indigo">Googleカレンダー</Badge> */}
         <Title order={4} className="py-1">
           {notice.title}
         </Title>
@@ -38,7 +37,13 @@ const NoticeCard = ({ notice, noticeType }: Props) => {
 
         <div className={`${hiddened ? "hidden" : ""}`}>
           <Text fw={700}>メッセージ</Text>
-          <Text className="whitespace-pre-wrap">{notice.message}</Text>
+          <Text className="whitespace-pre-wrap pb-3">{notice.message}</Text>
+          <NoticeCardButtons
+            noticeType={noticeType}
+            noticeId={notice.id}
+            token={token}
+            router={router}
+          />
           <ChevronUp
             size={36}
             strokeWidth={1}
@@ -50,12 +55,6 @@ const NoticeCard = ({ notice, noticeType }: Props) => {
           />
         </div>
 
-        <NoticeCardButtons
-          noticeType={noticeType}
-          noticeId={notice.id}
-          token={token}
-          router={router}
-        />
       </Card>
     </>
   );

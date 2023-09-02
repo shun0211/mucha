@@ -50,7 +50,7 @@ class Api::V1::NoticesController < SecuredController
   def update
     @notice = current_user.notices.find_by(id: params[:id])
     return render_unauthorized_error('', 'Invalid Notice Id') if @notice.nil?
-    return render_bad_request_error('', 'Not update draft notice') unless @notice.draft?
+    return render_bad_request_error('', 'Not update sent notice') if @notice.sent?
 
     @notice.update_columns(notice_params.to_h)
     if @notice.valid?(:input_by_user)
