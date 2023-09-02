@@ -38,46 +38,7 @@ class Api::V1::GoogleCalendar::AuthsController < SecuredController
     google_calendar_token.assign_attributes(refresh_token: @auth_client.refresh_token, google_calendar_id: service.get_calendar('primary').id)
     google_calendar_token.save!
 
-    event_list = service.list_events('primary', time_min: Time.zone.now.rfc3339, time_max: 1.month.since.in_time_zone.rfc3339 )
-
-    # Google カレンダー上で消されたスケジュールを全て削除する
-    i_cal_uids = event_list.items.map(&:i_cal_uid)
-    current_user.schedules.where.not(uid: i_cal_uids).destroy_all
-
-    event_list.items.each do |event|
-      Schedule.transaction do
-        schedule = current_user.schedules.find_or_initialize_by(uid: event.i_cal_uid)
-        # スケジュールの詳細が変更になっているかもしれないので、再代入する
-        schedule.assign_attributes(
-          title: event.summary || '（タイトルなし）',
-          description: event.description || '',
-          start_time: event.start.date || event.start.date_time,
-          end_time: event.end.date || event.end.date_time,
-          all_day: event.start.date_time.nil? && event.end.date_time.nil?,
-          source: 'google_calendar',
-          source_url: event.html_link,
-          notice_minutes_ago: 10
-        )
-        if schedule.changed? && schedule.save!
-          notice = schedule.notice || Notice.new(schedule: schedule)
-          Notices::DeleteJobService.new(notice).execute! unless notice.new_record?
-
-          notice.assign_attributes(
-            title: schedule.title,
-            message: schedule.description,
-            scheduled_at: schedule.start_time - schedule.notice_minutes_ago.minutes,
-            to_line_id: current_user.line_user_id,
-            talk_type: "dm",
-            status: "scheduled",
-            source: "google_calendar",
-            repeat: false,
-            user: current_user
-          )
-          notice.save!
-          Notices::SetJobService.new(notice).execute!
-        end
-      end
-    end
+    Schedules::GoogleCalendar::CreateService.new(current_user, auth_client).execute!
 
     redirect_to "#{ENV['FRONT_URI']}/notices?googleCalendarLinkageSuccess=true", allow_other_host: true
   end

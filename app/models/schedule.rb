@@ -37,16 +37,53 @@ class Schedule < ApplicationRecord
     google_calendar: 10
   }
 
+  after_save :save_or_create_notice
+
   def booking_detail
-    date = self.start_time.strftime('%Y/%m/%d')
+    start_date = self.start_time.strftime('%Y/%m/%d')
+    end_date = self.end_time.strftime('%Y/%m/%d')
     start_time = self.start_time.strftime('%H:%M')
     end_time = self.end_time.strftime('%H:%M')
-    "#{date} #{start_time} ~ #{end_time}"
+
+    if self.all_day? && self.start_time == self.end_time
+      start_date
+    elsif self.all_day?
+      "#{start_date} ~ #{end_date}"
+    else
+      "#{start_date} #{start_time} ~ #{end_time}"
+    end
   end
 
   def booking_time
     start_time = self.start_time.strftime('%H:%M')
     end_time = self.end_time.strftime('%H:%M')
     "#{start_time} ~ #{end_time}"
+  end
+
+  private def save_or_create_notice
+    notice = self.notice || Notice.new(schedule: self)
+    Notices::DeleteJobService.new(notice).execute! unless notice.new_record?
+
+    # NOTE: スケジュールが終日の場合は朝7時に通知する
+    #       それ以外の場合は、スケジュールの開始時間から指定した分数前に通知する
+    if self.all_day?
+      scheduled_at = self.start_time.beginning_of_day + 7.hours
+    else
+      scheduled_at = self.start_time - self.notice_minutes_ago.minutes
+    end
+
+    notice.assign_attributes(
+      title: self.title,
+      message: self.description || '',
+      scheduled_at: scheduled_at,
+      to_line_id: self.user.line_user_id,
+      talk_type: "dm",
+      status: "scheduled",
+      source: "google_calendar",
+      repeat: false,
+      user: self.user
+    )
+    notice.save!
+    Notices::SetJobService.new(notice).execute!
   end
 end

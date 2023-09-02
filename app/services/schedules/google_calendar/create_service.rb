@@ -16,6 +16,8 @@ class Schedules::GoogleCalendar::CreateService
     user.schedules.where.not(uid: i_cal_uids).destroy_all
 
     event_list.items.each do |event|
+      next if event.status == 'cancelled'
+
       Schedule.transaction do
         schedule = user.schedules.find_or_initialize_by(uid: event.i_cal_uid)
         # スケジュールの詳細が変更になっているかもしれないので、再代入する
@@ -29,24 +31,7 @@ class Schedules::GoogleCalendar::CreateService
           source_url: event.html_link,
           notice_minutes_ago: 10
         )
-        if schedule.changed? && schedule.save!
-          notice = schedule.notice || Notice.new(schedule: schedule)
-          Notices::DeleteJobService.new(notice).execute! unless notice.new_record?
-
-          notice.assign_attributes(
-            title: schedule.title,
-            message: schedule.description,
-            scheduled_at: schedule.start_time - schedule.notice_minutes_ago.minutes,
-            to_line_id: user.line_user_id,
-            talk_type: "dm",
-            status: "scheduled",
-            source: "google_calendar",
-            repeat: false,
-            user: user
-          )
-          notice.save!
-          Notices::SetJobService.new(notice).execute!
-        end
+        schedule.changed? && schedule.save!
       end
     end
   end
