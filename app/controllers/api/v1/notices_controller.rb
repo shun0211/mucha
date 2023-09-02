@@ -13,6 +13,17 @@ class Api::V1::NoticesController < SecuredController
       .page(params[:page])
   end
 
+  def sent
+    @notices = current_user
+      .notices
+      .includes(:line_message_jobs)
+      .where(status: :sent)
+      .order(scheduled_at: :desc)
+      .page(params[:page])
+      .per(params[:per_page])
+    render :index, status: :ok
+  end
+
   def create
     @notice = current_user.notices.build(notice_params)
     if @notice.valid?(:input_by_user)

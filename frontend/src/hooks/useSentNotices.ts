@@ -21,7 +21,7 @@ const useSentNotices = (
   perPage = 10
 ): UseNotices => {
   const { data, error } = useSWR<UseNotices>(
-    `${API_URL}/notices?userId=${userId}&page=${page}&perPage=${perPage}&status=sent`,
+    `${API_URL}/notices/sent?&page=${page}&perPage=${perPage}`,
     (url) => fetcher(url, token)
   );
 

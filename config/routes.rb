@@ -10,7 +10,11 @@ Rails.application.routes.draw do
       resources :users, only: [:create]
       get 'current-user', to: 'users#show_current_user'
       put 'users/:id/follow', to: 'users#follow'
-      resources :notices
+      resources :notices do
+        collection do
+          get 'sent'
+        end
+      end
       put 'notices/:id/draft', to: "notices#update_to_draft"
       put 'notices/:id/scheduled', to: "notices#update_to_scheduled"
       resources :group_talk_rooms
