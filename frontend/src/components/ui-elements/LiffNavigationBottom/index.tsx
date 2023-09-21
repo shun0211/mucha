@@ -1,6 +1,7 @@
 import React from "react";
-import { Bell, Home, MessageCircle, Plus, Settings } from "tabler-icons-react";
+import { Home, MessageCircle, Plus, Settings } from "tabler-icons-react";
 import NavigationBottomItem from "../NavigationBottomItem";
+import { AiOutlineUnorderedList } from "react-icons/ai";
 
 export const LiffNavigationBottom = () => {
   return (
@@ -9,7 +10,7 @@ export const LiffNavigationBottom = () => {
         <Home size={26} strokeWidth={1} color={"black"} className="m-auto" />
       </NavigationBottomItem>
       <NavigationBottomItem menu="買い物リスト" path="/shopping-lists">
-        <Bell size={26} strokeWidth={1} color={"black"} className="m-auto" />
+        <AiOutlineUnorderedList size={26} strokeWidth={1} color={"black"} className="m-auto" />
       </NavigationBottomItem>
       <NavigationBottomItem menu="一斉送信" path="/multiple-send">
         <MessageCircle size={26} strokeWidth={1} color={"black"} className="m-auto" />
