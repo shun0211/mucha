@@ -4,7 +4,6 @@ class Api::V1::ShoppingListsController < SecuredController
       .shopping_lists
       .where(is_done: false)
       .order(disp_order: :asc)
-      .limit(10)
     render :index, status: :ok
   end
 

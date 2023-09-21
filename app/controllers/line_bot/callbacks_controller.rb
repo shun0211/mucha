@@ -165,6 +165,30 @@ class LineBot::CallbacksController < ApplicationController
           }
         )
       elsif user.user_setting.create_shopping_list?
+        # 「list」or「一覧」が送られてきたときは、買い物リストを返す
+        if message.include?('list') || message.include?('一覧')
+          shopping_lists = user.shopping_lists.where(is_done: false).order(disp_order: :asc)
+          if shopping_lists.empty?
+            line_bot_client.reply_message(
+              params['events'].first['replyToken'],
+              {
+                type: 'text',
+                text: "買い物リストはありません🛒"
+              }
+            )
+          else
+            message = shopping_lists.map { |list| "・#{list.name}" }.join("\n")
+            line_bot_client.reply_message(
+              params['events'].first['replyToken'],
+              {
+                type: 'text',
+                text: message
+              }
+            )
+          end
+          return render json: {}, status: :ok
+        end
+
         user.shopping_lists.create!(
           name: message,
           disp_order: (user.shopping_lists.maximum(:disp_order) || 0) + 1,
