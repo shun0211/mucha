@@ -41,7 +41,7 @@ gem 'rollbar'
 gem 'ruby-openai'
 gem 'seed-fu', github: 'shun0211/seed-fu', branch: 'support-rails-7'
 # gem 'shortener'
-gem 'sidekiq', '5.2.10'
+gem 'sidekiq'
 gem "sidekiq-scheduler"
 gem "slack-notifier"
 # gem "tokenizers"
