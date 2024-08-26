@@ -34,8 +34,9 @@ class Api::V1::GoogleCalendar::AuthsController < SecuredController
     service = Google::Apis::CalendarV3::CalendarService.new
     service.authorization = @auth_client
 
-    google_calendar_token = GoogleCalendarToken.find_or_initialize_by(user: current_user)
-    google_calendar_token.assign_attributes(refresh_token: @auth_client.refresh_token, google_calendar_id: service.get_calendar('primary').id)
+    google_calendar_id = service.get_calendar('primary').id
+    google_calendar_token = current_user.google_calendar_tokens.find_or_initialize_by(google_calendar_id: google_calendar_id)
+    google_calendar_token.assign_attributes(refresh_token: @auth_client.refresh_token)
     google_calendar_token.save!
 
     Schedules::GoogleCalendar::CreateService.new(current_user, auth_client).execute!

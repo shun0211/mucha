@@ -14,6 +14,7 @@
 #  uid                :string(255)      not null
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  google_calendar_id :string(255)
 #  user_id            :bigint           not null
 #
 # Indexes

@@ -21,7 +21,7 @@
 class User < ApplicationRecord
   has_many :notices, dependent: :destroy
   has_many :group_talk_rooms, dependent: :destroy
-  has_one :google_calendar_token, dependent: :destroy
+  has_many :google_calendar_tokens, dependent: :destroy
   has_many :schedules, dependent: :destroy
   has_one :user_setting, dependent: :destroy
   has_many :monthly_message_metrics, dependent: :destroy

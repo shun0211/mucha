@@ -7,7 +7,6 @@
 #  send_line_daily_schedule :boolean          default(FALSE), not null
 #  created_at               :datetime         not null
 #  updated_at               :datetime         not null
-#  nearest_station_id       :integer
 #  user_id                  :bigint           not null
 #
 # Indexes
