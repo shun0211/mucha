@@ -28,3 +28,4 @@
 /config/firebase/prod-adminsdk.json
 /lambda_function/*
 /app/assets/rich_menu/*
+/pscale_dump_mucha_production_main

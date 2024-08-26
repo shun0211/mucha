@@ -37,13 +37,6 @@ const Mucha = ({
       if (!authChecking && currentUser === null) {
         router.push("/signin");
       }
-      if (
-        !authChecking &&
-        currentUser?.isLineAccountLinkaged === false &&
-        (router.pathname === "/notices" || router.pathname === "/notices/new")
-      ) {
-        router.push("/help/line-account-linkage");
-      }
       return authChecking ? <Skeleton /> : <Component {...pageProps} />;
     }
   };

@@ -35,7 +35,8 @@ class Api::V1::AuthsController < ApplicationController
           line_name: line_user_info["name"],
           line_profile_image_url: line_user_info["picture"]
         )
-        app.auth.create_user(uid: line_user_info['sub'])
+        firebase_user = app.auth.get_user(line_user_info['sub'])
+        app.auth.create_user(uid: line_user_info['sub']) if firebase_user.nil?
       end
     end
 

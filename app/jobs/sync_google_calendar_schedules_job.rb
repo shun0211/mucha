@@ -11,6 +11,7 @@ class SyncGoogleCalendarSchedulesJob
     User.find_each do |user|
       next unless user.google_calendar_sync_enabled?
 
+      # TODO: 複数の Google Calendar の同期に対応する
       auth_client.refresh_token = user.google_calendar_token.refresh_token
       auth_client.refresh!
 
