@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
 class LineBot::CallbacksController < ApplicationController
+  OPENAI_MODEL = 'gpt-4o-mini'
+
   class SearchNearestStationError < StandardError; end
   class EkiSpertClientError < StandardError; end
+  class OpenAIError < StandardError; end
 
   def callback # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
     type = params['events'].first['type']
@@ -34,7 +37,19 @@ class LineBot::CallbacksController < ApplicationController
           params['events'].first['replyToken'],
           {
             type: 'text',
-            text: "困ったことがあったらAIに聞いてみよう！\n何でも答えてくれます🤖"
+            text: "困ったことがあったらAIに聞いてみよう！\n何でも答えてくれます🤖",
+            "quickReply": {
+              "items": [
+                {
+                  "type": "action",
+                  "action": {
+                    "type": "message",
+                    "label": "空いている日程を提案",
+                    "text": "空いている日程を提案"
+                  }
+                }
+              ]
+            }
           }
         )
         return render json: {}, status: :ok
@@ -99,18 +114,26 @@ class LineBot::CallbacksController < ApplicationController
             past_messages = user.chatgpt_messages.order(created_at: :desc).limit(4).map { |m| { role: m.role, content: m.message } }
             user.chatgpt_messages.create!(message: message, role: 'user')
 
-            # OpenAI API を叩く
+            display_line_loading_animation(user.line_user_id)
+
+            future_schedules = user.schedules.where('start_time >= ?', Time.zone.now)
+            future_schedules_json = future_schedules.to_json(only: [:id, :start_time, :end_time, :title, :all_day])
+
             response = openai_client.chat(
               parameters: {
-                model: 'gpt-3.5-turbo',
+                model: OPENAI_MODEL,
+                response_format: { type: "json_object" },
                 messages: [
-                  { role: 'system', content: 'You are the AI assistant who answers many times' },
-                  *past_messages,
+                  { role: 'system', content: calendar_suggestion_system_prompt(future_schedules_json) },
                   { role: 'user', content: message }
                 ]
               }
             )
-            reply_message = response['choices'].first['message']['content'].delete_prefix("\n\n")
+
+            ai_response_content = response['choices'].first['message']['content'].strip.gsub('\n', '')
+            json_suggestions = JSON.parse(ai_response_content)
+            reply_message = format_suggestion(json_suggestions)
+
             user.chatgpt_messages.create!(message: reply_message, role: 'assistant')
             line_bot_client.reply_message(
             params['events'].first['replyToken'],
@@ -391,5 +414,90 @@ class LineBot::CallbacksController < ApplicationController
         }
       }
     }
+  end
+
+  private def display_line_loading_animation(line_user_id)
+    uri = URI.parse('https://api.line.me/v2/bot/chat/loading/start')
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+
+    request = Net::HTTP::Post.new(uri.path)
+    request['Content-Type'] = 'application/json'
+    request['Authorization'] = "Bearer #{ENV['LINE_CHANNEL_TOKEN']}"
+    request.body = {
+      chatId: line_user_id,
+      loadingSeconds: 60
+    }.to_json
+
+    response = http.request(request)
+
+    unless response.is_a?(Net::HTTPSuccess)
+      Rails.logger.error "Failed to start loading: #{response.code} #{response.message}"
+    end
+  end
+
+  private def calendar_suggestion_system_prompt(json_data)
+    <<~PROMPT
+      Googleカレンダーに登録された予定を基に、#{Time.current.beginning_of_day}から5日間の09:00から21:00の間で空いている時間を正確にすべて抽出してください。この提案では、以下の条件を考慮してください。
+
+      - 予定の内容を確認し、外での予定と推測される場合には、その前後1時間を空けた時間帯で提案してください。
+      - 重複する時間枠や連続する時間は避けてください。
+
+      以下が、今日以降のGoogleカレンダーの予定です：
+
+      #{json_data}
+
+      # Steps
+
+      1. Googleカレンダーの予定を読み込み、#{Time.current.beginning_of_day}から5日間のスケジュールを把握します。
+      2. 各予定の名前を確認し、外出が予想される予定を特定します。
+      3. 各日について09:00から21:00の間で空いている時間を探します。
+         - 外出予定の場合、その前後1時間を避けます。
+      4. 見つけた空いている時間を出力します。
+
+      # Output Format
+
+      - 提案のフォーマットは下例に示すJSON形式です。
+      - 空いている時間のみ出力するようにしてください。
+
+      # Output Examples
+
+      ```json
+      {
+        "suggestions": [
+          {
+            "date": "2024-10-01",
+            "start_time": "10:00",
+            "end_time": "12:00"
+          },
+          {
+            "date": "2024-10-02",
+            "start_time": "13:00",
+            "end_time": "15:00"
+          }
+        ]
+      }
+      ```
+
+      # Notes
+
+      - 重複や連続する時間は避けてください。
+      - 全ての予定が外出予定とされるわけではない点に注意してください。
+      - **空いている時間のみ出力**するようにしてください。
+    PROMPT
+  end
+
+  private def format_suggestion(suggestions)
+    suggestions['suggestions'].map do |suggestion|
+      formatted_date = format_date(suggestion['date'])
+      start_time = suggestion['start_time']
+      end_time = suggestion['end_time']
+      "#{formatted_date} #{start_time} - #{end_time}"
+    end.join("\n")
+  end
+
+  private def format_date(date_str)
+    date = Date.parse(date_str)
+    date.strftime("%m月%d日") + "(" + %w(日 月 火 水 木 金 土)[date.wday] + ")"
   end
 end

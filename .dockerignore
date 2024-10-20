@@ -4,3 +4,4 @@ pscale_dump_mucha_production_main/
 log/
 db_dump.sql
 tmp/cache/
+.mypy_cache/
